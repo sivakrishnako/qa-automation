@@ -1,0 +1,20 @@
+{
+  "name": "CypressAutomation",
+  "version": "1.0.0",
+  "description": "Automation of Kiosk application Tests - Web & API",
+  "main": "index.js",
+  "scripts": {
+    "cy:run": "npx cypress run",
+    "cy:open": "node_modules\\.bin\\cypress open",
+    "chromeTest": "npx cypress run --headed --browser chrome",
+    "firefoxTest": "npx cypress run --headed --browser firefox",
+    "recordRun": "npx cypress run --record --key aabb2040-c793-4a0e-b6af-f69a43445621"
+  },
+  "keywords": [],
+  "author": "Cybage Team",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^9.6.1",
+    "prettier": "^2.6.2"
+  }
+}
