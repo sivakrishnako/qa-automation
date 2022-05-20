@@ -1,0 +1,14 @@
+{
+  
+  "projectId": "5qe1y2",
+
+  "chromeWebSecurity": false,
+  "testFiles": "**/*.spec.js",
+  "video":false,	
+  
+  "baseUrl": "http://rt-kiosk-app-qa.s3-website.us-east-2.amazonaws.com/",
+  
+  "env": {
+      "apiURL": "http://rtkioskadminsapi-test.us-east-2.elasticbeanstalk.com/"
+  }
+}
