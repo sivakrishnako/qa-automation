@@ -6,9 +6,11 @@
   "testFiles": "**/*.spec.js",
   "video":false,	
   
-  "baseUrl": "http://rt-kiosk-app-qa.s3-website.us-east-2.amazonaws.com/",
+  "baseUrl": "https://org1-kiosk.raintreeinc.com/?location=ZZPOC",
   
   "env": {
       "apiURL": "http://rtkioskadminsapi-test.us-east-2.elasticbeanstalk.com/"
-  }
+  },
+  "defaultCommandTimeout": 10000
+
 }
