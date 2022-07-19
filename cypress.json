@@ -1,14 +1,18 @@
 {
-  
   "projectId": "5qe1y2",
-
   "chromeWebSecurity": false,
   "testFiles": "**/*.spec.js",
-  "video":false,	
-  
-  "baseUrl": "http://rt-kiosk-app-qa.s3-website.us-east-2.amazonaws.com/",
-  
+  "video": false,
+  "baseUrl": "https://org1-kiosk.raintreeinc.com/?location=ZZPOC",
+
   "env": {
-      "apiURL": "http://rtkioskadminsapi-test.us-east-2.elasticbeanstalk.com/"
-  }
+    "kioskURL": "https://org1-kiosk.raintreeinc.com/?location=",
+    "myWait" : 40000,
+    "elemtTimeout" : 5000,
+    "apiURL": "http://rtkioskadminsapi-test.us-east-2.elasticbeanstalk.com/",
+    "rtApiURL": "https://kiosk.raintreeinc.com/dat/api/",
+    "pmURL": "https://lpbkunky99.execute-api.us-east-1.amazonaws.com/Prod/api/"
+  },
+  
+  "defaultCommandTimeout": 30000
 }
