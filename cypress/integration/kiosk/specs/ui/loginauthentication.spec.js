@@ -3,7 +3,7 @@
 import WelcomePage from '../../pageObjects/pages/welcome.page'
 import AppointmentPage from '../../pageObjects/pages/appointment.page'
 import PatientData from './patient.checkIn.TestData'
-import CheckInPage from '../../pageObjects/pages/checkIn.page'
+import CheckInPage from '../../pageObjects/pages/checkin.page'
 import RTApiData from '../../specs/api/rt.api.testdata'
 
 describe(
