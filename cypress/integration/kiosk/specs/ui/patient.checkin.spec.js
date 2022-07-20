@@ -5,7 +5,7 @@ import AppointmentPage from '../../pageObjects/pages/appointment.page';
 
 import patientData from './patient.checkin.testdata'
 
-describe('Patient Check-in KIOSK', () => {
+describe.skip('Patient Check-in KIOSK', () => {
 
     it('TC_UI_001 - Patient Successful Check-in', () => {
       
