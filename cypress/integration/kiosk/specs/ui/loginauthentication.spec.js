@@ -6,6 +6,7 @@ import PatientData from '../../specs/ui/patient.checkin.testdata'
 import CheckInPage from '../../pageObjects/pages/checkin.page'
 import RTApiData from '../../specs/api/rt.api.testdata'
 
+//for demo - remove later
 describe(
   'LogIn /Authentication Epic test suite',
   {
