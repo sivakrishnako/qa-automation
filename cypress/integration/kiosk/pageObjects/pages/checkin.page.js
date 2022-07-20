@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import AppointmentData from '../../specs/ui/appointment.detailsPage.TestData';
+import AppointmentData from '../../specs/ui/appointment.detailspage.testdata';
 
 class CheckInPage {
     static checkInTitle=('[data-testid="checkInTitle"]')
