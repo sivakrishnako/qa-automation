@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import PatientData from "../../specs/ui/patient.checkIn.TestData";
+import PatientData from "../../specs/ui/patient.checkin.testdata";
 
 class AppointmentPage {
   static appointmentTitle = '[data-testid="card-tittle"]';
