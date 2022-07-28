@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
-import PatientData from '../../specs/ui/patient.checkIn.TestData'
+
+import PatientData from '../../specs/ui/patient.checkin.testData'
 
 class AppointmentPage {
   static appointmentTitle = '[data-testid="card-tittle"]'
@@ -20,23 +21,7 @@ class AppointmentPage {
   static getTypeOfAppointmentTitle = '[data-testid="appointment-type-label"]'
   static getTitleOfCheckInButton = '[data-testid="singleAppointmentCheckIn"]'
   static checkInButtonJS = '#mui-6'
-  static clickCheckInBtn () {
-    if (
-      cy
-        .get('[data-testid="singleAppointmentCheckIn"]', {
-          timeout: Cypress.env('elementTimeout')
-        })
-        .should('be.visible')
-    ) {
-      cy.get('[data-testid="singleAppointmentCheckIn"]').click({ force: true })
-    } else {
-      cy.wait(Cypress.env('myWait'))
-      cy.get('[data-testid="singleAppointmentCheckIn"]').click()
-    }
-
-    return this
-  }
-
+ 
   static clickHelpButtonOfAppointmentPage () {
     const Button = cy.get('[data-testid="HelpOutlineIcon"]', {
       timeout: Cypress.env('elementTimeout')
@@ -211,3 +196,4 @@ class AppointmentPage {
 }
 
 export default AppointmentPage
+

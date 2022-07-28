@@ -25,7 +25,8 @@ describe(
         WelcomePage.generateRandomText(6).slice(1),
         'ZZPOC',
         '1',
-        cy.generateAdjustedTime(1)
+        cy.generateAdjustedTime(1),
+        'DAD'
       )
     })
 
@@ -121,7 +122,8 @@ describe(
           WelcomePage.generateRandomText(6).slice(1),
           'ABUND',
           '1',
-          cy.generateAdjustedTime(1)
+          cy.generateAdjustedTime(1),
+          'DAD'
         )
       })
 

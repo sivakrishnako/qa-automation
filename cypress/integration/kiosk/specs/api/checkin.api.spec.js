@@ -2,7 +2,7 @@
 
 import ApiData from './checkin.api.testdata'
 
-describe('Patient demographics', () => {
+describe.skip('Patient demographics', () => {
 
     it('TC_API-001: GET patient phone number', function() {
 

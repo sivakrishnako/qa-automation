@@ -1,13 +1,11 @@
 let access_token = ''
 let patient_id = ''
 let patient_ln = ''
-let dateObj = new Date()
 let isoDate = ''
 let contact_id = ''
 
 Cypress.Commands.add('enterText', (locatorValue, inputValue) => {
   cy.get(locatorValue).clear()
-
   cy.get(locatorValue).type(inputValue)
 })
 
@@ -29,9 +27,10 @@ Cypress.Commands.add('verifyText', (locatorValue, text) => {
   cy.get(locatorValue).should('have.text', text)
 })
 
-Cypress.Commands.add('generateAdjustedTime', (strHours) => {
+Cypress.Commands.add('generateAdjustedTime', (strMins) => {
   let date = new Date()
-  date.setHours(date.getHours() + strHours)
+ // date.setHours(date.getHours() + strHours)
+  date.setMinutes(date.getMinutes() + strMins)
   isoDate = date.toISOString()
   cy.log('Adjusted time for appointment--> +' + isoDate)
 })
@@ -102,7 +101,8 @@ Cypress.Commands.add('addPatient', (strName, strRandom) => {
 })
 
 Cypress.Commands.add('addAppointment', (strLocation, strCount, strAppointmentTime) => {
-  for (let index = 0; index < strCount; index++) {
+  let dateObj = new Date()
+  for (let index = 0; index < strCount; index++) {   
     cy.request({
       method: 'POST',
       url: Cypress.env('rtApiURL') + 'patients/' + patient_id + '/appointments',
@@ -117,7 +117,6 @@ Cypress.Commands.add('addAppointment', (strLocation, strCount, strAppointmentTim
         referral: '',
         apType: 'AUFUV',
         dateTime : dateObj.toISOString(),
-      //dateTime : cy.generateAdjustedTime(strAppointmentTime),
         length: '5'
       }
     }).then(response => {

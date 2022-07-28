@@ -1,6 +1,8 @@
 /// <reference types="cypress" />
-import AppointmentData from '../../specs/ui/appointment.detailsPage.TestData';
+
+import AppointmentData from '../../specs/ui/appointment.detailspage.testdata';
 import WelcomePage from '../../pageObjects/pages/welcome.page'
+
 class CheckInPage {
     static checkInTitle=('[data-testid="checkInTitle"]')
     
@@ -64,8 +66,20 @@ class CheckInPage {
         btn.click();
         return this;
     }
-
-    static clickOkBtnPopupOfNoneOfTheAbove() {
+      static clickOnDropDown() {
+        const button = cy.get('[data-testid="KeyboardArrowDownIcon"]',{ timeout: 20000 });
+        button.click(); 
+        return this;
+    }
+    static clickOnExitKioskBtn() {
+        this.clickOnDropDown()
+        const button = cy.get('[data-testid="exit-kios"]',{ timeout: 10000 });
+        
+        button.click();
+        return this;
+    }
+  
+ static clickOkBtnPopupOfNoneOfTheAbove() {
         const button = cy.get('[data-testid="noneOfAboveOk"]')
         button.click();
         return this;
@@ -83,3 +97,4 @@ class CheckInPage {
     }
 }
 export default CheckInPage;
+
