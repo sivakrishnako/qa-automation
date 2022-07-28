@@ -2,11 +2,10 @@
 
 import WelcomePage from '../../pageObjects/pages/welcome.page'
 import AppointmentPage from '../../pageObjects/pages/appointment.page'
-import PatientData from '../../specs/ui/patient.checkin.testdata'
+import PatientData from './patient.checkin.testdata'
 import CheckInPage from '../../pageObjects/pages/checkin.page'
 import RTApiData from '../../specs/api/rt.api.testdata'
 
-//for demo - remove later
 describe(
   'LogIn /Authentication Epic test suite',
   {
@@ -26,7 +25,8 @@ describe(
         WelcomePage.generateRandomText(6).slice(1),
         'ZZPOC',
         '1',
-        cy.generateAdjustedTime(1)
+        cy.generateAdjustedTime(1),
+        'DAD'
       )
     })
 
@@ -36,10 +36,12 @@ describe(
     })
 
     it('KIOSK-2106 || logIn ||Verify that KIOSK User will be able to  log in with last name and date of birth success ', () => {
+     
       cy.getPatientDetails('application/json').then(patient_ln => {
         cy.wait(Cypress.env('myWait'))
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
       })
+
       cy.verifyPage(
         CheckInPage.checkInTitle,
         PatientData.expectedTitleOfCheckIn,
@@ -120,7 +122,8 @@ describe(
           WelcomePage.generateRandomText(6).slice(1),
           'ABUND',
           '1',
-          cy.generateAdjustedTime(1)
+          cy.generateAdjustedTime(1),
+          'DAD'
         )
       })
 

@@ -1,10 +1,15 @@
 /// <reference types="cypress" />
+
 import PatientData from '../../specs/ui/patient.checkin.testdata'
+
 
 class WelcomePage {
   static launchApp (strLocation) {
     cy.visit(Cypress.env('kioskURL') + strLocation)
   }
+
+  static expTitleWelcomePage  = "Self Check-In Kiosk" 
+  static logInPageUrl = 'https://org1-kiosk.raintreeinc.com/'
 
   static titleWelcomePage () {
     return cy.get('[data-testid="self-check-in-kiosk"]', {
@@ -159,9 +164,7 @@ class WelcomePage {
     this.clickSpanishToggle()
   }
 
-  static getPopupMsgForBeforeNMinutesPatient () {
-    return
-  }
+
   static InvalidCheckIn (LastName, dateOfBirth, errorMessage) {
     this.fillLastName(LastName)
     this.fillPatientDoB(dateOfBirth)
