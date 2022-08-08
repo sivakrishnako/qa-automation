@@ -67,13 +67,13 @@ class CheckInPage {
         return this;
     }
       static clickOnDropDown() {
-        const button = cy.get('[data-testid="KeyboardArrowDownIcon"]',{ timeout: 20000 });
+        const button = cy.get('[data-testid="KeyboardArrowDownIcon"]',{ timeout: Cypress.env('elementTimeout')   });
         button.click(); 
         return this;
     }
     static clickOnExitKioskBtn() {
         this.clickOnDropDown()
-        const button = cy.get('[data-testid="exit-kios"]',{ timeout: 10000 });
+        const button = cy.get('[data-testid="exit-kiosk"]',{ timeout: Cypress.env('elementTimeout') });
         
         button.click();
         return this;
@@ -86,7 +86,7 @@ class CheckInPage {
     }
 
     static clickOnExitBtn() {
-        const button = cy.get('[data-testid="exitKiosk"]',{ timeout: 1000 });
+        const button = cy.get('[data-testid="exitKiosk"]',{ timeout: Cypress.env('elementTimeout')  });
         button.click();
         cy.verifyPage(
             WelcomePage.titleWelcomePage,

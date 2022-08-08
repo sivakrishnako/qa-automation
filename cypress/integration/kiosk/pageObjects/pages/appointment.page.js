@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
+import PatientData from '../../specs/ui/patient.checkin.testdata'
 
-import PatientData from '../../specs/ui/patient.checkin.testData'
-
+let strTime1 = ""
 class AppointmentPage {
   static appointmentTitle = '[data-testid="card-tittle"]'
   static getPatientName = '[data-testid="patient-name"]'
@@ -21,7 +21,8 @@ class AppointmentPage {
   static getTypeOfAppointmentTitle = '[data-testid="appointment-type-label"]'
   static getTitleOfCheckInButton = '[data-testid="singleAppointmentCheckIn"]'
   static checkInButtonJS = '#mui-6'
- 
+
+
   static clickHelpButtonOfAppointmentPage () {
     const Button = cy.get('[data-testid="HelpOutlineIcon"]', {
       timeout: Cypress.env('elementTimeout')
@@ -89,26 +90,45 @@ class AppointmentPage {
     cy.log(strTimeOfAppointment)
     return cy.get(strTimeOfAppointment)
   }
-  static convertedTime () {
-    const convertTime12to24ForFirstApt = time12h => {
-      const [time, modifier] = time12h.split(' ')
-      let [hours, minutes] = time.split(':')
-      if (hours === '12') {
-        hours = '00'
+
+
+
+
+
+   
+
+      
+
+    static convertedTime (strTime1) {
+      
+      const convertTime12to24ForSecondApt = strTime1 => {
+        const [time, modifier] = strTime1.split(' ')
+        let [hours, minutes] = time.split(':')
+        if (hours === '12') {
+          hours = '00'
+        }
+        if (modifier === 'PM') {
+          hours = parseInt(hours, 10) + 12
+        }
+        cy.log("Time in meths result -->"+`${hours}:${minutes}`)
+        return `${hours}:${minutes}`
       }
-      if (modifier === 'PM') {
-        hours = parseInt(hours, 10) + 12
-      }
-      return `${hours}:${minutes}`
+
     }
 
-    let convertedTime = convertTime12to24ForFirstApt(
-      PatientData.checkInTimeForFirstApt
-    )
+    static myTime1(){
+      cy.log(" in time 1 ")
+      strTime1 = cy.get("div:nth-of-type(1) > .providerWrapper > h6:nth-of-type(2) > .providerInfo").invoke('text').then(myValue => {
+        console.log("Time on UI --> "+ myValue)
+        let convertedTimeTwo = this.convertedTime(myValue)
+        
+        cy.log("Time on UI --> "+ myValue)
+        cy.log("Time after convert-->"+convertedTimeTwo)
+        return convertedTimeTwo
+      }) 
+    }
+ 
 
-    console.log(convertedTime)
-    return convertedTime
-  }
   static convertedTimeTwo () {
     const convertTime12to24ForSecondApt = time12h => {
       const [time, modifier] = time12h.split(' ')
@@ -129,6 +149,7 @@ class AppointmentPage {
     console.log(convertedTimeTwo)
     return convertedTimeTwo
   }
+
   static getTypeOfAppointment (index) {
     const strTypeOfAppointment =
       "[data-testid='providerWrapper_" +
@@ -183,8 +204,7 @@ class AppointmentPage {
   static clickOnExitKioskBtn () {
     this.clickOnDropDown()
 
-    const button = cy.get(
-      '[data-testid="exit-kios"]',
+    const button =cy.get('[data-testid="exit-kiosk"]',
 
       { timeout: Cypress.env('elementTimeout') }
     )
@@ -196,4 +216,3 @@ class AppointmentPage {
 }
 
 export default AppointmentPage
-

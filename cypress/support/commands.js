@@ -3,7 +3,7 @@ let patient_id = ''
 let patient_ln = ''
 let isoDate = ''
 let contact_id = ''
-
+let isoDate1 = ''
 Cypress.Commands.add('enterText', (locatorValue, inputValue) => {
   cy.get(locatorValue).clear()
   cy.get(locatorValue).type(inputValue)
@@ -14,6 +14,7 @@ Cypress.Commands.add('verifyPage', (locatorValue, pageName, pageUrl) => {
 
   cy.url().should('include', pageUrl)
 })
+
 Cypress.Commands.add('verifyButtonEnabled', locatorValue => {
   cy.get(locatorValue).should('not.be.disabled')
 })
@@ -27,12 +28,14 @@ Cypress.Commands.add('verifyText', (locatorValue, text) => {
   cy.get(locatorValue).should('have.text', text)
 })
 
-Cypress.Commands.add('generateAdjustedTime', (strMins) => {
+Cypress.Commands.add('generateAdjustedTime', (strHours, strMins) => {
   let date = new Date()
- // date.setHours(date.getHours() + strHours)
-  date.setMinutes(date.getMinutes() + strMins)
-  isoDate = date.toISOString()
-  cy.log('Adjusted time for appointment--> +' + isoDate)
+  //date.setHours(date.getHours() + 1)
+  date.setMinutes(date.getMinutes() + 1)
+  isoDate = date.toISOString().slice(0, date.toISOString().length - 5)
+
+  console.log('before adjustment-->' + date.toISOString())
+  console.log('Adjusted time for appointment--> +' + isoDate)
 })
 
 Cypress.Commands.add(
@@ -73,7 +76,7 @@ Cypress.Commands.add('addPatient', (strName, strRandom) => {
       title: 'Mr',
       prefPronoun: '',
       prefName: '',
-      birthSex: 'Male',
+      birthSex: 'male',
       address: '123 hallway',
       city: '',
       state: '',
@@ -82,50 +85,55 @@ Cypress.Commands.add('addPatient', (strName, strRandom) => {
       phCity: '',
       phState: '',
       phZipCode: '',
-      homePhone: '(789) 455-5555',
+      homePhone: '(789) 455-5565',
       workPhone: '',
       cellPhone: '',
       cellPhone2: '',
-      email:
-        strName.concat(
-          Math.random()
-            .toString(36)
-            .substring(2, 7)
-        ) + '@gmail.com'
+      email: strName.concat(strRandom) + '@gmail.com'
     }
   }).then(response => {
+    cy.log(response.body)
     expect(response.status).to.equal(201)
     patient_id = response.body.pn
     cy.log('Patient Created is : ' + patient_id)
   })
 })
 
-Cypress.Commands.add('addAppointment', (strLocation, strCount, strAppointmentTime) => {
-  let dateObj = new Date()
-  for (let index = 0; index < strCount; index++) {   
-    cy.request({
-      method: 'POST',
-      url: Cypress.env('rtApiURL') + 'patients/' + patient_id + '/appointments',
-      failOnStatusCode: false,
-      headers: {
-        Authorization: 'Bearer ' + access_token,
-        Accept: 'application/json'
-      },
-      body: {
-        provider: 'AUT',
-        location: strLocation,
-        referral: '',
-        apType: 'AUFUV',
-        dateTime : dateObj.toISOString(),
-        length: '5'
-      }
-    }).then(response => {
-      console.log(response)
-      expect(response.status).equal(201)
-      cy.log('Appointment  is created for Patient :' + patient_id)
-    })
+Cypress.Commands.add(
+  'addAppointment',
+  (strLocation, strCount, strAppointmentTime) => {
+    let dateObj = new Date()
+    dateObj.setHours(dateObj.getHours() - 7)
+    dateObj.setMinutes(dateObj.getMinutes() + 10)
+    isoDate = dateObj.toISOString().slice(0, dateObj.toISOString().length - 5)
+    console.log('pst Time is  ===>' + isoDate)
+    cy.log('pst Time is  ===>' + isoDate)
+    for (let index = 0; index < strCount; index++) {
+      cy.request({
+        method: 'POST',
+        url:
+          Cypress.env('rtApiURL') + 'patients/' + patient_id + '/appointments',
+        failOnStatusCode: false,
+        headers: {
+          Authorization: 'Bearer ' + access_token,
+          Accept: 'application/json'
+        },
+        body: {
+          provider: 'AUT',
+          location: strLocation,
+          referral: '',
+          apType: 'AUFUV',
+          dateTime: isoDate,
+          length: '5'
+        }
+      }).then(response => {
+        cy.log(response.body)
+        expect(response.status).equal(201)
+        cy.log('Appointment  is created for Patient :' + patient_id)
+      })
+    }
   }
-})
+)
 
 Cypress.Commands.add('getPatientDetails', strAccept => {
   cy.request({
@@ -144,8 +152,7 @@ Cypress.Commands.add('getPatientDetails', strAccept => {
   })
 })
 
-
-Cypress.Commands.add('addEmergencyContact', (strContactType) => {
+Cypress.Commands.add('addEmergencyContact', strContactType => {
   cy.request({
     method: 'POST',
     url: Cypress.env('rtApiURL') + 'patients/' + patient_id + '/contacts',
@@ -155,31 +162,26 @@ Cypress.Commands.add('addEmergencyContact', (strContactType) => {
       Accept: 'application/json'
     },
     body: {
-             
-        type: strContactType,
-        refCode: "",
-        firstName: "MyEmergency",
-        lastName: "Contact",
-        middleName: "",
-        address: "",
-        address2: "",
-        city: "",
-        state: "",
-        zipCode: "",
-        homePhone: "",
-        workPhone: "",
-        cellPhone: "",
-        fax: "",
-        email: "",
-        startDate: "",
-        endDate: "",
-        employer: "",
-        occupation: "",
-        flags: [
-          "AREP",
-          "EMERG"
-        ]
-      
+      type: strContactType,
+      refCode: '',
+      firstName: 'MyEmergency',
+      lastName: 'Contact',
+      middleName: '',
+      address: '',
+      address2: '',
+      city: '',
+      state: '',
+      zipCode: '',
+      homePhone: '',
+      workPhone: '',
+      cellPhone: '',
+      fax: '',
+      email: '',
+      startDate: '',
+      endDate: '',
+      employer: '',
+      occupation: '',
+      flags: ['AREP', 'EMERG']
     }
   }).then(response => {
     expect(response.status).to.equal(201)
@@ -187,7 +189,6 @@ Cypress.Commands.add('addEmergencyContact', (strContactType) => {
     cy.log('Emergency Contact Created is : ' + contact_id)
   })
 })
-
 
 Cypress.Commands.add(
   'myPatientAppointment',
@@ -199,11 +200,13 @@ Cypress.Commands.add(
     strName,
     strRandom,
     strLocation,
-    strCount,strAppointmentTime,strContactType
+    strCount,
+    strAppointmentTime,
+    strContactType
   ) => {
     cy.getAccessToken(strClientID, strClientSecKey, strGrantType, strAppId)
     cy.addPatient(strName, strRandom)
-    cy.addAppointment(strLocation, strCount,strAppointmentTime)
+    cy.addAppointment(strLocation, strCount, strAppointmentTime)
     cy.addEmergencyContact(strContactType)
   }
 )
@@ -236,13 +239,10 @@ Cypress.Commands.add('deletePatient', () => {
       cy.log('Patient :  ' + patient_ln + '   deleted from Core RT Application')
     })
   })
-
-
-
 })
 
-Cypress.Commands.add('ClickElementWithJS', (strLocator) => {
-  cy.window().then((win) => {
+Cypress.Commands.add('ClickElementWithJS', strLocator => {
+  cy.window().then(win => {
     win.document.querySelector(strLocator).click()
-  });
+  })
 })
