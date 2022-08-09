@@ -18,7 +18,7 @@ class ReviewDemographicsPageData {
 
   static addMailAddress="123 Hallway"
 
-  static cellPhoneNumber="(789) 455-5500"
+  static cellPhoneNumber="(789) 455-5565"
 
   static workPhoneNumber="(789) 455-5565"
 
