@@ -29,7 +29,7 @@ describe(
         cy.generateAdjustedTime(1),
         'DAD'
       )
-      cy.wait(35000)
+      cy.wait(Cypress.env('myWait'))
     })
 
     beforeEach(() => {
@@ -145,7 +145,7 @@ describe(
       CheckInPage.clickOnExitBtn()
     })
 
-    it('KIOSK 2123 || CheckIn ||Verify that user can check in with authorized guardian from the list of available option', () => {
+    it.only('KIOSK 2123 || CheckIn ||Verify that user can check in with authorized guardian from the list of available option', () => {
       cy.getPatientDetails('application/json').then(patient_ln => {
      
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
@@ -171,9 +171,10 @@ describe(
         AppointmentData.appointmentPageUrl
       )
 
-      cy.wait(Cypress.env('myWait'))
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS)
-      AppointmentPage.clickOnExitKioskBtn()
+      cy.wait(Cypress.env('elementTimeout'))
+      cy.ClickElementWithJS(AppointmentPage.checkInButtonForAuthRepJS)
+
+     AppointmentPage.clickOnExitKioskBtn()
       
     })
 
