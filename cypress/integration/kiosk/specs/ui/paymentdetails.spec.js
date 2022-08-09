@@ -8,7 +8,7 @@ import PaymentDetailsPageData from '../../specs/ui/paymentdetails.testdata'
 import DemographicPage from '../../pageObjects/pages/demographic.page'
 import ReviewDemographicsPageData from '../../specs/ui/review.demographicsPage.testdata'
 
-describe(
+describe.skip(
   'Payment Details spec file ',
   {
     retries: {
