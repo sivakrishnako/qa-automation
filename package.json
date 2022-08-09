@@ -20,5 +20,13 @@
   },
   "dependencies": {
     "moment": "^2.29.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raintreeinc/qa-automation.git"
+  },
+  "bugs": {
+    "url": "https://github.com/raintreeinc/qa-automation/issues"
+  },
+  "homepage": "https://github.com/raintreeinc/qa-automation#readme"
 }
