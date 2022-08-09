@@ -21,7 +21,7 @@ class AppointmentPage {
   static getTypeOfAppointmentTitle = '[data-testid="appointment-type-label"]'
   static getTitleOfCheckInButton = '[data-testid="singleAppointmentCheckIn"]'
   static checkInButtonJS = '#mui-6'
-
+  static checkInButtonForAuthRepJS = '#mui-7'
 
   static clickHelpButtonOfAppointmentPage () {
     const Button = cy.get('[data-testid="HelpOutlineIcon"]', {
