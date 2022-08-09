@@ -62,7 +62,7 @@ describe(
       )
     })
 
-    it.only('KIOS-2119 || CheckIn ||Verify Start check In button functionality when user clicks on it and User is able to select Patient from Who are you to identify himself', () => {
+    it('KIOS-2119 || CheckIn ||Verify Start check In button functionality when user clicks on it and User is able to select Patient from Who are you to identify himself', () => {
      
       cy.getPatientDetails('application/json').then(patient_ln => {
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
