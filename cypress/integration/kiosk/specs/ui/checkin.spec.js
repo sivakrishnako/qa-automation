@@ -171,7 +171,8 @@ describe(
         AppointmentData.appointmentPageUrl
       )
 
-      AppointmentPage.clickCheckInBtn()
+      cy.wait(Cypress.env('myWait'))
+      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS)
       AppointmentPage.clickOnExitKioskBtn()
       
     })
