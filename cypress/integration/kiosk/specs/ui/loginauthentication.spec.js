@@ -48,7 +48,8 @@ describe(
         PatientData.checkInPageUrl
       )
       CheckInPage.clickPatientBtn()
-      AppointmentPage.clickCheckInBtn()
+      cy.wait(Cypress.env('myWait'))
+      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS)
     })
 
     it('KIOSK-2109 || LogIn || Verify that As a Kiosk User should be able to reset the login input details so that user can start again', () => {
@@ -68,7 +69,8 @@ describe(
         PatientData.checkInPageUrl
       )
       CheckInPage.clickPatientBtn()
-      AppointmentPage.clickCheckInBtn()
+      cy.wait(Cypress.env('myWait'))
+    cy.ClickElementWithJS(AppointmentPage.checkInButtonJS)
       
       CheckInPage.clickOnExitKioskBtn()
     })
