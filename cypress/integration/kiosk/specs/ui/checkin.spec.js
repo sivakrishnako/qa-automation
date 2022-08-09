@@ -29,6 +29,7 @@ describe(
         cy.generateAdjustedTime(1),
         'DAD'
       )
+      cy.wait(35000)
     })
 
     beforeEach(() => {
@@ -61,10 +62,9 @@ describe(
       )
     })
 
-    it('KIOS-2119 || CheckIn ||Verify Start check In button functionality when user clicks on it and User is able to select Patient from Who are you to identify himself', () => {
+    it.only('KIOS-2119 || CheckIn ||Verify Start check In button functionality when user clicks on it and User is able to select Patient from Who are you to identify himself', () => {
      
       cy.getPatientDetails('application/json').then(patient_ln => {
-        cy.wait(Cypress.env('myWait'))
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
       })
     
@@ -87,7 +87,6 @@ describe(
       )
 
       cy.getPatientDetails('application/json').then(patient_ln => {
-        cy.wait(Cypress.env('myWait'))
         cy.get(AppointmentPage.getPatientName).contains(patient_ln)
       
       })
@@ -99,7 +98,7 @@ describe(
     it('KIOS-2120 || CheckIn ||Verify  User is able to select Patient /Authorized Representative from Who are you to identify himself ', () => {
  
       cy.getPatientDetails('application/json').then(patient_ln => {
-        cy.wait(Cypress.env('myWait'))
+     
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
       })
       cy.verifyPage(
@@ -127,7 +126,7 @@ describe(
 
     it('KIOSK-2122 || CheckIn ||Verify  User is able to select None from Who are you to identify himself', () => {
       cy.getPatientDetails('application/json').then(patient_ln => {
-        cy.wait(Cypress.env('myWait'))
+   
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
       })
 
@@ -148,7 +147,7 @@ describe(
 
     it('KIOSK 2123 || CheckIn ||Verify that user can check in with authorized guardian from the list of available option', () => {
       cy.getPatientDetails('application/json').then(patient_ln => {
-        cy.wait(Cypress.env('myWait'))
+     
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
       })
       cy.verifyPage(
@@ -179,7 +178,7 @@ describe(
 
     it('KIOSK-2124|| CheckIn || Verify that the user is able to logout from application when he clicks on Exit KIOSK ', () => {
       cy.getPatientDetails('application/json').then(patient_ln => {
-        cy.wait(Cypress.env('myWait'))
+      
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
       })
       cy.verifyPage(
@@ -195,7 +194,7 @@ describe(
 
     it(' KIOSK-2125 || CheckIn || Verify that user is able to translate English Language to spanish for check in page.', () => {
       cy.getPatientDetails('application/json').then(patient_ln => {
-        cy.wait(Cypress.env('myWait'))
+       
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
       })
       cy.verifyPage(
