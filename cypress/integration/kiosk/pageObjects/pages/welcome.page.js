@@ -121,7 +121,7 @@ class WelcomePage {
   static startCheckIn (lastName, dateOfBirth, strLoginCase) {
 
     let errMessageXMinutes =
-    'Please come back no more than 62 minutes before your appointment to check in.'
+    'Please come back no more than 5 minutes before your appointment to check in.'
   let errMessageFrontDesk = 'Please check in at the front desk.'
 
 
@@ -134,7 +134,6 @@ class WelcomePage {
       case 'X minutes':
       this.clickStartCheckInBtn()
         cy.get('[data-testid="modal-text"]').should('be.visible')
-        cy.log('In X minutes')
         this.popupMsgForInvalidCredentials().contains(errMessageXMinutes)
         cy.get('[data-testid="loginErrorOk"]', {
           timeout: Cypress.env('elementTimeout')
@@ -143,8 +142,7 @@ class WelcomePage {
 
       case 'Front Desk Message':
         cy.get('[data-testid="modal-text"]').should('be.visible')
-        cy.log('In Front Desk Message')
-        this.popupMsgForInvalidCredentials().contains(errMessageFrontDesk)
+              this.popupMsgForInvalidCredentials().contains(errMessageFrontDesk)
         cy.get('[data-testid="loginErrorOk"]', {
           timeout: Cypress.env('elementTimeout')
         }).click()
