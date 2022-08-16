@@ -1,0 +1,29 @@
+name: Cypress Edge-Browser Testing - DailyRun
+
+on:
+  schedule:
+     # UTC time is setup here i.e. 10:30 AM (daily) which is equal to 4:00 PM IST
+    - cron: '30 10 * * *'
+
+jobs:
+  cypress-crossbrowser-testing:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run tests
+        uses: cypress-io/github-action@v4
+        timeout-minutes: 120
+        with:
+          # Run on all different browsers mentioned in matrix above
+          browser: edge
+          record: true
+          #group: GH Action cross-browser
+          #start: npm start
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_DASHBOARDKEY }}
