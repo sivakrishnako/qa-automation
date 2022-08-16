@@ -107,7 +107,15 @@ return cy.get (strFillHomePhoneNum);
         cy.get('#patientInfo-firstname').clear().type(" ",{ timeout: Cypress.env('elementTimeout') }).should('have.value','');
            return this;
        }
-   
+   static fillFutureDOB(value){
+    cy.get('[data-testid="patientInfo-dateOfBirth"]').click().clear().type("01/01/2026"),{ timeout: Cypress.env('elementTimeout') }
+    return this;
+   }
+   static fillNotRealDOB(value){
+    cy.get('[data-testid="patientInfo-dateOfBirth"]').click().clear().type("35/01/00"),{ timeout: Cypress.env('elementTimeout') }
+    return this;
+   }
+
 
     static fillEmailAddress(value) {
         cy.get('[data-testid="patientInfo-email"]').type(ReviewDemographicsPageData.invalidEmailAddress, {timeout: Cypress.env('elementTimeout') }).should('have.value',ReviewDemographicsPageData.invalidEmailAddress);

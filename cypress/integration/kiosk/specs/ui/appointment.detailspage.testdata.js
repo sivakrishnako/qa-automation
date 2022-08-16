@@ -11,6 +11,7 @@ class AppointmentData {
   static dobOfPatient=" 01/01/1990"
   static optionFromAuthorizedParent = "MyEmergency Contact";
   static expectedTypeOfAppointment = "Behavioral Health Intake";
+  static expectedAge=" 32 Yrs"
 
 }
 export default AppointmentData;

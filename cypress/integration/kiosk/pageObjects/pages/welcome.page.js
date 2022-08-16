@@ -121,7 +121,7 @@ class WelcomePage {
   static startCheckIn (lastName, dateOfBirth, strLoginCase) {
 
     let errMessageXMinutes =
-    'Please come back no more than 62 minutes before your appointment to check in.'
+    'Please come back no more than 5 minutes before your appointment to check in.'
   let errMessageFrontDesk = 'Please check in at the front desk.'
 
 
