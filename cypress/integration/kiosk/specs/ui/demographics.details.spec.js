@@ -486,9 +486,7 @@ it('KIOS-2993|| Demographic Details || Demographic Details || Verify As a Koisk 
 
         
       })
-
-
-      
+     
   })
   after(() => {
     

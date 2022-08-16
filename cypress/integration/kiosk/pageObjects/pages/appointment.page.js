@@ -165,30 +165,30 @@ class AppointmentPage {
         'have.text',
         PatientData.specialityOfProvider
       )
-      this.getTimeOfAppointment(index).should(
-        'have.text',
-        PatientData.checkInTimeForFirstApt
-      )
-      this.getTypeOfAppointment(index).should(
-        'have.text',
-        PatientData.expectedTypeOfAppointmentFirst
-      )
+      
+      
     } else {
       this.getProvidersName(index).should('have.text', PatientData.providerName)
       this.getSpecialityOfProvider(index).should(
         'have.text',
         PatientData.specialityOfProvider
       )
-      this.getTimeOfAppointmentTwo(index).should(
-        'have.text',
-        PatientData.checkInTimeTwoApt
-      )
-      this.getTypeOfAppointment(index).should(
-        'have.text',
-        PatientData.expectedTypeOfAppointmentTwo
-      )
+      }
+      
+      }
+
+
+    static getDateOfAppointment(){
+      cy.get('[data-testid="appointment-date"]').should('be.visible')
+    return this
+      
     }
-  }
+    static getTimeOfAppointment(){
+      cy.get('[data-testid="appointment-time"]').should('be.visible')
+  
+  return this
+    }
+  
   static clickOnDropDown () {
     const button = cy.get(
       '[data-testid="KeyboardArrowDownIcon"]',

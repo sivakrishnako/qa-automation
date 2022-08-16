@@ -10,7 +10,8 @@ class AppointmentData {
   static helpButtonPopupMsg = "Please check in at the front desk.";
   static dobOfPatient=" 01/01/1990"
   static optionFromAuthorizedParent = "MyEmergency Contact";
-  static expectedTypeOfAppointment = "Behavioral Health Intake";
-
+  static expectedTypeOfAppointment = "Audiology Follow Up Visit";
+  static expectedAge=" 32 Yrs"
+static providerName="Auto  Provider"
 }
 export default AppointmentData;
