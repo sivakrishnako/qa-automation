@@ -3,7 +3,7 @@ let patient_id = ''
 let patient_ln = ''
 let isoDate = ''
 let contact_id = ''
-let isoDate1 = ''
+
 Cypress.Commands.add('enterText', (locatorValue, inputValue) => {
   cy.get(locatorValue).clear()
   cy.get(locatorValue).type(inputValue)
@@ -18,12 +18,14 @@ Cypress.Commands.add('verifyPage', (locatorValue, pageName, pageUrl) => {
 Cypress.Commands.add('verifyButtonEnabled', locatorValue => {
   cy.get(locatorValue).should('not.be.disabled')
 })
+
 Cypress.Commands.add('verifyCheckBoxChecked', locatorValue => {
   cy.get(locatorValue)
     .should('not.be.visible')
     .check({ force: true })
     .should('be.checked')
 })
+
 Cypress.Commands.add('verifyText', (locatorValue, text) => {
   cy.get(locatorValue).should('have.text', text)
 })

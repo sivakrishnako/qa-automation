@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-class FormlistPage {
+class FormListPage {
     static getTitleOfPage=('[data-testid="card-title"]')
     static clickOnNoChangeNext(){
         const button=cy.get('[data-testid="forms-next-button"]')
@@ -9,4 +9,4 @@ class FormlistPage {
     }
 
 
-}export default FormlistPage
+}export default FormListPage

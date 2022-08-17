@@ -14,9 +14,8 @@ describe.skip('Patient demographics', () => {
         
         }).then(function(response){
 
-            var res = response.body
             expect(response.status).equal(200)
-            expect(res.contact).equal(ApiData.contactNumber)
+            expect(response.body.contact).equal(ApiData.contactNumber)
         })
       })
 
@@ -29,10 +28,8 @@ describe.skip('Patient demographics', () => {
             failOnStatusCode: false
             
             }).then(function(response){
-
-                var res = response.body
                 expect(response.status).equal(200)
-                expect(res[0].code).equal(ApiData.zipCode)
+                expect(response.body.res[0].code).equal(ApiData.zipCode)
             })
     })
 
@@ -52,8 +49,7 @@ describe.skip('Patient demographics', () => {
             
         }).then(function(response){
             expect(response.status).equal(201)
-            var res = response.body
-            expect(res.lastName).equal(ApiData.lastName)
+            expect(response.body.lastName).equal(ApiData.lastName)
         })
     })
 

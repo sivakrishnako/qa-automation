@@ -1,7 +1,8 @@
 /// <reference types="cypress" />
+import AppointmentData from '../../specs/ui/appointment.detailspage.testdata'
 import PatientData from '../../specs/ui/patient.checkin.testdata'
 
-let strTime1 = ""
+
 class AppointmentPage {
   static appointmentTitle = '[data-testid="card-tittle"]'
   static getPatientName = '[data-testid="patient-name"]'
@@ -23,6 +24,33 @@ class AppointmentPage {
   static checkInButtonJS = '#mui-6'
   static checkInButtonForAuthRepJS = '#mui-7'
 
+
+  
+  
+    static getCompareTime( ) {
+      cy.get(
+        'div:nth-of-type(1) > .providerWrapper > h6:nth-of-type(2) > .providerInfo')
+      
+        .invoke('text')
+        .then(strTime1 => {
+
+          cy.get(
+            "[data-testid='providerWrapper_1'] .providerInfo[data-testid='appointment-time']"
+          )
+            .invoke('text')
+            .then(strTime2 => {
+             assert(strTime2 >  strTime1)
+           /*   if (strTime2 > strTime1) {
+                cy.log(strTime1 + ' is less recent than ' + strTime2)
+              } else {
+                cy.log(strTime1 + ' is more recent than ' + strTime2)
+              }*/
+  
+            })
+        })
+      return this
+      }
+  
   static clickHelpButtonOfAppointmentPage () {
     const Button = cy.get('[data-testid="HelpOutlineIcon"]', {
       timeout: Cypress.env('elementTimeout')
@@ -99,34 +127,7 @@ class AppointmentPage {
 
       
 
-    static convertedTime (strTime1) {
-      
-      const convertTime12to24ForSecondApt = strTime1 => {
-        const [time, modifier] = strTime1.split(' ')
-        let [hours, minutes] = time.split(':')
-        if (hours === '12') {
-          hours = '00'
-        }
-        if (modifier === 'PM') {
-          hours = parseInt(hours, 10) + 12
-        }
-        cy.log("Time in meths result -->"+`${hours}:${minutes}`)
-        return `${hours}:${minutes}`
-      }
 
-    }
-
-    static myTime1(){
-      cy.log(" in time 1 ")
-      strTime1 = cy.get("div:nth-of-type(1) > .providerWrapper > h6:nth-of-type(2) > .providerInfo").invoke('text').then(myValue => {
-        console.log("Time on UI --> "+ myValue)
-        let convertedTimeTwo = this.convertedTime(myValue)
-        
-        cy.log("Time on UI --> "+ myValue)
-        cy.log("Time after convert-->"+convertedTimeTwo)
-        return convertedTimeTwo
-      }) 
-    }
  
 
   static convertedTimeTwo () {
@@ -159,22 +160,13 @@ class AppointmentPage {
     return cy.get(strTypeOfAppointment)
   }
   static verifyProviderDetails (index) {
-    if (index === 0) {
-      this.getProvidersName(index).should('have.text', PatientData.providerName)
+
+      this.getProvidersName(index).should('have.text', AppointmentData.providerName)
       this.getSpecialityOfProvider(index).should(
         'have.text',
         PatientData.specialityOfProvider
       )
-      
-      
-    } else {
-      this.getProvidersName(index).should('have.text', PatientData.providerName)
-      this.getSpecialityOfProvider(index).should(
-        'have.text',
-        PatientData.specialityOfProvider
-      )
-      }
-      
+   
       }
 
 

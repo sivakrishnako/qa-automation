@@ -12,6 +12,6 @@ class AppointmentData {
   static optionFromAuthorizedParent = "MyEmergency Contact";
   static expectedTypeOfAppointment = "Audiology Follow Up Visit";
   static expectedAge=" 32 Yrs"
-static providerName="Auto  Provider"
+  static providerName="Auto  Provider"
 }
 export default AppointmentData;

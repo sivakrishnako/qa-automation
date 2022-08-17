@@ -17,8 +17,8 @@ describe(
   () => {
     before(() => {
       cy.myPatientAppointment(
-        RTApiData.clientId,
-        RTApiData.clientSecretKey,
+        RTApiData.clientIdLogIn,
+        RTApiData.clientSecretKeyLogIn,
         RTApiData.grantType,
         RTApiData.appId,
         PatientData.pnName,
@@ -112,6 +112,7 @@ describe(
         PatientData.popupMsgForIncorrectCredentialsInSpanish
       )
     })
+    
     //Nested Describe to override Location
     describe('Verifying Login with X minutes constraint', () => {
       before(() => {

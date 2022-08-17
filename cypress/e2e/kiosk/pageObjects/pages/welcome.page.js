@@ -42,6 +42,7 @@ class WelcomePage {
     button.click()
     return this
   }
+
   static fillLastName (value) {
     this.clickResetBtn()
     const field = cy.get('[data-testid="patientLastName"]', {
@@ -163,12 +164,14 @@ class WelcomePage {
   }
 
 
-  static InvalidCheckIn (LastName, dateOfBirth, errorMessage) {
+  static InvalidCheckIn(LastName, dateOfBirth, errorMessage) {
+    cy.log("last name  is ->"+ LastName)
     this.fillLastName(LastName)
     this.fillPatientDoB(dateOfBirth)
     this.clickStartCheckInBtn()
     this.popupMsgForInvalidCredentials().contains(errorMessage)
     this.clickPopupButtonOkErrorMsg()
+    
   }
 
   static generateRandomText (strLength) {

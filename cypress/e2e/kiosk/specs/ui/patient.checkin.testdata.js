@@ -2,7 +2,6 @@
 
 class PatientData {
   
-  static providerName = 'Ameena  Assistant'
   static blankInput = ''
   static userLastNameForSkipPaymentPage = ''
   static userDobForSkipPaymentPage = ''
@@ -12,7 +11,7 @@ class PatientData {
   static specialityOfProvider = 'PA,PTA Assistant'
   static expectedTitleOfCheckIn = 'Who are you?'
   static expectedTitleOfCheckInSpanish = '¿Quién es usted'
-  static popupMsg = 'Please check in at the front desk.'
+  static  popupMsg = 'Please check in at the front desk.'
   static helpButtonPopupMsg = 'Please see front desk or call (916)555-1212'
   static popupMsgOfNoneOfTheAbove = 'Please check in at the front desk.'
   static popupMsgForBlankCredentials =
@@ -24,7 +23,9 @@ class PatientData {
  
   static popupMsgForBeforeNMinutesPatient =
     'Please come back no more than x minutes before your appointment to check'
-
+  static invalidLastName = "@112c"
+  static validLastName = "Mariez"
+  static invalidDOB = '10/01/1990'
   static pnName = 'Auto'
 }
 export default PatientData

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "cy:run": "npx cypress run",
-    "cy:open": "node_modules\\.bin\\cypress open",
+    "cy:open": "node_modules\\.bin\\cypress open --browser chrome --e2e",
     "chromeTest": "npx cypress run --headed --browser chrome",
     "firefoxTest": "npx cypress run --headed --browser firefox"
   },
@@ -13,19 +13,8 @@
   "author": "Cybage Team",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^9.6.1",
+    "cypress": "^10.5.0",
     "cypress-data-session": "^2.0.0",
     "prettier": "^2.6.2"
-  },
-  "dependencies": {
-    "moment": "^2.29.3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/raintreeinc/qa-automation.git"
-  },
-  "bugs": {
-    "url": "https://github.com/raintreeinc/qa-automation/issues"
-  },
-  "homepage": "https://github.com/raintreeinc/qa-automation#readme"
+  }
 }
