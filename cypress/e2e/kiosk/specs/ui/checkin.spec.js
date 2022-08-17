@@ -33,8 +33,7 @@ describe(
     })
 
     beforeEach(() => {
-      cy.visit(Cypress.env('kioskURL') + 'ZZPOC')
-      //WelcomePage.launchApp('ZZPOC')
+     WelcomePage.launchApp('ZZPOC')
       cy.clearCookies()
     })
 
