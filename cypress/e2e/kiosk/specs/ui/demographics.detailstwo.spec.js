@@ -61,7 +61,11 @@ WelcomePage.launchApp('ZZPOC')
   cy.verifyPage(DemographicPage.titleReviewDemographic,ReviewDemographicsPageData.expectedTitleOfReviewDemographic,ReviewDemographicsPageData.demographicPageUrl);
   DemographicPage.clickEditButton();
   DemographicPage.fillFutureDOB();
-  //inprogress
+  cy.get('body').click(50, 50, { force: true })
+  cy.verifyText(DemographicPage.getErrorMessageForWrongDob,ReviewDemographicsPageData.errorMessageForFutureDOBInEnglish)
+    
+
+  
 
 })
 
@@ -87,10 +91,13 @@ it('KIOS-2781||Demographics||To check error message for DOB as future date in Ed
       cy.verifyText(DemographicPage.getEditTextInSpanish,'EDITAR')
   DemographicPage.clickEditButton();
   DemographicPage.fillFutureDOB();
-  //inprogress
+  cy.get('body').click(50, 50, { force: true })
+  cy.verifyText(DemographicPage.getErrorMessageForWrongDob,ReviewDemographicsPageData.errorMessageForFutureDOBInSpanish)
+  
+
   
   })
-  it.only("KIOS-2782||Demographics Details||To check error message for Date of birth does not represent a real date in Edit demographics screen in Spanish language.",()=>{
+  it("KIOS-2782||Demographics Details||To check error message for Date of birth does not represent a real date in Edit demographics screen in Spanish language.",()=>{
     cy.getPatientDetails('application/json').then(patient_ln => {
         cy.wait(Cypress.env('elementTimeout'))
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
@@ -112,15 +119,85 @@ it('KIOS-2781||Demographics||To check error message for DOB as future date in Ed
     DemographicPage.clickEditButton();
     DemographicPage.fillNotRealDOB()
     DemographicPage.clickSaveDemographicsBtn()
-    cy.get(':nth-child(5) > .full-width > .error-message').should('have.text','Invalid format (not a real date)')
+    cy.get('body').click(50, 50, { force: true })
     
-//inprogress
+
+    cy.verifyText(DemographicPage.getErrorMessageForWrongDob,ReviewDemographicsPageData.errorMessageForNotRealDOBInSpanish)
+  
 
   })
+  it("KIOS-2783||Demographics Details||To check error message for Date of birth does not represent a real date in Edit demographics screen in English language.",() =>{
+
+    cy.getPatientDetails('application/json').then(patient_ln => {
+      cy.wait(Cypress.env('elementTimeout'))
+      WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
+    })   
+  cy.verifyPage(CheckInPage.checkInTitle, PatientData.expectedTitleOfCheckIn, PatientData.checkInPageUrl);
+  CheckInPage.patient().should('have.text', 'Patient');
+  CheckInPage.authorized().should('have.text', 'Parent / Authorized Representative');
+  CheckInPage.noneOfTheAbove().should('have.text', 'None of the above');
+  CheckInPage.clickPatientBtn();
+cy.verifyPage(AppointmentPage.appointmentTitle,AppointmentData.expectedTitleOfAppointmentPage, AppointmentData.appointmentPageUrl);
   
+cy.wait(Cypress.env('elementTimeout'))
+cy.ClickElementWithJS(AppointmentPage.checkInButtonJS)
+cy.verifyPage(DemographicPage.titleReviewDemographic,ReviewDemographicsPageData.expectedTitleOfReviewDemographic,ReviewDemographicsPageData.demographicPageUrl);
+DemographicPage.clickEditButton();
+DemographicPage.fillNotRealDOB()
+cy.get('body').click(50, 50, { force: true })
+cy.verifyText(DemographicPage.getErrorMessageForWrongDob,ReviewDemographicsPageData.errorMessageForNotRealDOBInEnglish)
+
+  })
+  it("KIOS-2784||Demographics Details||To check the error message for Date of birth does not have enough digits in the Edit demographics screen in the English language.",()=>{
+    cy.getPatientDetails('application/json').then(patient_ln => {
+      cy.wait(Cypress.env('elementTimeout'))
+      WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
+    })   
+  cy.verifyPage(CheckInPage.checkInTitle, PatientData.expectedTitleOfCheckIn, PatientData.checkInPageUrl);
+  CheckInPage.patient().should('have.text', 'Patient');
+  CheckInPage.authorized().should('have.text', 'Parent / Authorized Representative');
+  CheckInPage.noneOfTheAbove().should('have.text', 'None of the above');
+  CheckInPage.clickPatientBtn();
+cy.verifyPage(AppointmentPage.appointmentTitle,AppointmentData.expectedTitleOfAppointmentPage, AppointmentData.appointmentPageUrl);
   
-        
-    })
+cy.wait(Cypress.env('elementTimeout'))
+cy.ClickElementWithJS(AppointmentPage.checkInButtonJS)
+cy.verifyPage(DemographicPage.titleReviewDemographic,ReviewDemographicsPageData.expectedTitleOfReviewDemographic,ReviewDemographicsPageData.demographicPageUrl);
+DemographicPage.clickEditButton();
+DemographicPage.fillInvalidFormatDob()
+cy.get('body').click(50, 50, { force: true })
+cy.verifyText(DemographicPage.getErrorMessageForWrongDob,ReviewDemographicsPageData.errorMessageForFutureDOBInEnglish)
+  })
+  it("KIOS-2785||Demographics Details||To check the error message for Date of birth does not have enough digits in the Edit demographics screen in the English language.",()=>{
+
+
+    cy.getPatientDetails('application/json').then(patient_ln => {
+      cy.wait(Cypress.env('elementTimeout'))
+      WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
+    })   
+      cy.verifyPage(
+        CheckInPage.checkInTitle,
+        PatientData.expectedTitleOfCheckIn,
+        PatientData.checkInPageUrl
+      );
+  
+      WelcomePage.convertToggleEnglishToSpanish();
+      CheckInPage.clickPatientBtn();
+      cy.verifyPage(AppointmentPage.appointmentTitle,AppointmentData.expectedTitleOfAppointmentPageInSpanish, AppointmentData.appointmentPageUrl);
+      cy.wait(Cypress.env('elementTimeout'))
+      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS)
+      cy.verifyPage(DemographicPage.titleReviewDemographic,ReviewDemographicsPageData.expectedTitleOfReviewDemographicInSpanish,ReviewDemographicsPageData.demographicPageUrl);
+      cy.verifyText(DemographicPage.getCommunicationPreferenceInSpanish,' Preferencia de Comunicación')
+      cy.verifyText(DemographicPage.getEditTextInSpanish,'EDITAR')
+  DemographicPage.clickEditButton();
+  DemographicPage.fillInvalidFormatDob();
+  cy.get('body').click(50, 50, { force: true })
+
+  cy.verifyText(DemographicPage.getErrorMessageForWrongDob,ReviewDemographicsPageData.errorMessageForInvalidFormatDOBInSpanish)
+  
+})
+  
+})
     after(() => {
       
          cy.deletePatient()

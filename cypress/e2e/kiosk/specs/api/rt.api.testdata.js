@@ -13,7 +13,7 @@ class RTApiData {
     static clientSecretKeyForUserStory="90164a5a0e553ba71ace07b64f9ca5f3"
     static clientIDForDemographicsSecond="ad832f1f97165aa31757d51a"
     static clientSecretKeyForDemographicsSecond="b18da0624eccef6ce7f4763339c7f922"
-static grantType        = "client_credentials";
+    static grantType        = "client_credentials";
     static appId            = "EaXLDE-vp3tbrxW-6Kdn4-G3okFg";
  }
 export default RTApiData;
