@@ -36,6 +36,18 @@ static popUpMsg = "Please correct the invalid fields to continue."
 
 static invalidEmailAddress = "++@fgf@"
 
+static errorMessageForFutureDOBInEnglish="Invalid date (cannot be in the future)."
+
+static errorMessageForFutureDOBInSpanish="Fecha no válida (no puede ser en el futuro)."
+
+static errorMessageForNotRealDOBInSpanish="Formato no válido (no es una fecha real)."
+
+static errorMessageForNotRealDOBInEnglish="Invalid format (not a real date)."
+
+static errorMessageForInvalidFormatDOBInEnglish="Invalid format (not a real date)."
+
+static errorMessageForInvalidFormatDOBInSpanish="Formato no válido (no es una fecha real)."
+
 }
 
 export default ReviewDemographicsPageData;

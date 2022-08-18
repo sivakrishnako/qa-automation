@@ -22,6 +22,7 @@ class DemographicPage {
     static getCommunicateElectronicallyInSpanish=('[data-testid="communicate-electronically"]')
     static getMailingAddressTextInSpanish=('[data-testid="mailing-address-title"]')
     static getCellTextInSpanish=('[data-testid="Cell"]')
+    static getErrorMessageForWrongDob=(':nth-child(5) > .full-width > .error-message')
     static getNoChangeNextTextInSpanish=('[data-testid="no-change"]')
     static demographicPagePatientDob=('[data-testid="patient-DOB"]');
     static demographicPagePatientGender=('[data-testid="patient-gender"]');
@@ -101,6 +102,7 @@ return cy.get (strFillHomePhoneNum);
         button.click({force:true})
         return this;
 
+
     }
    
     static fillInvalidFirstName(value) {
@@ -115,9 +117,12 @@ return cy.get (strFillHomePhoneNum);
     cy.get('[data-testid="patientInfo-dateOfBirth"]').click().clear().type("35/01/00"),{ timeout: Cypress.env('elementTimeout') }
     return this;
    }
+   static fillInvalidFormatDob(value){
+    cy.get('[data-testid="patientInfo-dateOfBirth"]').click().clear().type("3/01/0"),{ timeout: Cypress.env('elementTimeout') }
+   return this;
+}
 
-
-    static fillEmailAddress(value) {
+static fillEmailAddress(value) {
         cy.get('[data-testid="patientInfo-email"]').type(ReviewDemographicsPageData.invalidEmailAddress, {timeout: Cypress.env('elementTimeout') }).should('have.value',ReviewDemographicsPageData.invalidEmailAddress);
         return this;
     }

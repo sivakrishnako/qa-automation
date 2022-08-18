@@ -42,7 +42,6 @@ class WelcomePage {
     button.click()
     return this
   }
-
   static fillLastName (value) {
     this.clickResetBtn()
     const field = cy.get('[data-testid="patientLastName"]', {
@@ -135,6 +134,7 @@ class WelcomePage {
       case 'X minutes':
       this.clickStartCheckInBtn()
         cy.get('[data-testid="modal-text"]').should('be.visible')
+        cy.log('In X minutes')
         this.popupMsgForInvalidCredentials().contains(errMessageXMinutes)
         cy.get('[data-testid="loginErrorOk"]', {
           timeout: Cypress.env('elementTimeout')
@@ -143,7 +143,8 @@ class WelcomePage {
 
       case 'Front Desk Message':
         cy.get('[data-testid="modal-text"]').should('be.visible')
-              this.popupMsgForInvalidCredentials().contains(errMessageFrontDesk)
+        cy.log('In Front Desk Message')
+        this.popupMsgForInvalidCredentials().contains(errMessageFrontDesk)
         cy.get('[data-testid="loginErrorOk"]', {
           timeout: Cypress.env('elementTimeout')
         }).click()
@@ -164,14 +165,22 @@ class WelcomePage {
   }
 
 
-  static InvalidCheckIn(LastName, dateOfBirth, errorMessage) {
-    cy.log("last name  is ->"+ LastName)
+  static InvalidCheckIn (LastName, dateOfBirth, errorMessage) {
     this.fillLastName(LastName)
     this.fillPatientDoB(dateOfBirth)
     this.clickStartCheckInBtn()
     this.popupMsgForInvalidCredentials().contains(errorMessage)
     this.clickPopupButtonOkErrorMsg()
-    
+  }
+
+  static fillPatientDoBForErrorMessage(dateOfBirth) {
+    const field = cy.get('[data-testid="dateOfBirth"]', { timeout: Cypress.env('elementTimeout') });
+   field.type(dateOfBirth);
+    return this;
+  }
+
+  static errorMessageForInvalidDob(){
+    return cy.get('[data-testid="dob-error-message"]', { timeout: Cypress.env('elementTimeout') });
   }
 
   static generateRandomText (strLength) {

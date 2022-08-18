@@ -112,6 +112,50 @@ describe(
         PatientData.popupMsgForIncorrectCredentialsInSpanish
       )
     })
+
+    it("KIOSK-2776 || LogIn || To check error message for Date of birth does not represent a real date in Login screen in English language.      ", () => {
+      WelcomePage.fillPatientDoBForErrorMessage(PatientData.invalidDOBRealDate);
+      WelcomePage.clickStartCheckInBtn();
+      WelcomePage.errorMessageForInvalidDob().should('have.text',PatientData.errorMessageForInvalidDob);
+      
+    })
+    it("KIOSK-2774 || LogIn || To check error message for Date of birth does not represent a real date in Login screen in Spanish language.      ", () => {
+      WelcomePage.convertToggleEnglishToSpanish();
+      WelcomePage.welcomeInSpanish().should("have.text", "Bienvenidos");
+      WelcomePage.fillPatientDoBForErrorMessage(PatientData.invalidDOBRealDate);
+      WelcomePage.clickStartCheckInBtn();
+      WelcomePage.errorMessageForInvalidDob().should('have.text',PatientData.errorMessageForInvalidDobInSpanish);
+      
+    });
+    it("KIOSK-2772 || LogIn ||To check error message for DOB as future date in Login screen in English language.      ", () => {
+      WelcomePage.fillPatientDoBForErrorMessage(PatientData.invalidDOBFutureDate);
+      WelcomePage.clickStartCheckInBtn();
+      WelcomePage.errorMessageForInvalidDob().should('have.text',PatientData.errorMessageForInvalidDobFutureDate);
+      
+    });
+
+    it("KIOSK-2773 || LogIn || To check error message for DOB as future date in Login screen in Spanish language.    ", () => {
+      WelcomePage.convertToggleEnglishToSpanish();
+      WelcomePage.welcomeInSpanish().should("have.text", "Bienvenidos");
+      WelcomePage.fillPatientDoBForErrorMessage(PatientData.invalidDOBFutureDate);
+      WelcomePage.clickStartCheckInBtn();
+      WelcomePage.errorMessageForInvalidDob().should('have.text',PatientData.errorMessageForInvalidDobFutureDateInSpanish);
+      
+    });
+    it("KIOSK-2777 || LogIn ||To check error message for Date of birth does not have enough digits in Login screen in English language.      ", () => {
+      WelcomePage.fillPatientDoBForErrorMessage(PatientData.invalidDOBMissingDigits);
+      WelcomePage.clickStartCheckInBtn();
+      WelcomePage.errorMessageForInvalidDob().should('have.text',PatientData.errorMessageForInvalidDobDigits);
+      
+    });
+    it("KIOSK-2778 || LogIn || To check error message for Date of birth does not have enough digits in Login screen in Spanish language.    ", () => {
+      WelcomePage.convertToggleEnglishToSpanish();
+      WelcomePage.welcomeInSpanish().should("have.text", "Bienvenidos");
+      WelcomePage.fillPatientDoBForErrorMessage(PatientData.invalidDOBMissingDigits);
+      WelcomePage.clickStartCheckInBtn();
+      WelcomePage.errorMessageForInvalidDob().should('have.text',PatientData.errorMessageForInvalidDobDigitsInSpanish);
+      
+    });
     
     //Nested Describe to override Location
     describe('Verifying Login with X minutes constraint', () => {
