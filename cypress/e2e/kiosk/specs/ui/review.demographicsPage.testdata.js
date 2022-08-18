@@ -30,7 +30,7 @@ static expectedTitleOfEditDemographics=" Review Demographics"
 
 static expectedTitlePatientInformationInSpanish = "Información Del Paciente"
 
-static popUpForInvalidEmailInSpanish = "Se requiere Dirección de correo electrónico."
+static popUpForInvalidEmailInSpanish = "Se requiere la dirección de correo electrónico."
 
 static popUpMsg = "Please correct the invalid fields to continue."
 

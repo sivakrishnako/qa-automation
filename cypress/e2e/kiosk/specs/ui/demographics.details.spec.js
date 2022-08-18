@@ -23,21 +23,39 @@ describe(
   () => {
     
     
-  before(() => {
- cy.myPatientAppointment(
- RTApiData.clientIdDemographics,
- RTApiData.clientSecretKeyDemographics,
- RTApiData.grantType,
- RTApiData.appId,
-PatientData.pnName,
- WelcomePage.generateRandomText(6).slice(1),
-'ZZPOC',
-'1',
-cy.generateAdjustedTime(1),
- 'DAD'
- )
- cy.wait(Cypress.env('myWait'))
-})
+    before(() => {
+
+      cy.myPatientAppointment(
+        "80a2976781f0b3ab22e651ce",
+"6e7dc8873714a94712e4876e505ad1af",
+
+        //RTApiData.clientIdDemographics,
+
+        //RTApiData.clientSecretKeyDemographics,
+
+        RTApiData.grantType,
+
+        RTApiData.appId,
+
+        PatientData.pnName,
+
+        WelcomePage.generateRandomText(6).slice(1),
+
+        'ZZPOC',
+
+        '1',
+
+        cy.generateAdjustedTime(1),
+
+        'DAD',
+
+        PatientData.pnName.concat(WelcomePage.generateRandomText(6)+"@Gmail.com")
+
+      )
+
+      cy.wait(Cypress.env('myWait'))
+
+    })
 beforeEach(() => {
 WelcomePage.launchApp('ZZPOC')
       cy.clearCookies()
@@ -130,7 +148,7 @@ it("KIOS-2585||Demographic Details || Verify As a Kiosk User should be able to e
         CheckInPage.clickPatientBtn();
     cy.verifyPage(AppointmentPage.appointmentTitle,AppointmentData.expectedTitleOfAppointmentPage, AppointmentData.appointmentPageUrl);
        
-    cy.wait(Cypress.env(''))
+    cy.wait(Cypress.env('elementTimeout'))
     cy.ClickElementWithJS(AppointmentPage.checkInButtonJS)
 DemographicPage.clickEditButton();
       CommunicationPreferencePage.communicationPreferencePageToggle().should('have.text', 'No')
@@ -263,7 +281,39 @@ cy.wait(Cypress.env('elementTimeout'))
    
    
 })
-xit("KIOS-1444||Verify spanish version of error message for wrong email format in patient information section on Edit demographics page in all devices",()=>{
+
+before(() => {
+
+  cy.myPatientAppointment(
+    "80a2976781f0b3ab22e651ce",
+"6e7dc8873714a94712e4876e505ad1af",
+
+    // RTApiData.clientIdDemographics,
+
+    // RTApiData.clientSecretKeyDemographics,
+
+    RTApiData.grantType,
+
+    RTApiData.appId,
+
+    PatientData.pnName,
+
+    WelcomePage.generateRandomText(6).slice(1),
+
+    'ZZPOC',
+
+    '1',
+
+    cy.generateAdjustedTime(1),
+
+    'DAD',
+)
+
+  cy.wait(Cypress.env('myWait'))
+
+})
+
+it("KIOS-1444||Verify spanish version of error message for wrong email format in patient information section on Edit demographics page in all devices",()=>{
   cy.getPatientDetails('application/json').then(patient_ln => {
     cy.wait(Cypress.env('elementTimeout'))
     WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
@@ -288,12 +338,11 @@ cy.verifyPage(DemographicPage.titleEditDemographic,ReviewDemographicsPageData.ex
 cy.verifyText(DemographicPage.getTitleOfPatientInformation,ReviewDemographicsPageData.expectedTitlePatientInformationInSpanish);
 DemographicPage.fillEmailAddress();
 
-cy.focused().clear();
 cy.wait(Cypress.env('elementTimeout'))
     DemographicPage.clickSaveDemographicsBtn();
     cy.wait(Cypress.env('elementTimeout'))
 DemographicPage.errorMessageEmail().should("have.text",ReviewDemographicsPageData.popUpForInvalidEmailInSpanish);
-cy.wait(Cypress.env('elementTimeout'))
+
 
 
 })
@@ -420,20 +469,37 @@ it('KIOS-2993|| Demographic Details || Demographic Details || Verify As a Koisk 
     
 
   describe('Verifying demographics page', () => {
-      before(() => {
-        cy.myPatientAppointment(
+    before(() => {
+
+      cy.myPatientAppointment(
+
         RTApiData.clientIdDemographics,
+
         RTApiData.clientSecretKeyDemographics,
+
         RTApiData.grantType,
+
         RTApiData.appId,
-       PatientData.pnName,
+
+        PatientData.pnName,
+
         WelcomePage.generateRandomText(6).slice(1),
-       'NOR',
-       '1',
-       cy.generateAdjustedTime(1),
-        'DAD'
-        )
-       })
+
+        'ZZPOC',
+
+        '1',
+
+        cy.generateAdjustedTime(1),
+
+        'DAD',
+
+        PatientData.pnName.concat(WelcomePage.generateRandomText(6)+"@Gmail.com")
+
+      )
+
+      cy.wait(Cypress.env('myWait'))
+
+    })
 
       it('KIOSK-2582||Demographic Details || Verify As a Kiosk User should skip the demographics based on the clinic setup option so that he can make the check in process faster ', () => {
         WelcomePage.launchApp('NOR')

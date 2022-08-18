@@ -23,21 +23,37 @@ describe(
   () => {
     
     
-  before(() => {
- cy.myPatientAppointment(
- RTApiData.clientIDForDemographicsSecond,
- RTApiData.clientSecretKeyForDemographicsSecond,
- RTApiData.grantType,
- RTApiData.appId,
-PatientData.pnName,
- WelcomePage.generateRandomText(6).slice(1),
-'ZZPOC',
-'1',
-cy.generateAdjustedTime(1),
- 'DAD'
- )
- cy.wait(Cypress.env('myWait'))
-})
+    before(() => {
+
+      cy.myPatientAppointment(
+
+        RTApiData.clientIDForDemographicsSecond,
+
+        RTApiData.clientSecretKeyForDemographicsSecond,
+
+        RTApiData.grantType,
+
+        RTApiData.appId,
+
+        PatientData.pnName,
+
+        WelcomePage.generateRandomText(6).slice(1),
+
+        'ZZPOC',
+
+        '1',
+
+        cy.generateAdjustedTime(1),
+
+        'DAD',
+
+        PatientData.pnName.concat(WelcomePage.generateRandomText(6)+"@Gmail.com")
+
+      )
+
+      cy.wait(Cypress.env('myWait'))
+
+    })
 beforeEach(() => {
 WelcomePage.launchApp('ZZPOC')
       cy.clearCookies()
@@ -164,9 +180,9 @@ cy.wait(Cypress.env('elementTimeout'))
 cy.ClickElementWithJS(AppointmentPage.checkInButtonJS)
 cy.verifyPage(DemographicPage.titleReviewDemographic,ReviewDemographicsPageData.expectedTitleOfReviewDemographic,ReviewDemographicsPageData.demographicPageUrl);
 DemographicPage.clickEditButton();
-DemographicPage.fillInvalidFormatDob()
+DemographicPage.fillDoesNotHaveEnoughDigitDob()
 cy.get('body').click(50, 50, { force: true })
-cy.verifyText(DemographicPage.getErrorMessageForWrongDob,ReviewDemographicsPageData.errorMessageForFutureDOBInEnglish)
+cy.verifyText(DemographicPage.getErrorMessageForWrongDob,ReviewDemographicsPageData.errorMessageForInvalidFormatDOBInEnglish)
   })
   it("KIOS-2785||Demographics Details||To check the error message for Date of birth does not have enough digits in the Edit demographics screen in the English language.",()=>{
 

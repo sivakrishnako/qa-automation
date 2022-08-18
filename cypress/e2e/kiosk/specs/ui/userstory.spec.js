@@ -27,21 +27,36 @@ describe(
   },
   () => {
     before(() => {
-      cy.myPatientAppointment(
-        RTApiData.clientIDForUserStory,
-        RTApiData.clientSecretKeyForUserStory,
-        RTApiData.grantType,
-        RTApiData.appId,
-        PatientData.pnName,
-        WelcomePage.generateRandomText(6).slice(1),
-        'ZZPOC',
-        '1',
-        cy.generateAdjustedTime(1),
-        'DAD'
-      )
-      cy.wait(Cypress.env('myWait'))
-    })
 
+      cy.myPatientAppointment(
+
+        RTApiData.clientIDForUserStory,
+
+        RTApiData.clientSecretKeyForUserStory,
+
+        RTApiData.grantType,
+
+        RTApiData.appId,
+
+        PatientData.pnName,
+
+        WelcomePage.generateRandomText(6).slice(1),
+
+        'ZZPOC',
+
+        '1',
+
+        cy.generateAdjustedTime(1),
+
+        'DAD',
+
+        PatientData.pnName.concat(WelcomePage.generateRandomText(6)+"@Gmail.com")
+
+      )
+
+      cy.wait(Cypress.env('myWait'))
+
+    })
     beforeEach(() => {
       WelcomePage.launchApp('ZZPOC')
       cy.clearCookies()
@@ -162,11 +177,11 @@ describe(
       )
       InsurancePage.clickOnNoChangeNext()
       cy.verifyPage(
-        FormlistPage.getTitleOfPage,
+        FormListPage.getTitleOfPage,
         FormListPageData.expectedTitleOfFormList,
         FormListPageData.formListPageUrl
       )
-      FormlistPage.clickOnNoChangeNext()
+      FormListPage.clickOnNoChangeNext()
       cy.verifyPage(
         SubmitPage.getTitleOfSubmitPage,
         SubmitPageData.expectedTitleOfSubmit,
@@ -240,8 +255,8 @@ describe(
     describe('Multi Appointment Flows', () => {
       before(() => {
         cy.myPatientAppointment(
-          RTApiData.clientId,
-          RTApiData.clientSecretKey,
+          RTApiData.clientIDForUserStory,
+          RTApiData.clientSecretKeyForUserStory,
           RTApiData.grantType,
           RTApiData.appId,
           PatientData.pnName,
@@ -249,10 +264,12 @@ describe(
           'ZZPOC',
           '1',
           cy.generateAdjustedTime(1),
-          'DAD'
+          'DAD',
+          PatientData.pnName.concat(WelcomePage.generateRandomText(6)+"@Gmail.com")
+
         )
 
-        cy.wait(62000)
+        cy.wait(62000);
         cy.addAppointment('ZZPOC', '1')
       })
       beforeEach(() => {

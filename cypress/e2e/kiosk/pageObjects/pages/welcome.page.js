@@ -127,7 +127,7 @@ class WelcomePage {
 
     this.fillLastName(lastName)
     this.fillPatientDoB(dateOfBirth)
-    cy.wait(Cypress.env('myWait'))
+    cy.wait(Cypress.env('elementTimeout'))
     
 
     switch (strLoginCase) {

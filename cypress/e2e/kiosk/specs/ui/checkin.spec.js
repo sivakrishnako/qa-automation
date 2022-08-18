@@ -17,19 +17,35 @@ describe(
   },
   () => {
     before(() => {
+
       cy.myPatientAppointment(
+
         RTApiData.clientIdCheckIN,
+
         RTApiData.clientSecretKeyCheckIN,
+
         RTApiData.grantType,
+
         RTApiData.appId,
+
         PatientData.pnName,
+
         WelcomePage.generateRandomText(6).slice(1),
+
         'ZZPOC',
+
         '1',
+
         cy.generateAdjustedTime(1),
-        'DAD'
+
+        'DAD',
+
+        PatientData.pnName.concat(WelcomePage.generateRandomText(6)+"@Gmail.com")
+
       )
+
       cy.wait(Cypress.env('myWait'))
+
     })
 
     beforeEach(() => {

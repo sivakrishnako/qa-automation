@@ -16,21 +16,36 @@ describe(
   },
   () => {
     before(() => {
-      cy.myPatientAppointment(
-        RTApiData.clientIdLogIn,
-        RTApiData.clientSecretKeyLogIn,
-        RTApiData.grantType,
-        RTApiData.appId,
-        PatientData.pnName,
-        WelcomePage.generateRandomText(6).slice(1),
-        'ZZPOC',
-        '1',
-        cy.generateAdjustedTime(1),
-        'DAD'
-      )
-      cy.wait(Cypress.env('myWait'))
-    })
 
+      cy.myPatientAppointment(
+
+        RTApiData.clientIdLogIn,
+
+        RTApiData.clientSecretKeyLogIn,
+
+        RTApiData.grantType,
+
+        RTApiData.appId,
+
+        PatientData.pnName,
+
+        WelcomePage.generateRandomText(6).slice(1),
+
+        'ZZPOC',
+
+        '1',
+
+        cy.generateAdjustedTime(1),
+
+        'DAD',
+
+        PatientData.pnName.concat(WelcomePage.generateRandomText(6)+"@Gmail.com")
+
+      )
+
+      cy.wait(Cypress.env('myWait'))
+
+    })
     beforeEach(() => {
       WelcomePage.launchApp('ZZPOC')
       cy.clearCookies()
@@ -160,19 +175,35 @@ describe(
     //Nested Describe to override Location
     describe('Verifying Login with X minutes constraint', () => {
       before(() => {
+
         cy.myPatientAppointment(
-          RTApiData.clientId,
-          RTApiData.clientSecretKey,
+  
+          RTApiData.clientIdLogIn,
+  
+          RTApiData.clientSecretKeyLogIn,
+  
           RTApiData.grantType,
+  
           RTApiData.appId,
+  
           PatientData.pnName,
+  
           WelcomePage.generateRandomText(6).slice(1),
-          'ABUND',
+  
+          'ZZPOC',
+  
           '1',
+  
           cy.generateAdjustedTime(1),
-          'DAD'
+  
+          'DAD',
+  
+          PatientData.pnName.concat(WelcomePage.generateRandomText(6)+"@Gmail.com")
+  
         )
+  
         cy.wait(Cypress.env('myWait'))
+  
       })
 
       it('KIOSK-2586 || logIn ||As kiosk User should be able to check in before X minutes of his first appointment according to the set up configuration ', () => {

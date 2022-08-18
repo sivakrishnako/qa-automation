@@ -17,7 +17,9 @@ describe(
   },
   () => {
     before(() => {
+
       cy.myPatientAppointment(
+
         RTApiData.clientIdAppointment,
 
         RTApiData.clientSecretKeyAppointment,
@@ -30,16 +32,21 @@ describe(
 
         WelcomePage.generateRandomText(6).slice(1),
 
-        "ZZPOC",
+        'ZZPOC',
 
-        "1",
+        '1',
 
         cy.generateAdjustedTime(1),
 
-        "DAD"
-      );
+        'DAD',
+
+        PatientData.pnName.concat(WelcomePage.generateRandomText(6)+"@Gmail.com")
+
+      )
+
       cy.wait(Cypress.env('myWait'))
-    });
+
+    })
 
     beforeEach(() => {
       WelcomePage.launchApp("ZZPOC");
@@ -305,7 +312,9 @@ describe(
 
           cy.generateAdjustedTime(1),
 
-          "DAD"
+          "DAD",
+
+          PatientData.pnName.concat(WelcomePage.generateRandomText(6)+"@Gmail.com")
         );
 
         cy.wait(62000);
@@ -353,32 +362,38 @@ describe(
     });
     describe("Three Appointment", () => {
       before(() => {
+
         cy.myPatientAppointment(
+  
           RTApiData.clientIdAppointment,
-
+  
           RTApiData.clientSecretKeyAppointment,
-
+  
           RTApiData.grantType,
-
+  
           RTApiData.appId,
-
+  
           PatientData.pnName,
-
+  
           WelcomePage.generateRandomText(6).slice(1),
-
-          "ZZPOC",
-
-          "1",
-
+  
+          'ZZPOC',
+  
+          '1',
+  
           cy.generateAdjustedTime(1),
-
-          "DAD"
-        );
-
+  
+          'DAD',
+  
+          PatientData.pnName.concat(WelcomePage.generateRandomText(6)+"@Gmail.com")
+  
+        )
+  
         cy.wait(62000);
-
-        cy.addAppointment("ZZPOC", "1");
-      });
+        cy.addAppointment("ZZPOC", "2");
+  
+      })
+        
 
       beforeEach(() => {
         WelcomePage.launchApp("ZZPOC");
@@ -410,8 +425,7 @@ describe(
         );
 
         AppointmentPage.multiAppointment().then(($el) => {
-          const count = $el.length;
-
+        
           for (var index = 0; index < $el.length; index++) {
             AppointmentPage.verifyProviderDetails(index);
           }
