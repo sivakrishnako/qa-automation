@@ -89,8 +89,7 @@ describe(
         cy.get(AppointmentPage.getPatientName).contains(patient_ln)
       })
 
-      cy.verifyText(AppointmentPage.getPatientDOB, PatientData.validDOB)
-
+      cy.verifyText(AppointmentPage.getPatientDOB, AppointmentData.validDob);
       cy.verifyText(
         AppointmentPage.getSpeciality,
         AppointmentData.specialityOfProvider

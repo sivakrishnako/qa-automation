@@ -16,9 +16,7 @@ describe(
   },
   () => {
     before(() => {
-
       cy.myPatientAppointment(
-
         RTApiData.clientIdLogIn,
 
         RTApiData.clientSecretKeyLogIn,
@@ -39,12 +37,12 @@ describe(
 
         'DAD',
 
-        PatientData.pnName.concat(WelcomePage.generateRandomText(6)+"@Gmail.com")
-
+        PatientData.pnName.concat(
+          WelcomePage.generateRandomText(6) + '@Gmail.com'
+        )
       )
 
       cy.wait(Cypress.env('myWait'))
-
     })
     beforeEach(() => {
       WelcomePage.launchApp('ZZPOC')
@@ -52,7 +50,6 @@ describe(
     })
 
     it('KIOSK-2106 || logIn ||Verify that KIOSK User will be able to  log in with last name and date of birth success ', () => {
-     
       cy.getPatientDetails('application/json').then(patient_ln => {
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
       })
@@ -85,8 +82,8 @@ describe(
       )
       CheckInPage.clickPatientBtn()
       cy.wait(Cypress.env('elementTimeout'))
-    cy.ClickElementWithJS(AppointmentPage.checkInButtonJS)
-      
+      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS)
+
       CheckInPage.clickOnExitKioskBtn()
     })
 
@@ -128,91 +125,105 @@ describe(
       )
     })
 
-    it("KIOSK-2776 || LogIn || To check error message for Date of birth does not represent a real date in Login screen in English language.      ", () => {
-      WelcomePage.fillPatientDoBForErrorMessage(PatientData.invalidDOBRealDate);
-      WelcomePage.clickStartCheckInBtn();
-      WelcomePage.errorMessageForInvalidDob().should('have.text',PatientData.errorMessageForInvalidDob);
-      
+    it('KIOSK-2776 || LogIn || To check error message for Date of birth does not represent a real date in Login screen in English language.      ', () => {
+      WelcomePage.fillPatientDoBForErrorMessage(PatientData.invalidDOBRealDate)
+      WelcomePage.clickStartCheckInBtn()
+      WelcomePage.errorMessageForInvalidDob().should(
+        'have.text',
+        PatientData.errorMessageForInvalidDob
+      )
     })
-    
-    it("KIOSK-2774 || LogIn || To check error message for Date of birth does not represent a real date in Login screen in Spanish language.      ", () => {
-      WelcomePage.convertToggleEnglishToSpanish();
-      WelcomePage.welcomeInSpanish().should("have.text", "Bienvenidos");
-      WelcomePage.fillPatientDoBForErrorMessage(PatientData.invalidDOBRealDate);
-      WelcomePage.clickStartCheckInBtn();
-      WelcomePage.errorMessageForInvalidDob().should('have.text',PatientData.errorMessageForInvalidDobInSpanish);
-      
-    });
-    
-    it("KIOSK-2772 || LogIn ||To check error message for DOB as future date in Login screen in English language.      ", () => {
-      WelcomePage.fillPatientDoBForErrorMessage(PatientData.invalidDOBFutureDate);
-      WelcomePage.clickStartCheckInBtn();
-      WelcomePage.errorMessageForInvalidDob().should('have.text',PatientData.errorMessageForInvalidDobFutureDate);
-      
-    });
+    it('KIOSK-2774 || LogIn || To check error message for Date of birth does not represent a real date in Login screen in Spanish language.      ', () => {
+      WelcomePage.convertToggleEnglishToSpanish()
+      WelcomePage.welcomeInSpanish().should('have.text', 'Bienvenidos')
+      WelcomePage.fillPatientDoBForErrorMessage(PatientData.invalidDOBRealDate)
+      WelcomePage.clickStartCheckInBtn()
+      WelcomePage.errorMessageForInvalidDob().should(
+        'have.text',
+        PatientData.errorMessageForInvalidDobInSpanish
+      )
+    })
+    it('KIOSK-2772 || LogIn ||To check error message for DOB as future date in Login screen in English language.      ', () => {
+      WelcomePage.fillPatientDoBForErrorMessage(
+        PatientData.invalidDOBFutureDate
+      )
+      WelcomePage.clickStartCheckInBtn()
+      WelcomePage.errorMessageForInvalidDob().should(
+        'have.text',
+        PatientData.errorMessageForInvalidDobFutureDate
+      )
+    })
 
-    it("KIOSK-2773 || LogIn || To check error message for DOB as future date in Login screen in Spanish language.    ", () => {
-      WelcomePage.convertToggleEnglishToSpanish();
-      WelcomePage.welcomeInSpanish().should("have.text", "Bienvenidos");
-      WelcomePage.fillPatientDoBForErrorMessage(PatientData.invalidDOBFutureDate);
-      WelcomePage.clickStartCheckInBtn();
-      WelcomePage.errorMessageForInvalidDob().should('have.text',PatientData.errorMessageForInvalidDobFutureDateInSpanish);
-      
-    });
-    
-    it("KIOSK-2777 || LogIn ||To check error message for Date of birth does not have enough digits in Login screen in English language.      ", () => {
-      WelcomePage.fillPatientDoBForErrorMessage(PatientData.invalidDOBMissingDigits);
-      WelcomePage.clickStartCheckInBtn();
-      WelcomePage.errorMessageForInvalidDob().should('have.text',PatientData.errorMessageForInvalidDobDigits);
-      
-    });
-    it("KIOSK-2778 || LogIn || To check error message for Date of birth does not have enough digits in Login screen in Spanish language.    ", () => {
-      WelcomePage.convertToggleEnglishToSpanish();
-      WelcomePage.welcomeInSpanish().should("have.text", "Bienvenidos");
-      WelcomePage.fillPatientDoBForErrorMessage(PatientData.invalidDOBMissingDigits);
-      WelcomePage.clickStartCheckInBtn();
-      WelcomePage.errorMessageForInvalidDob().should('have.text',PatientData.errorMessageForInvalidDobDigitsInSpanish);
-      
-    });
-    
+    it('KIOSK-2773 || LogIn || To check error message for DOB as future date in Login screen in Spanish language.    ', () => {
+      WelcomePage.convertToggleEnglishToSpanish()
+      WelcomePage.welcomeInSpanish().should('have.text', 'Bienvenidos')
+      WelcomePage.fillPatientDoBForErrorMessage(
+        PatientData.invalidDOBFutureDate
+      )
+      WelcomePage.clickStartCheckInBtn()
+      WelcomePage.errorMessageForInvalidDob().should(
+        'have.text',
+        PatientData.errorMessageForInvalidDobFutureDateInSpanish
+      )
+    })
+    it('KIOSK-2777 || LogIn ||To check error message for Date of birth does not have enough digits in Login screen in English language.      ', () => {
+      WelcomePage.fillPatientDoBForErrorMessage(
+        PatientData.invalidDOBMissingDigits
+      )
+      WelcomePage.clickStartCheckInBtn()
+      WelcomePage.errorMessageForInvalidDob().should(
+        'have.text',
+        PatientData.errorMessageForInvalidDobDigits
+      )
+    })
+    it('KIOSK-2778 || LogIn || To check error message for Date of birth does not have enough digits in Login screen in Spanish language.    ', () => {
+      WelcomePage.convertToggleEnglishToSpanish()
+      WelcomePage.welcomeInSpanish().should('have.text', 'Bienvenidos')
+      WelcomePage.fillPatientDoBForErrorMessage(
+        PatientData.invalidDOBMissingDigits
+      )
+      WelcomePage.clickStartCheckInBtn()
+      WelcomePage.errorMessageForInvalidDob().should(
+        'have.text',
+        PatientData.errorMessageForInvalidDobDigitsInSpanish
+      )
+    })
+
     //Nested Describe to override Location
     describe('Verifying Login with X minutes constraint', () => {
       before(() => {
-
         cy.myPatientAppointment(
-  
           RTApiData.clientIdLogIn,
-  
+
           RTApiData.clientSecretKeyLogIn,
-  
+
           RTApiData.grantType,
-  
+
           RTApiData.appId,
-  
+
           PatientData.pnName,
-  
+
           WelcomePage.generateRandomText(6).slice(1),
-  
+
           'ABUND',
-  
+
           '1',
-  
+
           cy.generateAdjustedTime(1),
-  
+
           'DAD',
-  
-          PatientData.pnName.concat(WelcomePage.generateRandomText(6)+"@Gmail.com")
-  
+
+          PatientData.pnName.concat(
+            WelcomePage.generateRandomText(6) + '@Gmail.com'
+          )
         )
-  
+
         cy.wait(Cypress.env('myWait'))
-  
       })
 
-it('KIOSK-2586 || logIn ||As kiosk User should be able to check in before X minutes of his first appointment according to the set up configuration ', () => {
+      it('KIOSK-2586 || logIn ||As kiosk User should be able to check in before X minutes of his first appointment according to the set up configuration ', () => {
         WelcomePage.launchApp('ABUND')
         cy.getPatientDetails('application/json').then(patient_ln => {
-          
           WelcomePage.startCheckIn(
             patient_ln,
             PatientData.validDOB,

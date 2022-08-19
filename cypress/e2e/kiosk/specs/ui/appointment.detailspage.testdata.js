@@ -8,7 +8,7 @@ class AppointmentData {
   static expectedTitleOfAppointmentPageInSpanish="Detalles de la Cita"
   static specialityOfProvider = "PA,PTA Assistant";
   static helpButtonPopupMsg = "Please check in at the front desk.";
-  static dobOfPatient=" 01/01/1990"
+  static dobOfPatient=' 01/01/1990'
   static optionFromAuthorizedParent = "MyEmergency Contact";
   static expectedTypeOfAppointment = "Audiology Follow Up Visit";
   static expectedAge=" 32 Yrs"
