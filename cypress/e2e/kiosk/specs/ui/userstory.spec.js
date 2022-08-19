@@ -243,8 +243,9 @@ describe(
       ).click()
       cy.verifyButtonEnabled(
         CommunicationPreferencePage.checkInForFuture
-      ).click()
-      CommunicationPreferencePage.clickSaveCommunicationPreBtn()
+      ).click({ force: true })
+      CommunicationPreferencePage.clickOnReadAgreement()
+    CommunicationPreferencePage.clickSaveCommunicationPreBtn()
       cy.verifyPage(
         DemographicPage.titleEditDemographic,
         ReviewDemographicsPageData.expectedTitleOfEditDemographics,

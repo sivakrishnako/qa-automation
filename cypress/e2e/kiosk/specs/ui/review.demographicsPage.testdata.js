@@ -26,7 +26,7 @@ class ReviewDemographicsPageData {
 
 static expectedTitleOfEditDemographicInSpanish="Datos Demográficos"
 
-static expectedTitleOfEditDemographics=" Review Demographics"
+static expectedTitleOfEditDemographics="Demographics"
 
 static expectedTitlePatientInformationInSpanish = "Información Del Paciente"
 
