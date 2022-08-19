@@ -240,7 +240,10 @@ describe(
       cy.verifyButtonEnabled(
         CommunicationPreferencePage.checkInForFuture
       ).click({ force: true });
-      CommunicationPreferencePage.clickSaveCommunicationPreBtn({ force: true });
+      CommunicationPreferencePage.clickOnReadAgreement()
+
+      
+      CommunicationPreferencePage.clickSaveCommunicationPreBtn();
       cy.verifyPage(
         DemographicPage.titleEditDemographic,
         ReviewDemographicsPageData.expectedTitleOfEditDemographics,

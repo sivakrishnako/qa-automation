@@ -29,10 +29,12 @@ describe(
     before(() => {
 
       cy.myPatientAppointment(
+        "2cce717770f0a6a60d51a132",
+"3f5addf1ba19b3e341759e062af108d1",
 
-        RTApiData.clientIDForUserStory,
+        //RTApiData.clientIDForUserStory,
 
-        RTApiData.clientSecretKeyForUserStory,
+       // RTApiData.clientSecretKeyForUserStory,
 
         RTApiData.grantType,
 
@@ -89,8 +91,7 @@ describe(
         cy.get(AppointmentPage.getPatientName).contains(patient_ln)
       })
 
-      cy.verifyText(AppointmentPage.getPatientDOB, PatientData.validDOB)
-
+      cy.verifyText(AppointmentPage.getPatientDOB, AppointmentData.validDob);
       cy.verifyText(
         AppointmentPage.getSpeciality,
         AppointmentData.specialityOfProvider
@@ -189,7 +190,7 @@ describe(
       )
     })
 
-    it('KIOS-1609||Verify if a returning patient with  copay  can add his missing communication preference', () => {
+    it.only('KIOS-1609||Verify if a returning patient with  copay  can add his missing communication preference', () => {
       cy.getPatientDetails('application/json').then(patient_ln => {
         cy.wait(Cypress.env('elementTimeout'))
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
@@ -244,8 +245,9 @@ describe(
       ).click()
       cy.verifyButtonEnabled(
         CommunicationPreferencePage.checkInForFuture
-      ).click()
-      CommunicationPreferencePage.clickSaveCommunicationPreBtn()
+      ).click({ force: true })
+      CommunicationPreferencePage.clickOnReadAgreement()
+    CommunicationPreferencePage.clickSaveCommunicationPreBtn()
       cy.verifyPage(
         DemographicPage.titleEditDemographic,
         ReviewDemographicsPageData.expectedTitleOfEditDemographics,

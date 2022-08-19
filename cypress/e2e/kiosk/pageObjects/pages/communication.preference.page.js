@@ -17,12 +17,10 @@ static clickCommunicationPreferYesToggle(){
     button.click();
     return this
 }
-
-static emailForAppointmentInfo ='[data-testid="email_aprem-info-email-check"]'
-
-static textHealthInformationAndAlerts='[data-testid="text_heala-info-text-check"]'
-static emailPatientSurveys='[data-testid="email_survy-info-email-check"]'
-static textForVisitSummaries='[data-testid="text_vsumm-info-text-check"]';
+static emailForAppointmentInfo ='[data-testid="email_aprem-info-email-check"] > .PrivateSwitchBase-input'
+static textHealthInformationAndAlerts='[data-testid="text_heala-info-text-check"] > .PrivateSwitchBase-input'
+static emailPatientSurveys='[data-testid="text_survy-info-text-check"] > .PrivateSwitchBase-input'
+static textForVisitSummaries='[data-testid="text_vsumm-info-text-check"] > .PrivateSwitchBase-input'
 static staffCommunicationBtn='[data-testid="can-staff-contactyes"]'
 static paperlessStatementButton='[data-testid="statementyes"]'
 static checkInForFuture='[data-testid="contact-checkInyes"]'
@@ -48,16 +46,6 @@ static textForAppointmentInfoInSpanish = ('[data-testid="text_aprem-info-text-ch
 static textForHealthInformationAndAlertsInSpanish = ('[data-testid="text_heala-info-text-check-chip"]')
 static textForPatientSurveysInSpanish = ('[data-testid="text_survy-info-text-check-chip"]')
 static textForVisitSummariesInSpanish = ('[data-testid="text_vsumm-info-text-check-chip"]')
-
-
-
-
-
-
-
-
-
-
 
 static readAgreement= ('[data-testid="read-agreement"]');
 static titleOfAgreementInSpanish =('.MuiPaper-root > .MuiGrid-container > .MuiGrid-grid-xs-11 > [data-testid="card-title"]')
@@ -90,6 +78,11 @@ static clickOnAgreement(){
     const button=cy.get('[href="/communication"]')
 button.click();
 return this;
+}
+static clickOnReadAgreement(){
+    const button =cy.get('[data-testid="agreement-check"]')
+    button.click()
+    return this
 }
 
 
