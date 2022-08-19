@@ -46,4 +46,10 @@ To run through UI Test Runner of Cypress, use below cli command to open Test Run
 	npx cypress open
 	
 ## CI Integration with Jenkins
-This section will be updated once CI integration is done with Jenkins.
+Implemented CI integration with Github Actions and created multiple workflows based on the requirement. Workflows are found in the below path: https://github.com/raintreeinc/qa-automation/tree/main/.github/workflows
+Majorly there are 3 kind of workflows configured. They are:
+	1. cross-browser testing specific workflows that are scheduled to run daily i.e. chrome-dailyRun.yml, edge-dailyRun.yml, firefox-dailyRun.yml
+	2. parallel_run workflow on pushing new code to 'main' branch i.e. cypress_parallel_on-push_main.yml
+	3. workflow to trigger cypress tests when there is code check-in in raintreeinc/kiosk_fronend repo i.e. trigger-by-dev-push.yml
+
+And the test results are published in Cypress dashboard for all above test executions.
