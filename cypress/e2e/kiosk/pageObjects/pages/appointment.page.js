@@ -30,23 +30,21 @@ class AppointmentPage {
     static getCompareTime( ) {
       cy.get(
         'div:nth-of-type(1) > .providerWrapper > h6:nth-of-type(2) > .providerInfo')
-      
-        .invoke('text')
+      .invoke('text')
         .then(strTime1 => {
+        
+
 
           cy.get(
             "[data-testid='providerWrapper_1'] .providerInfo[data-testid='appointment-time']"
           )
             .invoke('text')
             .then(strTime2 => {
-             assert(strTime2 >  strTime1)
-           /*   if (strTime2 > strTime1) {
-                cy.log(strTime1 + ' is less recent than ' + strTime2)
-              } else {
-                cy.log(strTime1 + ' is more recent than ' + strTime2)
-              }*/
+             
+              assert(strTime2 >  strTime1)
+            
   
-            })
+           })
         })
       return this
       }
@@ -82,7 +80,7 @@ class AppointmentPage {
       "[data-testid='providerWrapper_" +
       index +
       "'] [data-testid='provider-name']"
-    cy.log(strProviderName).invoke('text')
+    
     return cy.get(strProviderName)
   }
   static getSpecialityOfProvider (index) {

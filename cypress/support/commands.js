@@ -62,7 +62,7 @@ Cypress.Commands.add(
   }
 )
 
-Cypress.Commands.add('addPatient', (strName, strRandom) => {
+Cypress.Commands.add('addPatient', (strName, strRandom,strEmail) => {
   cy.request({
     method: 'POST',
     url: Cypress.env('rtApiURL') + 'patients',
@@ -91,7 +91,7 @@ Cypress.Commands.add('addPatient', (strName, strRandom) => {
       workPhone: '(789) 455-5565',
       cellPhone: '',
       cellPhone2: '',
-      email: strName.concat(strRandom) + '@gmail.com'
+      email: strEmail
     }
   }).then(response => {
     cy.log(response.body)
@@ -193,24 +193,45 @@ Cypress.Commands.add('addEmergencyContact', strContactType => {
 })
 
 Cypress.Commands.add(
+
   'myPatientAppointment',
+
   (
+
     strClientID,
+
     strClientSecKey,
+
     strGrantType,
+
     strAppId,
+
     strName,
+
     strRandom,
+
     strLocation,
+
     strCount,
+
     strAppointmentTime,
-    strContactType
+
+    strContactType,
+
+    strEmail
+
   ) => {
+
     cy.getAccessToken(strClientID, strClientSecKey, strGrantType, strAppId)
-    cy.addPatient(strName, strRandom)
+
+    cy.addPatient(strName, strRandom,strEmail)
+
     cy.addAppointment(strLocation, strCount, strAppointmentTime)
+
     cy.addEmergencyContact(strContactType)
+
   }
+
 )
 
 Cypress.Commands.add('deletePatient', () => {

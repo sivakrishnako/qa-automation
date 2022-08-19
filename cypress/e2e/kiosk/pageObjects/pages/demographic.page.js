@@ -117,6 +117,11 @@ return cy.get (strFillHomePhoneNum);
     cy.get('[data-testid="patientInfo-dateOfBirth"]').click().clear().type("35/01/00"),{ timeout: Cypress.env('elementTimeout') }
     return this;
    }
+   static fillDoesNotHaveEnoughDigitDob(){
+    cy.get('[data-testid="patientInfo-dateOfBirth"]').click().clear().type("01/32/19"),{ timeout: Cypress.env('elementTimeout') }
+    return this;
+   }
+
    static fillInvalidFormatDob(value){
     cy.get('[data-testid="patientInfo-dateOfBirth"]').click().clear().type("3/01/0"),{ timeout: Cypress.env('elementTimeout') }
    return this;
