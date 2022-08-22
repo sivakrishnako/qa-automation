@@ -49,6 +49,7 @@ static textForVisitSummariesInSpanish = ('[data-testid="text_vsumm-info-text-che
 
 static readAgreement= ('[data-testid="read-agreement"]');
 static titleOfAgreementInSpanish =('.MuiPaper-root > .MuiGrid-container > .MuiGrid-grid-xs-11 > [data-testid="card-title"]')
+static popUpForSaveCommunication=('[data-testid="modal-text"]')
 
 
     static errorIcon(){
@@ -83,6 +84,27 @@ static clickOnReadAgreement(){
     const button =cy.get('[data-testid="agreement-check"]')
     button.click()
     return this
+}
+static astericsSign(){
+    return cy.get('[data-testid="check-icon"]')
+    
+}
+static continueBtnForErrorPopUp(){
+   return cy.get('[data-testid="link-sent-ok"]')
+
+}
+static closeIconForPopUP(){
+    return cy.get('[data-testid="CloseIcon"]')
+}
+static phoneOptionForHealthInfo(){
+    return cy.get('[data-testid="phone_heala-info-email-check"] > .PrivateSwitchBase-input')
+}
+static emailOptionForHealthInfo(){
+    return cy.get('[data-testid="email_heala-info-email-check"] > .PrivateSwitchBase-input')
+}
+static textOptionForHealthInfo(){
+    return cy.get('[data-testid="text_heala-info-text-check"] > .PrivateSwitchBase-input')
+
 }
 
 
