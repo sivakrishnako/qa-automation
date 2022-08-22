@@ -74,7 +74,7 @@ Cypress.Commands.add('addPatient', (strName, strRandom,strEmail) => {
     body: {
       firstName: strName.concat(strRandom),
       lastName: strName.concat(strRandom),
-      birthDate: '1990-01-01',
+      birthDate: '2012-11-11',
       title: 'Mr',
       prefPronoun: '',
       prefName: '',

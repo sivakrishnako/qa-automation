@@ -23,6 +23,7 @@ describe(
   () => {
     before(() => {
       cy.myPatientAppointment(
+        
         RTApiData.clientIdDemographics,
 
         RTApiData.clientSecretKeyDemographics,

@@ -26,6 +26,7 @@ static expectedSendNotificationInSpanish = " Enviar Notificaciones a"
 
 static expectedStaffCommunicationInSpanish = "¿Puede nuestro personal comunicarse con usted mediante mensajes de texto?"
 static expectedCheckInForFutureInSpanish = "¿Podemos enviar por mensaje de texto este proceso de facturación en el futuro?"
+static popUpForSaveCommunicationPref="Please complete all of the required fields to continue."
 }
 
 
