@@ -55,7 +55,7 @@ describe(
     it("KIOS-2161 ||Appointment confirmation||Verify a Kiosk User should be able to check in for all his appointment(s) booked", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.wait(Cypress.env('elementTimeout'));
-        WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
+        WelcomePage.startCheckIn(patient_ln, "11112012");
       });
       cy.verifyPage(
         CheckInPage.checkInTitle,
@@ -100,7 +100,7 @@ describe(
     it("KIOS-2275 ||Appointment confirmation ||Verify that user should be able to view the patient information of the single child if logged in as a Parent/Authorized Representative ", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.wait(Cypress.env('elementTimeout'));
-        WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
+        WelcomePage.startCheckIn(patient_ln, "11112012");
       });
       cy.verifyPage(
         CheckInPage.checkInTitle,

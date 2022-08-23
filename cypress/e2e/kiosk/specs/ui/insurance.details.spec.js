@@ -7,17 +7,15 @@ import CommunicationPreferencePage from "../../pageObjects/pages/communication.p
 import PatientData from "./patient.checkIn.TestData";
 import AppointmentData from "./appointment.detailsPage.TestData";
 import ReviewDemographicsPageData from "./review.DemographicsPage.TestData";
-import CommunicationPreferencePageData from "./communication.preferencePage.TestData";
-import CheckInPage from "../../pageObjects/pages/checkIn.page";
-import PaymentPage from "../../pageObjects/pages/payment.details.page";
-import PaymentDetailsPageData from "./paymentDetails.TestData.js";
-import InsurancePage from "../../pageObjects/pages/insurance.page";
-import InsurancePageData from "./insurancepage.testdata";
-import FormsPage from "../../pageObjects/pages/forms.page";
-import FormsPageData from "../../specs/ui/formspage.testdata";
 
-describe(
-  "Demographics details test suite",
+import CheckInPage from "../../pageObjects/pages/checkIn.page";
+import InsurancePage from "../../pageObjects/pages/insurance.page";
+import InsurancePageData from "./../ui/insurancepage.testdata";
+import FormsPage from "../../pageObjects/pages/formlist.page";
+import FormsPageData from "../../specs/ui/formlist.testdata";
+
+describe.skip(
+  "Insurance test suite",
   {
     retries: {
       runMode: 3,
