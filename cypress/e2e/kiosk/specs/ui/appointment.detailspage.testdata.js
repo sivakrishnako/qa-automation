@@ -2,7 +2,7 @@
 
 class AppointmentData {
   static appointmentTitle = ".cardTittle > .MuiTypography-root";
-  static validDob = "11/11/2012";
+  static validDob = " 11/11/2012";
   static appointmentPageUrl = "/appointment";
   static expectedTitleOfAppointmentPage = "Appointment Details";
   static expectedTitleOfAppointmentPageInSpanish="Detalles de la Cita"
@@ -10,7 +10,7 @@ class AppointmentData {
   static helpButtonPopupMsg = "Please check in at the front desk.";
   static optionFromAuthorizedParent = "MyEmergency Contact";
   static expectedTypeOfAppointment = "Audiology Follow Up Visit";
-  static expectedAge=" 10 Yrs"
+  static expectedAge=" 9 Yrs"
   static providerName="Auto  Provider"
 }
 export default AppointmentData;

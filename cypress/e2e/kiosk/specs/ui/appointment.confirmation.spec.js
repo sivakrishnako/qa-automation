@@ -19,6 +19,7 @@ describe(
     before(() => {
 
       cy.myPatientAppointment(
+        
 
         RTApiData.clientIdAppointment,
 
@@ -100,7 +101,7 @@ describe(
     it("KIOS-2275 ||Appointment confirmation ||Verify that user should be able to view the patient information of the single child if logged in as a Parent/Authorized Representative ", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.wait(Cypress.env('elementTimeout'));
-        WelcomePage.startCheckIn(patient_ln, "11112012");
+        WelcomePage.startCheckIn(patient_ln,PatientData.validDOB);
       });
       cy.verifyPage(
         CheckInPage.checkInTitle,
@@ -145,7 +146,7 @@ describe(
     it("KIOS-2273||Appointment Confirmation || Verify that Appointment details like details of patient, details of provider and separate tile with appointment Date, Time & Type are dislayed", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.wait(Cypress.env('elementTimeout'));
-        WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
+        WelcomePage.startCheckIn(patient_ln,PatientData.validDOB );
       });
       cy.verifyPage(
         CheckInPage.checkInTitle,
@@ -169,10 +170,7 @@ describe(
       });
       AppointmentPage.getDateOfAppointment()
       AppointmentPage.getTimeOfAppointment()
-      cy.verifyText(
-        AppointmentPage.getPatientDOB,
-        AppointmentData.dobOfPatient
-      );
+      cy.verifyText(AppointmentPage.getPatientDOB, AppointmentData.validDob);
       cy.verifyText(AppointmentPage.getPatientAge, AppointmentData.expectedAge);
 
       cy.verifyText(
@@ -192,7 +190,7 @@ describe(
     it("KIOS-2272||Appointment Confirmation || Verify that user should be able to view the user details dropdown on top of Parent/Authorized representative Appointment page", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.wait(Cypress.env('elementTimeout'));
-        WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
+        WelcomePage.startCheckIn(patient_ln,PatientData.validDOB);
       });
       cy.verifyPage(
         CheckInPage.checkInTitle,
@@ -218,16 +216,13 @@ describe(
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.get(AppointmentPage.getPatientName).contains(patient_ln);
       });
-      cy.verifyText(
-        AppointmentPage.getPatientDOB,
-        AppointmentData.dobOfPatient
-      );
+      cy.verifyText(AppointmentPage.getPatientDOB, AppointmentData.validDob);
 
     });
     it("KIOS-2171|| Appointment Confirmation || Verify that appointment details header displayed On Appointment Detail Page has user detail dropdown with name displayed", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.wait(Cypress.env('elementTimeout'));
-        WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
+        WelcomePage.startCheckIn(patient_ln,PatientData.validDOB);
       });
       cy.verifyPage(
         CheckInPage.checkInTitle,
@@ -249,17 +244,14 @@ describe(
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.get(AppointmentPage.getPatientName).contains(patient_ln);
       });
-      cy.verifyText(
-        AppointmentPage.getPatientDOB,
-        AppointmentData.dobOfPatient
-      );
+      cy.verifyText(AppointmentPage.getPatientDOB, AppointmentData.validDob);
 
     });
 
     it("KIOS-2692||Appointment Confirmation || verify As a Kiosk User ,i should be able to view the details of the child when he has a Authorized Guardian or Representative", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.wait(Cypress.env('elementTimeout'));
-        WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
+        WelcomePage.startCheckIn(patient_ln,PatientData.validDOB);
       });
       cy.verifyPage(
         CheckInPage.checkInTitle,
@@ -285,10 +277,7 @@ describe(
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.get(AppointmentPage.getPatientName).contains(patient_ln);
       });
-      cy.verifyText(
-        AppointmentPage.getPatientDOB,
-        AppointmentData.dobOfPatient
-      );
+      cy.verifyText(AppointmentPage.getPatientDOB, AppointmentData.validDob);
 
     });
     describe("Multi appointment flow", () => {
@@ -330,7 +319,7 @@ describe(
       it("KIOS-2276||Appointment Confirmation|| Verify that user is able to view Two appointments details scheduled for same day according to time of appointment booked", () => {
         cy.getPatientDetails("application/json").then((patient_ln) => {
           cy.wait(Cypress.env('elementTimeout'));
-          WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
+          WelcomePage.startCheckIn(patient_ln,PatientData.validDOB);
         });
         cy.verifyPage(
           CheckInPage.checkInTitle,
@@ -364,6 +353,7 @@ describe(
       before(() => {
 
         cy.myPatientAppointment(
+        
   
           RTApiData.clientIdAppointment,
   
@@ -403,7 +393,7 @@ describe(
       it("KIOS-2274||Appointment Confirmation || Verify that user is able to view maximum three appointments details scheduled for same day according to time of appointment", () => {
         cy.getPatientDetails("application/json").then((patient_ln) => {
           cy.wait(Cypress.env('elementTimeout'));
-          WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
+          WelcomePage.startCheckIn(patient_ln,PatientData.validDOB);
         });
         cy.verifyPage(
           CheckInPage.checkInTitle,

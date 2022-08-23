@@ -431,94 +431,13 @@ describe(
         ReviewDemographicsPageData.demographicPageUrl
       );
     });
-    describe(
-      "Creating patient without email",
-      {
-        retries: {
-          runMode: 3,
-          openMode: 1,
-        },
-      },
-      () => {
-        before(() => {
-          cy.myPatientAppointment(
-            RTApiData.clientIdDemographics,
+    
 
-            RTApiData.clientSecretKeyDemographics,
+         
 
-            RTApiData.grantType,
+          
 
-            RTApiData.appId,
-
-            PatientData.pnName,
-
-            WelcomePage.generateRandomText(6).slice(1),
-
-            "ZZPOC",
-
-            "1",
-
-            cy.generateAdjustedTime(1),
-
-            "DAD"
-          );
-
-          cy.wait(Cypress.env("myWait"));
-        });
-
-        it("KIOS-1444||Verify spanish version of error message for wrong email format in patient information section on Edit demographics page in all devices", () => {
-          cy.getPatientDetails("application/json").then((patient_ln) => {
-            cy.wait(Cypress.env("elementTimeout"));
-            WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
-          });
-          cy.verifyPage(
-            CheckInPage.checkInTitle,
-            PatientData.expectedTitleOfCheckIn,
-            PatientData.checkInPageUrl
-          );
-
-          WelcomePage.convertToggleEnglishToSpanish();
-          CheckInPage.clickPatientBtn();
-          cy.verifyPage(
-            AppointmentPage.appointmentTitle,
-            AppointmentData.expectedTitleOfAppointmentPageInSpanish,
-            AppointmentData.appointmentPageUrl
-          );
-          cy.wait(Cypress.env("elementTimeout"));
-          cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
-          cy.verifyPage(
-            DemographicPage.titleReviewDemographic,
-            ReviewDemographicsPageData.expectedTitleOfReviewDemographicInSpanish,
-            ReviewDemographicsPageData.demographicPageUrl
-          );
-
-          cy.verifyText(
-            DemographicPage.getCommunicationPreferenceInSpanish,
-            " Preferencia de Comunicación"
-          );
-          cy.verifyText(DemographicPage.getEditTextInSpanish, "EDITAR");
-          DemographicPage.clickEditButton();
-          cy.verifyPage(
-            DemographicPage.titleEditDemographic,
-            ReviewDemographicsPageData.expectedTitleOfEditDemographicInSpanish,
-            ReviewDemographicsPageData.editDemographicUrl
-          );
-          cy.verifyText(
-            DemographicPage.getTitleOfPatientInformation,
-            ReviewDemographicsPageData.expectedTitlePatientInformationInSpanish
-          );
-          DemographicPage.fillEmailAddress();
-
-          cy.wait(Cypress.env("elementTimeout"));
-          DemographicPage.clickSaveDemographicsBtn();
-          cy.wait(Cypress.env("elementTimeout"));
-          DemographicPage.errorMessageEmail().should(
-            "have.text",
-            ReviewDemographicsPageData.popUpForInvalidEmailInSpanish
-          );
-        });
-      }
-    );
+       
     it("KIOS-1455||Verify communication preferences Spanish screen UI content ", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.wait(Cypress.env("elementTimeout"));
@@ -768,7 +687,7 @@ describe(
 
           WelcomePage.generateRandomText(6).slice(1),
 
-          "ZZPOC",
+          "NOR",
 
           "1",
 
@@ -853,7 +772,7 @@ describe(
         );
       });
     });
-    after(() => {
+   after(() => {
       cy.deletePatient();
     });
   }
