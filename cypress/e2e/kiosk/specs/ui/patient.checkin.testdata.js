@@ -4,7 +4,7 @@ class PatientData {
   static blankInput = ''
   static userLastNameForSkipPaymentPage = ''
   static userDobForSkipPaymentPage = ''
-  static validDOB = '11/11/2012'
+  static validDOB = '11112012'
   static checkInPageUrl = '/check-in'
   static expectedTypeOfAppointmentTwo = 'Audiology Initial Visit'
   static specialityOfProvider = 'PA,PTA Assistant'
