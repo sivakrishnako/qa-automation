@@ -56,7 +56,7 @@ describe(
     it("KIOS-2161 ||Appointment confirmation||Verify a Kiosk User should be able to check in for all his appointment(s) booked", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.wait(Cypress.env('elementTimeout'));
-        WelcomePage.startCheckIn(patient_ln, "11112012");
+        WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
       });
       cy.verifyPage(
         CheckInPage.checkInTitle,
@@ -219,7 +219,7 @@ describe(
       cy.verifyText(AppointmentPage.getPatientDOB, AppointmentData.validDob);
 
     });
-    it("KIOS-2171|| Appointment Confirmation || Verify that appointment details header displayed On Appointment Detail Page has user detail dropdown with name displayed", () => {
+    it.only("KIOS-2171|| Appointment Confirmation || Verify that appointment details header displayed On Appointment Detail Page has user detail dropdown with name displayed", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.wait(Cypress.env('elementTimeout'));
         WelcomePage.startCheckIn(patient_ln,PatientData.validDOB);
