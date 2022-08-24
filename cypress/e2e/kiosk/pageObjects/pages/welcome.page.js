@@ -52,25 +52,11 @@ class WelcomePage {
   }
   
   static fillPatientDoB (dateOfBirth) {
-    var strText = ' '
     const field = cy.get('[data-testid="dateOfBirth"]', {
       timeout: Cypress.env('elementTimeout')
     })
     field.clear()
-    field
-      .then($input => $input.val(dateOfBirth))
-      .should('have.value', dateOfBirth)
-    cy.get('[data-testid="dateOfBirth"]')
-      .invoke('text')
-      .then(strText => {
-        if (strText === PatientData.validDOB) {
-          cy.log('Correct DOB entered')
-        } else {
-          field.clear()
-          cy.wait(1000)
-          field.type(dateOfBirth)
-        }
-      })
+    field.type('1111').wait(1000).type('2').wait(1000).type('0').wait(1000).type('1').wait(1000).type('2')
     return this
   }
   
