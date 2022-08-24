@@ -2,13 +2,12 @@
 
 import PatientData from '../../specs/ui/patient.checkin.testdata'
 
-
 class WelcomePage {
   static launchApp (strLocation) {
     cy.visit(Cypress.env('kioskURL') + strLocation)
   }
 
-  static expTitleWelcomePage  = "Self Check-In Kiosk" 
+  static expTitleWelcomePage = 'Self Check-In Kiosk'
   static logInPageUrl = 'https://org1-kiosk.raintreeinc.com/'
 
   static titleWelcomePage () {
@@ -50,18 +49,16 @@ class WelcomePage {
     field.type(value)
     return this
   }
-  
+
   static fillPatientDoB (dateOfBirth) {
-    const field = cy.get('[data-testid="dateOfBirth"]', {
-      timeout: Cypress.env('elementTimeout')
-    })
-    field.clear()
-    field.invoke('removeAttr','type').type('{1}').type('{1}').type('{1}').type('{1}').type('{2}').type('{0}').type('{1}').type('{2}');
-      return this
+      cy.get('[data-testid="dateOfBirth"]')
+      .should('be.visible')
+      .find('input')
+      .type('11112012')
+    return this
   }
-  
-  
-static clickStartCheckInBtn () {
+
+  static clickStartCheckInBtn () {
     const button = cy.get('[data-testid="startCheckIn"]', {
       timeout: Cypress.env('elementTimeout')
     })
@@ -121,28 +118,25 @@ static clickStartCheckInBtn () {
   }
 
   static startCheckIn (lastName, dateOfBirth, strLoginCase) {
-
     let errMessageXMinutes =
-    'Please come back no more than 5 minutes before your appointment to check in.'
-  let errMessageFrontDesk = 'Please check in at the front desk.'
-
+      'Please come back no more than 5 minutes before your appointment to check in.'
+    let errMessageFrontDesk = 'Please check in at the front desk.'
 
     this.fillLastName(lastName)
 
     this.fillPatientDoB(dateOfBirth)
     cy.wait(Cypress.env('elementTimeout'))
-    
 
     switch (strLoginCase) {
       case 'X minutes':
-      this.clickStartCheckInBtn()
+        this.clickStartCheckInBtn()
         cy.get('[data-testid="modal-text"]').should('be.visible')
         cy.log('In X minutes')
         this.popupMsgForInvalidCredentials().contains(errMessageXMinutes)
         cy.get('[data-testid="loginErrorOk"]', {
           timeout: Cypress.env('elementTimeout')
         }).click()
-        break;
+        break
 
       case 'Front Desk Message':
         cy.get('[data-testid="modal-text"]').should('be.visible')
@@ -152,11 +146,10 @@ static clickStartCheckInBtn () {
           timeout: Cypress.env('elementTimeout')
         }).click()
         this.clickStartCheckInBtn()
-        break;
+        break
 
       default:
-         this.clickStartCheckInBtn()
-
+        this.clickStartCheckInBtn()
     }
   }
 
@@ -167,7 +160,6 @@ static clickStartCheckInBtn () {
     this.clickSpanishToggle()
   }
 
-
   static InvalidCheckIn (LastName, dateOfBirth, errorMessage) {
     this.fillLastName(LastName)
     this.fillPatientDoB(dateOfBirth)
@@ -176,14 +168,18 @@ static clickStartCheckInBtn () {
     this.clickPopupButtonOkErrorMsg()
   }
 
-  static fillPatientDoBForErrorMessage(dateOfBirth) {
-    const field = cy.get('[data-testid="dateOfBirth"]', { timeout: Cypress.env('elementTimeout') });
-   field.type(dateOfBirth);
-    return this;
+  static fillPatientDoBForErrorMessage (dateOfBirth) {
+    const field = cy.get('[data-testid="dateOfBirth"]', {
+      timeout: Cypress.env('elementTimeout')
+    })
+    field.type(dateOfBirth)
+    return this
   }
 
-  static errorMessageForInvalidDob(){
-    return cy.get('[data-testid="dob-error-message"]', { timeout: Cypress.env('elementTimeout') });
+  static errorMessageForInvalidDob () {
+    return cy.get('[data-testid="dob-error-message"]', {
+      timeout: Cypress.env('elementTimeout')
+    })
   }
 
   static generateRandomText (strLength) {
