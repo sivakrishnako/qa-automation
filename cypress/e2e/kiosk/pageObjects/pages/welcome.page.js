@@ -56,8 +56,8 @@ class WelcomePage {
       timeout: Cypress.env('elementTimeout')
     })
     field.clear()
-    field.type('1111').wait(1000).type('2').wait(1000).type('0').wait(1000).type('1').wait(1000).type('2')
-    return this
+    field.invoke('removeAttr','type').type('12-12-2009{enter}');
+      return this
   }
   
   
