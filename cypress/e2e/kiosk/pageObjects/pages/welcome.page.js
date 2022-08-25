@@ -49,15 +49,21 @@ class WelcomePage {
     field.type(value)
     return this
   }
-
   static fillPatientDoB (dateOfBirth) {
-      cy.get('[data-testid="dateOfBirth"]')
-      .should('be.visible')
-      .find('input')
-      .type('11112012')
-    return this
-  }
 
+    cy.get('[data-testid="dateOfBirth"]')
+
+    .should('be.visible')
+
+    .find('input')
+
+    .type('1111-20-12')
+
+  return this
+
+}
+
+  
   static clickStartCheckInBtn () {
     const button = cy.get('[data-testid="startCheckIn"]', {
       timeout: Cypress.env('elementTimeout')
