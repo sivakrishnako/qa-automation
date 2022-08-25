@@ -269,3 +269,4 @@ Cypress.Commands.add('ClickElementWithJS', strLocator => {
     win.document.querySelector(strLocator).click()
   })
 })
+
