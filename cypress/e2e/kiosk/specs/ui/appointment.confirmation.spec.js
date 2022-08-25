@@ -187,6 +187,7 @@ describe(
         AppointmentData.expectedTypeOfAppointment
       );
     });
+    
     it("KIOS-2272||Appointment Confirmation || Verify that user should be able to view the user details dropdown on top of Parent/Authorized representative Appointment page", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.wait(Cypress.env('elementTimeout'));
@@ -219,7 +220,8 @@ describe(
       cy.verifyText(AppointmentPage.getPatientDOB, AppointmentData.validDob);
 
     });
-    it.only("KIOS-2171|| Appointment Confirmation || Verify that appointment details header displayed On Appointment Detail Page has user detail dropdown with name displayed", () => {
+    
+    it("KIOS-2171|| Appointment Confirmation || Verify that appointment details header displayed On Appointment Detail Page has user detail dropdown with name displayed", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.wait(Cypress.env('elementTimeout'));
         WelcomePage.startCheckIn(patient_ln,PatientData.validDOB);
