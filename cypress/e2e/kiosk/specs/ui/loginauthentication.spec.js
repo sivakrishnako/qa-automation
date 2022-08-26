@@ -10,7 +10,7 @@ describe(
   'LogIn /Authentication Epic test suite',
   {
     retries: {
-      runMode: 3,
+      runMode: 2,
       openMode: 1
     }
   },
