@@ -8,6 +8,7 @@ module.exports = defineConfig({
     kioskURL: 'https://org1-kiosk.raintreeinc.com/?location=',
     myWait: 35000,
     elementTimeout: 5000,
+    elementTimeout2Sec : 2000,
     apiURL: 'http://rtkioskadminsapi-test.us-east-2.elasticbeanstalk.com/',
     rtApiURL: 'https://kiosk.raintreeinc.com/dat/api/',
     pmURL: 'https://lpbkunky99.execute-api.us-east-1.amazonaws.com/Prod/api/',

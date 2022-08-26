@@ -21,15 +21,13 @@ describe(
   'Userstory suite',
   {
     retries: {
-      runMode: 3,
+      runMode: 2,
       openMode: 1
     }
   },
   () => {
     before(() => {
-
       cy.myPatientAppointment(
-
         RTApiData.clientIDForUserStory,
 
         RTApiData.clientSecretKeyForUserStory,
@@ -50,12 +48,12 @@ describe(
 
         'DAD',
 
-        PatientData.pnName.concat(WelcomePage.generateRandomText(6)+"@Gmail.com")
-
+        PatientData.pnName.concat(
+          WelcomePage.generateRandomText(6) + '@Gmail.com'
+        )
       )
 
       cy.wait(Cypress.env('myWait'))
-
     })
     beforeEach(() => {
       WelcomePage.launchApp('ZZPOC')
@@ -64,7 +62,6 @@ describe(
 
     it('KIOS-1556 || Verify if a returning patient without copay  can successfully check in', () => {
       cy.getPatientDetails('application/json').then(patient_ln => {
-        cy.wait(Cypress.env('elementTimeout'))
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
       })
       cy.verifyPage(
@@ -89,7 +86,7 @@ describe(
         cy.get(AppointmentPage.getPatientName).contains(patient_ln)
       })
 
-      cy.verifyText(AppointmentPage.getPatientDOB, AppointmentData.validDob);
+      cy.verifyText(AppointmentPage.getPatientDOB, AppointmentData.validDob)
       cy.verifyText(
         AppointmentPage.getSpeciality,
         AppointmentData.specialityOfProvider
@@ -124,7 +121,6 @@ describe(
 
     it('KIOS-1607 || Verify if a returning patient with missing Phone number edit his demographics details and successfully check in', () => {
       cy.getPatientDetails('application/json').then(patient_ln => {
-        cy.wait(Cypress.env('elementTimeout'))
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
       })
       cy.verifyPage(
@@ -190,7 +186,6 @@ describe(
 
     it('KIOS-1609||Verify if a returning patient with  copay  can add his missing communication preference', () => {
       cy.getPatientDetails('application/json').then(patient_ln => {
-        cy.wait(Cypress.env('elementTimeout'))
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
       })
       cy.verifyPage(
@@ -245,7 +240,7 @@ describe(
         CommunicationPreferencePage.checkInForFuture
       ).click({ force: true })
       CommunicationPreferencePage.clickOnReadAgreement()
-    CommunicationPreferencePage.clickSaveCommunicationPreBtn()
+      CommunicationPreferencePage.clickSaveCommunicationPreBtn()
       cy.verifyPage(
         DemographicPage.titleEditDemographic,
         ReviewDemographicsPageData.expectedTitleOfEditDemographics,
@@ -265,11 +260,12 @@ describe(
           '1',
           cy.generateAdjustedTime(1),
           'DAD',
-          PatientData.pnName.concat(WelcomePage.generateRandomText(6)+"@Gmail.com")
-
+          PatientData.pnName.concat(
+            WelcomePage.generateRandomText(6) + '@Gmail.com'
+          )
         )
 
-        cy.wait(62000);
+        cy.wait(62000)
         cy.addAppointment('ZZPOC', '1')
       })
       beforeEach(() => {
@@ -279,7 +275,6 @@ describe(
 
       it('KIOS-1614||Verify if a returning patient without  copay  having 2 appointments scheduled can successfully check in', () => {
         cy.getPatientDetails('application/json').then(patient_ln => {
-          cy.wait(Cypress.env('elementTimeout'))
           WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
         })
         cy.verifyPage(
