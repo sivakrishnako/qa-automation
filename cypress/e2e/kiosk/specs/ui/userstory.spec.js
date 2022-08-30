@@ -20,10 +20,8 @@ import SubmitPageData from './submitpage.testdata'
 describe(
   'Userstory suite',
   {
-    retries: {
-      runMode: 2,
-      openMode: 1
-    }
+    retries: 1
+    
   },
   () => {
     before(() => {

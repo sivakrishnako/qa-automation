@@ -13,10 +13,7 @@ import RTApiData from '../api/rt.api.testdata'
 describe(
   'Demographics epic test suite',
   {
-    retries: {
-      runMode: 2,
-      openMode: 1
-    }
+    retries: 1
   },
   () => {
     before(() => {

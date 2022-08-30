@@ -9,10 +9,7 @@ import RTApiData from '../../specs/api/rt.api.testdata'
 describe(
   'CheckIn Epic test suite',
   {
-    retries: {
-      runMode: 2,
-      openMode: 1
-    }
+    retries:1
   },
   () => {
     before(() => {

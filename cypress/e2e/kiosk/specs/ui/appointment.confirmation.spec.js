@@ -9,10 +9,8 @@ import AppointmentData from '../../specs/ui/appointment.detailspage.testdata'
 describe(
   'Test Suite For Appointment confirmation',
   {
-    retries: {
-      runMode: 2,
-      openMode: 1
-    }
+    retries: 1
+    
   },
   () => {
     before(() => {
