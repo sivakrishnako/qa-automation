@@ -1,0 +1,35 @@
+name: Trigger Cypress tests on Development build deployment
+
+on: workflow_call
+
+jobs:
+  parallel-run:
+    name: Parallel 5x
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # run multiple copies of the current job in parallel
+        # the actual items in the array do not matter
+        # we just need to "force" GitHub CI to create n jobs
+        machines: [1, 2, 3, 4, 5]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+
+
+     # because of "record" and "parallel" parameters
+      # these containers will load balance all found tests among themselves
+      - name: run tests
+        uses: cypress-io/github-action@v4
+        timeout-minutes: 30
+        with:
+          record: true
+          parallel: true
+          group: GH Action dev trigger
+          browser: chrome
+          #start: npm start
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_DASHBOARDKEY }}
