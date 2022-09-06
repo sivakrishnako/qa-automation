@@ -1,6 +1,6 @@
 name: Cypress Chrome-Browser Testing - Trigger from Dev
 
-on: [push]
+on: workflow_call
 
 jobs:
   cypress-crossbrowser-testing:
