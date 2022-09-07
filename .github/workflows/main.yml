@@ -1,0 +1,28 @@
+name: Cypress firefox-Browser Testing - DailyRun
+
+on:
+  schedule:
+     # UTC time is setup here i.e. 4:00 AM (daily) which is equal to 9:30 AM IST
+    - cron: '00 9 * * *'
+
+jobs:
+  cypress-crossbrowser-testing:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run tests --spec "cypress/e2e/kiosk/specs/ui/loginauthentication.spec.js"
+        uses: cypress-io/github-action@v4
+        timeout-minutes: 30
+        with:
+          browser: firefox
+          record: true
+          #group: GH Action cross-browser
+          #start: npm start
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_DASHBOARDKEY }}
