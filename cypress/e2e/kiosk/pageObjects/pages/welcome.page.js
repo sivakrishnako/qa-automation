@@ -57,7 +57,7 @@ class WelcomePage {
 
     .find('input')
 
-    .type('1111-20-12')
+    .type('11112012')
 
   return this
 
