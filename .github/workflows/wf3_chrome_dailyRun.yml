@@ -1,9 +1,9 @@
 name: Cypress firefox-Browser Testing - DailyRun
 
-on:
-  schedule:
+on: [fork]
+  # schedule:
      # UTC time is setup here i.e. 4:00 AM (daily) which is equal to 9:30 AM IST
-    - cron: '35 10 * * *'
+  #  - cron: '35 10 * * *'
 
 jobs:
   cypress-crossbrowser-testing:
