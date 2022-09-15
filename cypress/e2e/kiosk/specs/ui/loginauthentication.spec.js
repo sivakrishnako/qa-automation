@@ -46,7 +46,7 @@ describe(
       cy.clearCookies()
     })
 
-    it.only('KIOSK-2106 || logIn ||Verify that KIOSK User will be able to  log in with last name and date of birth success ', () => {
+    it('KIOSK-2106 || logIn ||Verify that KIOSK User will be able to  log in with last name and date of birth success ', () => {
       cy.getPatientDetails('application/json').then(patient_ln => {
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
       })
