@@ -57,7 +57,7 @@ class WelcomePage {
 
     .find('input')
 
-    .type('11112012')
+    .type(dateOfBirth)
 
   return this
 
@@ -217,9 +217,7 @@ class WelcomePage {
   static getPopupMsgOfHelpButtonInSpanish () {
     cy.contains(PatientData.helpButtonPopupMsg)
   }
-  static PopupMsgOfHelpButton () {
-    cy.get('.MuiTypography-h4')
-  }
+
   static startCheckInForXMinutesForSpanish (lastName, dateOfBirth, strLoginCase) {
     let errMessageXMinutes =
       'Por favor, regrese no más de 5 minutos antes de su cita para registrarse.'
