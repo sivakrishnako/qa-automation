@@ -3,6 +3,8 @@ let patient_id = ''
 let patient_ln = ''
 let isoDate = ''
 let contact_id = ''
+let insurance_id = ''
+let appointment_id = ''
 
 Cypress.Commands.add('enterText', (locatorValue, inputValue) => {
   cy.get(locatorValue).clear()
@@ -131,6 +133,7 @@ Cypress.Commands.add(
       }).then(response => {
         cy.log(response.body)
         expect(response.status).equal(201)
+        appointment_id = response.body.appointmentId
         cy.log('Appointment  is created for Patient :' + patient_id)
       })
     }
@@ -270,3 +273,66 @@ Cypress.Commands.add('ClickElementWithJS', strLocator => {
   })
 })
 
+Cypress.Commands.add('addInsurance',strAmount => {
+  cy.request({
+    method: 'POST',
+    url: Cypress.env('rtApiURL') + 'patients/' + patient_id + '/insurances',
+    failOnStatusCode: false,
+    headers: {
+      Authorization: 'Bearer ' + access_token,
+      Accept: 'application/json'
+    },
+    body: {
+        priority: "primary",
+        effectiveFrom: "2022-09-13",
+        effectiveTo: "2024-09-13",
+        caseId: "00000",
+        subscriberId: "23424",
+        groupId: "",
+        insurance: {
+          code: "10028",
+          name: "TRICARE WEST UCHMV"
+        },
+        subscriber: {
+          relationship: "self",
+          firstName: "Automation",
+          lastName: "insurance",
+          middleName: "",
+          birthSex: "male",
+          dob: "2012-11-11",
+          address: "123 Hall ways",
+          city: "Soldotna",
+          state: "AK",
+          zipCode: "99669",
+          phone: "(789) 455-5555"
+      },
+      "copay": {
+        "amount": strAmount,
+        "stdCopayType": "visit"
+      }
+    }
+  }).then(response => {
+    cy.log(response.body)
+    expect(response.status).to.equal(201)
+    insurance_id = response.body.insuranceId
+    cy.log('Insurance is added  : ' + insurance_id)
+    expect(response.body.success).to.equal(true)
+  })
+})
+
+
+Cypress.Commands.add('getCheckInConfirmation', ()=> {
+  cy.request({
+    method: 'GET',
+    url: Cypress.env('rtApiURL') + 'patients/' + patient_id + '/appointments/'+appointment_id,
+    failOnStatusCode: false,
+    headers: {
+      Authorization: 'Bearer ' + access_token,
+      Accept: 'application/json'
+    }
+  }).then(response => {
+    expect(response.status).equal(200)
+    cy.log('Check in status is : -> ' + response.body.status)
+    expect(response.body.status).to.equal("Pending")
+  })
+})

@@ -212,6 +212,12 @@ static fillMailingAddress(value){
   .should('eq', 'YesNoReview DemographicsMaleFemaleUnknown')
 
  }
+ static getHamburgerMenuIcon(){
+  return  cy.get('[data-testid="hamburgerMenuIcon"]')
+ }
+ static getMakePaymentFromHambergerIcon(){
+    return cy.get('[data-testid="make_a_payment"]')
+ }
  
 
 }

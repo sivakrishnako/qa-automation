@@ -46,7 +46,7 @@ describe(
       cy.clearCookies()
     })
 
-    it.only('KIOSK-2106 || logIn ||Verify that KIOSK User will be able to  log in with last name and date of birth success ', () => {
+    it('KIOSK-2106 || logIn ||Verify that KIOSK User will be able to  log in with last name and date of birth success ', () => {
       cy.getPatientDetails('application/json').then(patient_ln => {
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
       })
@@ -186,6 +186,10 @@ describe(
       )
     })
 
+
+    
+  
+
     //Nested Describe to override Location
     describe('Verifying Login with X minutes constraint', () => {
       before(() => {
@@ -218,7 +222,7 @@ describe(
         cy.wait(Cypress.env('myWait'))
       })
 
-      it.only('KIOSK-2586 || logIn ||As kiosk User should be able to check in before X minutes of his first appointment according to the set up configuration ', () => {
+      it('KIOSK-2586 || logIn ||As kiosk User should be able to check in before X minutes of his first appointment according to the set up configuration ', () => {
         WelcomePage.launchApp('ABUND')
         cy.getPatientDetails('application/json').then(patient_ln => {
           WelcomePage.startCheckIn(
@@ -227,12 +231,16 @@ describe(
             'X minutes'
           )
         })
+     
+      
+     
       })
     })
-
+    
     after(() => {
       //This deletes the patient created from Core RT App
       cy.deletePatient()
     })
   }
 )
+  
