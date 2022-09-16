@@ -239,7 +239,7 @@ describe(
     
     after(() => {
       //This deletes the patient created from Core RT App
-      cy.deletePatient()
+     // cy.deletePatient()
     })
   }
 )
