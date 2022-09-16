@@ -267,7 +267,7 @@ describe(
       cy.verifyText(AppointmentPage.getPatientDOB, AppointmentData.validDob)
     })
 
-    it.only('KIOS-4481|| Appointment confirmation ||Verify As a Raintree user I should see the status of the appointment updated after check in is complete so I know who has checked in', () => {
+    it('KIOS-4481|| Appointment confirmation ||Verify As a Raintree user I should see the status of the appointment updated after check in is complete so I know who has checked in', () => {
       cy.getPatientDetails('application/json').then(patient_ln => {
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
       }) 

@@ -35,10 +35,8 @@ class WelcomePage {
   }
 
   static clickHelpButtonOfWelcomePage () {
-    const button = cy.get('[data-testid="HelpOutlineIcon"]', {
-      timeout: Cypress.env('elementTimeout')
-    })
-    button.click()
+    const button = cy.get('[data-testid="HelpOutlineIcon"]')
+    button.click({force:true})
     return this
   }
   static fillLastName (value) {
