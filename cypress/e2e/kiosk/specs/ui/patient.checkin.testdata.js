@@ -51,5 +51,12 @@ class PatientData {
   static lastNameOfBeforeNMinutesPatient = ''
 
   static pnName = 'Auto'
+
+  static popupMsgForCheckIn5MinutesInSpanish =
+  'Por favor, regrese no más de 5 minutos antes de su cita para registrarse.'
+
+  static helpButtonPopupMsgInSpanish = 'Por favor vea la recepción o llame al. (916)555-1213.'
+  static popupMsgForNoGuardianSelected = 'Please select one option to continue.'
+ 
 }
 export default PatientData

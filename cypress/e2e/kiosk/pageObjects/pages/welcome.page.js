@@ -57,7 +57,7 @@ class WelcomePage {
 
     .find('input')
 
-    .type('11112012')
+    .type(dateOfBirth)
 
   return this
 
@@ -197,5 +197,64 @@ class WelcomePage {
     }
     return result
   }
+  static lastNameInSpanish () {
+    return cy.get('[data-testid="patientLastName"]')
+  }
+  static dateOfBirthInSpanish () {
+    return cy.get('[data-testid="dateOfBirth"]')
+  }
+  static resetButtonInSpanish () {
+    return cy.get('[data-testid="resetButton"]')
+  }
+  static startCheckInSpanish () {
+    return cy.get('[data-testid="startCheckIn"]')
+  }
+  static titleSelfCheckInSpanish () {
+    return cy.get('[data-testid="self-check-in-kiosk"]')
+    
+  }
+
+  static getPopupMsgOfHelpButtonInSpanish () {
+    cy.contains(PatientData.helpButtonPopupMsg)
+  }
+
+  static startCheckInForXMinutesForSpanish (lastName, dateOfBirth, strLoginCase) {
+    let errMessageXMinutes =
+      'Por favor, regrese no más de 5 minutos antes de su cita para registrarse.'
+    let errMessageFrontDesk = 'Please check in at the front desk.'
+
+    this.fillLastName(lastName)
+
+    this.fillPatientDoB(dateOfBirth)
+    cy.wait(Cypress.env('elementTimeout'))
+
+    switch (strLoginCase) {
+      case 'X minutes':
+        this.clickStartCheckInBtn()
+        cy.get('[data-testid="modal-text"]').should('be.visible')
+        cy.log('In X minutes')
+        this.popupMsgForInvalidCredentials().contains(errMessageXMinutes)
+        cy.get('[data-testid="loginErrorOk"]', {
+          timeout: Cypress.env('elementTimeout')
+        }).click()
+        break
+
+      case 'Front Desk Message':
+        cy.get('[data-testid="modal-text"]').should('be.visible')
+        cy.log('In Front Desk Message')
+        this.popupMsgForInvalidCredentials().contains(errMessageFrontDesk)
+        cy.get('[data-testid="loginErrorOk"]', {
+          timeout: Cypress.env('elementTimeout')
+        }).click()
+        this.clickStartCheckInBtn()
+        break
+
+      default:
+        this.clickStartCheckInBtn()
+    }
+  }
+  
+
+
 }
 export default WelcomePage
