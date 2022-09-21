@@ -11,6 +11,8 @@ import CheckInPage from "../../pageObjects/pages/checkin.page";
 import RTApiData from "../../specs/api/rt.api.testdata";
 import PaymentPage from "../../pageObjects/pages/payment.details.page";
 import PaymentDetailsPageData from "../../specs/ui/paymentdetails.testdata";
+import InsurancePage from "../../pageObjects/pages/insurance.page";
+import InsurancePageData from "./insurancepage.testdata";
 describe(
   "Demographics epic test suite",
   {
@@ -20,29 +22,19 @@ describe(
     before(() => {
       cy.myPatientAppointment(
         RTApiData.clientIdDemographics,
-
         RTApiData.clientSecretKeyDemographics,
         RTApiData.grantType,
-
         RTApiData.appId,
-
         PatientData.pnName,
-
         WelcomePage.generateRandomText(6).slice(1),
-
         "ZZPOC",
-
         "1",
-
-        cy.generateAdjustedTime(1),
-
+        "7",
         "DAD",
-
         PatientData.pnName.concat(
           WelcomePage.generateRandomText(6) + "@Gmail.com"
         )
       );
-
       cy.wait(Cypress.env("myWait"));
     });
     beforeEach(() => {
@@ -169,7 +161,7 @@ describe(
       );
     });
 
-     it("KIOS-1455||Verify communication preferences Spanish screen UI content ", () => {
+    it("KIOS-1455||Verify communication preferences Spanish screen UI content ", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
       });
@@ -393,7 +385,6 @@ describe(
 
       DemographicPage.clickSaveDemographicsBtn();
 
-
       DemographicPage.popupMsgForInvalidFirstName().should(
         "have.text",
         ReviewDemographicsPageData.popUpMsg
@@ -401,152 +392,303 @@ describe(
       cy.wait(Cypress.env("elementTimeout"));
       DemographicPage.clickPopupButtonOkMsgDemo();
     });
-    
-    describe("Verifying demographics page", () => {
-      before(() => {
-        cy.myPatientAppointment(
-          RTApiData.clientIdDemographics,
 
-          RTApiData.clientSecretKeyDemographics,
-
-          RTApiData.grantType,
-
-          RTApiData.appId,
-
-          PatientData.pnName,
-
-          WelcomePage.generateRandomText(6).slice(1),
-
-          "NOR",
-
-          "1",
-
-          cy.generateAdjustedTime(1),
-
-          "DAD",
-
-          PatientData.pnName.concat(
-            WelcomePage.generateRandomText(6) + "@Gmail.com"
-          )
-        );
-
-        cy.wait(Cypress.env("myWait"));
+    it("KIOS-2162|| Demographic Details || Verify As a Kiosk User should be able to edit demographic information so that user can update missing or incorrect information", () => {
+      cy.getPatientDetails("application/json").then((patient_ln) => {
+        WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
       });
+      cy.verifyPage(
+        CheckInPage.checkInTitle,
+        PatientData.expectedTitleOfCheckIn,
+        PatientData.checkInPageUrl
+      );
+      CheckInPage.patient().should("have.text", "Patient");
+      CheckInPage.authorized().should(
+        "have.text",
+        "Parent / Authorized Representative"
+      );
+      CheckInPage.noneOfTheAbove().should("have.text", "None of the above");
+      CheckInPage.clickPatientBtn();
+      cy.verifyPage(
+        AppointmentPage.appointmentTitle,
+        AppointmentData.expectedTitleOfAppointmentPage,
+        AppointmentData.appointmentPageUrl
+      );
+      cy.wait(Cypress.env("elementTimeout"));
+      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      cy.verifyPage(
+        DemographicPage.titleReviewDemographic,
+        ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
+        ReviewDemographicsPageData.demographicPageUrl
+      );
 
-      it("KIOSK-2582||Demographic Details || Verify As a Kiosk User should skip the demographics based on the clinic setup option so that he can make the check in process faster ", () => {
-        WelcomePage.launchApp("NOR");
-        cy.getPatientDetails("application/json").then((patient_ln) => {
-          WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
-        });
-        cy.verifyPage(
-          CheckInPage.checkInTitle,
-          PatientData.expectedTitleOfCheckIn,
-          PatientData.checkInPageUrl
-        );
-        CheckInPage.patient().should("have.text", "Patient");
-        CheckInPage.authorized().should(
-          "have.text",
-          "Parent / Authorized Representative"
-        );
-        CheckInPage.noneOfTheAbove().should("have.text", "None of the above");
-        CheckInPage.clickPatientBtn();
-        cy.verifyPage(
-          AppointmentPage.appointmentTitle,
-          AppointmentData.expectedTitleOfAppointmentPage,
-          AppointmentData.appointmentPageUrl
-        );
+      DemographicPage.clickEditButton();
 
-        cy.wait(Cypress.env("elementTimeout"));
-        cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
-        DemographicPage.clickNoChangeNextBtn();
-        cy.go("back");
-        cy.verifyPage(
-          AppointmentPage.appointmentTitle,
-          AppointmentData.expectedTitleOfAppointmentPage,
-          AppointmentData.appointmentPageUrl
-        );
-      });
+      for (let index = 0; index < 2; index++) {
+        DemographicPage.editTypesOfPhoneNumber(index);
+      }
+
+      DemographicPage.fillMailingAddress();
+      DemographicPage.clickEmergencyContactPhoneType();
+      DemographicPage.clickOptionFromEmergencyPhoneType();
+      DemographicPage.clickSaveDemographicsBtn();
+      cy.verifyText(
+        DemographicPage.getMailingAddress,
+        ReviewDemographicsPageData.mailingAddressOfUser
+      );
     });
 
-    describe(
-      "Demographics epic test suite",
-      {
-        retries: 1,
-      },
-      () => {
-        before(() => {
-          cy.myPatientAppointment(
-            RTApiData.clientIdDemographics,
+    it("KIOS-2163|| Demographic Details || Verify a Kiosk User should be able to view his demographic information", () => {
+      cy.getPatientDetails("application/json").then((patient_ln) => {
+        WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
+      });
+      cy.verifyPage(
+        CheckInPage.checkInTitle,
+        PatientData.expectedTitleOfCheckIn,
+        PatientData.checkInPageUrl
+      );
+      CheckInPage.patient().should("have.text", "Patient");
+      CheckInPage.authorized().should(
+        "have.text",
+        "Parent / Authorized Representative"
+      );
+      CheckInPage.noneOfTheAbove().should("have.text", "None of the above");
+      CheckInPage.clickPatientBtn();
+      cy.verifyPage(
+        AppointmentPage.appointmentTitle,
+        AppointmentData.expectedTitleOfAppointmentPage,
+        AppointmentData.appointmentPageUrl
+      );
+      cy.wait(Cypress.env("elementTimeout"));
+      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
 
-            RTApiData.clientSecretKeyDemographics,
-            RTApiData.grantType,
+      cy.verifyPage(
+        DemographicPage.titleReviewDemographic,
+        ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
+        ReviewDemographicsPageData.demographicPageUrl
+      );
+      cy.verifyText(
+        DemographicPage.getWorkPhoneNumber,
+        ReviewDemographicsPageData.workPhoneNumber
+      );
+      cy.verifyText(
+        DemographicPage.getMailingAddress,
+        ReviewDemographicsPageData.mailingAddressOfUser
+      );
+      DemographicPage.clickNoChangeNextBtn();
+      cy.verifyPage(
+        InsurancePage.titleOfInsurancePage,
+        InsurancePageData.expectedTitleOfInsurancePage,
+        InsurancePageData.insurancePageUrl
+      );
+    });
 
-            RTApiData.appId,
+    it("KIOS-2584||Demographic Details||Verify As a Kiosk User should be able to disable electronic communications so that user stop getting electronic notices", () => {
+      cy.getPatientDetails("application/json").then((patient_ln) => {
+        WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
+      });
+      cy.verifyPage(
+        CheckInPage.checkInTitle,
+        PatientData.expectedTitleOfCheckIn,
+        PatientData.checkInPageUrl
+      );
+      CheckInPage.patient().should("have.text", "Patient");
+      CheckInPage.authorized().should(
+        "have.text",
+        "Parent / Authorized Representative"
+      );
+      CheckInPage.noneOfTheAbove().should("have.text", "None of the above");
 
-            PatientData.pnName,
+      CheckInPage.clickPatientBtn();
+      cy.wait(Cypress.env("elementTimeout"));
+      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
 
-            WelcomePage.generateRandomText(6).slice(1),
+      cy.verifyPage(
+        DemographicPage.titleReviewDemographic,
+        ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
+        ReviewDemographicsPageData.demographicPageUrl
+      );
+      DemographicPage.clickEditButton();
+      cy.verifyButtonEnabled(DemographicPage.saveDemographicsButton);
+      CommunicationPreferencePage.communicationPreferencePageToggle().should(
+        "have.text",
+        "No"
+      );
+      CommunicationPreferencePage.clickCommunicationPreferNoToggle();
+      cy.verifyButtonEnabled(
+        CommunicationPreferencePage.buttonForDisableElectronicCommunication
+      );
+    });
 
-            "ZZPOC",
+    it("KIOS-2585||Demographic Details || Verify As a Kiosk User should be able to edit his communication preferences so that he can update missing or incorrect information ", () => {
+      cy.getPatientDetails("application/json").then((patient_ln) => {
+        WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
+      });
+      cy.verifyPage(
+        CheckInPage.checkInTitle,
+        PatientData.expectedTitleOfCheckIn,
+        PatientData.checkInPageUrl
+      );
+      CheckInPage.patient().should("have.text", "Patient");
+      CheckInPage.authorized().should(
+        "have.text",
+        "Parent / Authorized Representative"
+      );
+      CheckInPage.noneOfTheAbove().should("have.text", "None of the above");
+      CheckInPage.clickPatientBtn();
+      cy.verifyPage(
+        AppointmentPage.appointmentTitle,
+        AppointmentData.expectedTitleOfAppointmentPage,
+        AppointmentData.appointmentPageUrl
+      );
 
-            "1",
+      cy.wait(Cypress.env("elementTimeout"));
+      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      DemographicPage.clickEditButton();
+      CommunicationPreferencePage.communicationPreferencePageToggle().should(
+        "have.text",
+        "No"
+      );
+      CommunicationPreferencePage.clickCommunicationPreferYesToggle();
+      DemographicPage.editCommunicationBtn();
+      cy.verifyPage(
+        CommunicationPreferencePage.titleOfCommunicationPreference,
+        CommunicationPreferencePageData.expectedTitleOfCommunicationPreference,
+        CommunicationPreferencePageData.communicationPreferencePageUrl
+      );
 
-            cy.generateAdjustedTime(1),
+      cy.verifyButtonEnabled(
+        CommunicationPreferencePage.emailForAppointmentInfo
+      ).click({ force: true });
+      cy.verifyButtonEnabled(
+        CommunicationPreferencePage.textHealthInformationAndAlerts
+      ).click({ force: true });
+      cy.verifyButtonEnabled(
+        CommunicationPreferencePage.emailPatientSurveys
+      ).click({ force: true });
+      cy.verifyButtonEnabled(
+        CommunicationPreferencePage.textForVisitSummaries
+      ).click({ force: true });
+      cy.verifyButtonEnabled(
+        CommunicationPreferencePage.staffCommunicationBtn
+      ).click({ force: true });
+      cy.verifyButtonEnabled(
+        CommunicationPreferencePage.checkInForFuture
+      ).click({ force: true });
+      CommunicationPreferencePage.clickOnReadAgreement();
 
-            "DAD",
+      CommunicationPreferencePage.clickSaveCommunicationPreBtn();
+      cy.verifyPage(
+        DemographicPage.titleEditDemographic,
+        ReviewDemographicsPageData.expectedTitleOfEditDemographics,
+        ReviewDemographicsPageData.editDemographicUrl
+      );
+    });
 
-            PatientData.pnName.concat(
-              WelcomePage.generateRandomText(6) + "@Gmail.com"
-            )
-          );
-          cy.addInsurance("2000");
+    it(" KIOS-2925||Demographic Details || Verify As a Kiosk user should be able to view his dropdown option for the contact type field in edit demographics page", () => {
+      cy.getPatientDetails("application/json").then((patient_ln) => {
+        WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
+      });
+      cy.verifyPage(
+        CheckInPage.checkInTitle,
+        PatientData.expectedTitleOfCheckIn,
+        PatientData.checkInPageUrl
+      );
+      CheckInPage.patient().should("have.text", "Patient");
+      CheckInPage.authorized().should(
+        "have.text",
+        "Parent / Authorized Representative"
+      );
+      CheckInPage.noneOfTheAbove().should("have.text", "None of the above");
+      CheckInPage.clickPatientBtn();
+      cy.verifyPage(
+        AppointmentPage.appointmentTitle,
+        AppointmentData.expectedTitleOfAppointmentPage,
+        AppointmentData.appointmentPageUrl
+      );
 
-          cy.wait(Cypress.env("myWait"));
-        });
+      cy.wait(Cypress.env("elementTimeout"));
+      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      cy.verifyPage(
+        DemographicPage.titleReviewDemographic,
+        ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
+        ReviewDemographicsPageData.demographicPageUrl
+      );
+      DemographicPage.clickEditButton();
+      DemographicPage.clickOnEmergencyContactType();
+      DemographicPage.clickOptionFromEmergencyContactType();
+    });
+  }
+);
 
-        it("KIOS-2917||Demographic Details || As a Kiosk User I should be able to view the Hamburger Menu and can navigate to the payment page if payment is not made", () => {
-          cy.getPatientDetails("application/json").then((patient_ln) => {
-            WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
-          });
-          cy.verifyPage(
-            CheckInPage.checkInTitle,
-            PatientData.expectedTitleOfCheckIn,
-            PatientData.checkInPageUrl
-          );
-          CheckInPage.patient().should("have.text", "Patient");
-          CheckInPage.authorized().should(
-            "have.text",
-            "Parent / Authorized Representative"
-          );
-          CheckInPage.noneOfTheAbove().should("have.text", "None of the above");
+describe(
+  "Demographics epic test suite",
+  {
+    retries: 1,
+  },
+  () => {
+    before(() => {
+      cy.myPatientAppointment(
+        RTApiData.clientIdDemographics,
+        RTApiData.clientSecretKeyDemographics,
+        RTApiData.grantType,
+        RTApiData.appId,
+        PatientData.pnName,
+        WelcomePage.generateRandomText(6).slice(1),
+        "ZZPOC",
+        "1",
+        "3",
+        "DAD",
+        PatientData.pnName.concat(
+          WelcomePage.generateRandomText(6) + "@Gmail.com"
+        )
+      );
+      cy.addInsurance("2000");
 
-          CheckInPage.clickPatientBtn();
-          cy.wait(Cypress.env("elementTimeout"));
-          cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
-          cy.verifyPage(
-            PaymentPage.titleOfPaymentDetails,
-            PaymentDetailsPageData.expectedTitleOfPaymentDetails,
-            PaymentDetailsPageData.PaymentPageUrl
-          );
-          PaymentPage.clickSkipPayment();
+      cy.wait(Cypress.env("myWait"));
+    });
 
-          cy.verifyPage(
-            DemographicPage.titleReviewDemographic,
-            ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
-            ReviewDemographicsPageData.demographicPageUrl
-          );
+    it("KIOS-2917||Demographic Details || As a Kiosk User I should be able to view the Hamburger Menu and can navigate to the payment page if payment is not made", () => {
+      cy.getPatientDetails("application/json").then((patient_ln) => {
+        WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
+      });
+      cy.verifyPage(
+        CheckInPage.checkInTitle,
+        PatientData.expectedTitleOfCheckIn,
+        PatientData.checkInPageUrl
+      );
+      CheckInPage.patient().should("have.text", "Patient");
+      CheckInPage.authorized().should(
+        "have.text",
+        "Parent / Authorized Representative"
+      );
+      CheckInPage.noneOfTheAbove().should("have.text", "None of the above");
 
-          DemographicPage.getHamburgerMenuIcon().click();
-          DemographicPage.getMakePaymentFromHambergerIcon().click();
+      CheckInPage.clickPatientBtn();
+      cy.wait(Cypress.env("elementTimeout"));
+      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      cy.verifyPage(
+        PaymentPage.titleOfPaymentDetails,
+        PaymentDetailsPageData.expectedTitleOfPaymentDetails,
+        PaymentDetailsPageData.PaymentPageUrl
+      );
+      PaymentPage.clickSkipPayment();
 
-          cy.verifyPage(
-            PaymentPage.titleOfPaymentDetails,
-            PaymentDetailsPageData.expectedTitleOfPaymentDetails,
-            PaymentDetailsPageData.PaymentPageUrl
-          );
-        });
-      }
-    );
+      cy.verifyPage(
+        DemographicPage.titleReviewDemographic,
+        ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
+        ReviewDemographicsPageData.demographicPageUrl
+      );
+
+      DemographicPage.getHamburgerMenuIcon().click();
+      DemographicPage.getMakePaymentFromHambergerIcon().click();
+
+      cy.verifyPage(
+        PaymentPage.titleOfPaymentDetails,
+        PaymentDetailsPageData.expectedTitleOfPaymentDetails,
+        PaymentDetailsPageData.PaymentPageUrl
+      );
+    });
 
     after(() => {
       cy.deletePatient();
