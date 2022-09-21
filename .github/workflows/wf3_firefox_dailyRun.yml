@@ -4,7 +4,7 @@ on:
 #[fork]
    schedule:
      # UTC time is setup here i.e. 4:00 AM (daily) which is equal to 9:30 AM IST
-    - cron: '05 14 * * *'
+    - cron: '20 8 * * *'
 
 jobs:
   cypress-crossbrowser-testing:
@@ -18,7 +18,7 @@ jobs:
       # and run all Cypress tests
       - name: Cypress run tests --spec cypress/e2e/kiosk/specs/ui/loginauthentication.spec.js
         uses: cypress-io/github-action@v4
-        timeout-minutes: 15
+        timeout-minutes: 20
         with:
           browser: firefox
           record: true
