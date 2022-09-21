@@ -106,12 +106,12 @@ Cypress.Commands.add('addPatient', (strName, strRandom,strEmail) => {
 Cypress.Commands.add(
   'addAppointment',
   (strLocation, strCount, strAppointmentTime) => {
+  
     let dateObj = new Date()
-    dateObj.setHours(dateObj.getHours() - 7)
+    dateObj.setHours(dateObj.getHours() - strAppointmentTime)
     dateObj.setMinutes(dateObj.getMinutes() + 10)
     isoDate = dateObj.toISOString().slice(0, dateObj.toISOString().length - 5)
     console.log('pst Time is  ===>' + isoDate)
-    cy.log('pst Time is  ===>' + isoDate)
     for (let index = 0; index < strCount; index++) {
       cy.request({
         method: 'POST',
@@ -131,7 +131,6 @@ Cypress.Commands.add(
           length: '5'
         }
       }).then(response => {
-        cy.log(response.body)
         expect(response.status).equal(201)
         appointment_id = response.body.appointmentId
         cy.log('Appointment  is created for Patient :' + patient_id)

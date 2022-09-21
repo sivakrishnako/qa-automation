@@ -72,41 +72,53 @@ static clickDebitCreditCardOption(){
     return this;
     
 }
-static clickOnOtherForPaymentInsteadOfPayFullAmount(){
-    const btn=cy.get('[data-testid="amount-payment"]',{ timeout: 10000 })
-    btn.click({ force: true })
+static clickOnOtherForPaymentInsteadOfPayFullAmount() {
+    const btn = cy.get('[data-testid="amount-payment"]');
+    btn.click({ force: true });
     return this;
-}
-static fillAmountByManually(value){
-    cy.get('[data-testid="amount-payment"]').type(PaymentDetailPageData.minimumOtherAmountForCheckIn,{ timeout: 20000 })
-    cy.get('body').click(50, 50, { force: true })
+  }
+  static fillAmountByManually() {
+    cy.get('[data-testid="amount-payment"]').type(
+      PaymentDetailPageData.minimumOtherAmountForCheckIn,
+      { timeout: Cypress.env("elementTimeout") }
+    );
+    cy.get("body").click(50, 50, { force: true });
+  }
 
-}
-    static verifyAmount(){
-      cy.get('[data-testid="amount-payment"]')
-.invoke('val')
-     .then(val => +val)                     
-    .should("be.below", 10)
-    
-}
+  static verifyAmount() {
+    cy.get('[data-testid="total-amount"]')
+      .invoke("text")
+      .then((val1) => {
+        cy.get('[data-testid="amount-payment"]')
+          .invoke("text")
+          .then((val2) => {
+            assert(val1 > val2);
+          });
+      });
 
-
-    
-    
-    
-
-
-static totalDueAmount(){
-     cy.get('[data-testid="total-due-amount"]',{ timeout: 10000 })
-     .invoke('val')
-     .then(val => +val)                     
-    .should("not.be.null")
-
+    return this;
+  }
 
     
     
+    
 
-}
+
+  static totalDueAmount() {
+    cy.get('[data-testid="total-due-amount"]', {
+      timeout: Cypress.env("elementTimeout"),
+    })
+      .invoke("text")
+      .then((val1) => {
+        cy.get('[data-testid="payment-balance-amount"]')
+          .invoke("text")
+          .then((val2) => {
+            assert(val1 > val2);
+          });
+      });
+    return this;
+  }
+
 static getCardType=('.MuiGrid-grid-xs-8 > .MuiTypography-root')
 static getExpiryDate=('[data-testid="expiry-date"]');
 
@@ -149,6 +161,14 @@ static clickOnContinueForPayAtFrontDesk(){
     button.click({ force: true })
     return this
 }
+static paymentPageYesToggleForFutureUse() {
+  return cy.get('[data-testid="contact-checkInyes"]');
+}
+static paymentPageNoToggleForFutureUse() {
+  return cy.get('[data-testid="contact-checkInno"]');
+}
+static textWhenCardsAreNotAvailable =('.css-v3z1wi > .MuiGrid-grid-sm-12 > .MuiGrid-item')
+
 }
 
 export default PaymentPage;

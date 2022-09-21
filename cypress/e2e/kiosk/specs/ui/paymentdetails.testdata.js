@@ -4,8 +4,14 @@ class PaymentDetailPageData {
   static expectedTitleOfPaymentDetails = 'Payment Details'
   static expectedTitleOfPaymentDetailsInSpanish = 'Detalles del Pago'
   static PaymentPageUrl = '/payment'
-  static minimumOtherAmountForCheckIn = '$10'
+  static minimumOtherAmountForCheckIn = '$5'
   static cardType = 'Mastercard ending 5454'
   static expiryDateOfCard = '05/26'
+  static popUpForPayAtFrontDesk ="See the front desk about payment arrangements."
+  static popUpForIfUserClickOnSkipPaymentInSpanish="Por favor, finalice el proceso de registro en la recepción si no puede realizar el pago hoy."
+static popUpForPayAtfrontDeskInSpanish="Consulte en la recepción sobre cómo proceder con el pago"
+static nameOnCard="Auto Automation"
+static popUpForIfUserClickOnSkipPayment="Please finish the check-in process at the front desk if you cannot make your payment today."
+static textWhenCardsNotAvailable="There are no saved payment methods on file at this time."
 }
 export default PaymentDetailPageData

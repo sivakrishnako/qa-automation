@@ -95,6 +95,11 @@ class CheckInPage {
           )
         return this;
     }
+    static getClinicImage(){
+        return cy.get('.login-image', { timeout: Cypress.env('elementTimeout') })
+
+     
+    }
 }
 export default CheckInPage;
 
