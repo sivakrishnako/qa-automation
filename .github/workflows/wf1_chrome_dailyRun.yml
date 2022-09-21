@@ -17,9 +17,9 @@ jobs:
       # and run all Cypress tests
       - name: Cypress run tests
         uses: cypress-io/github-action@v4
-        timeout-minutes: 60
+        timeout-minutes: 30
         with:
-          # Run on all different browsers mentioned in matrix above
+          # Run on all Chrome browser
           browser: chrome
           record: true
           #group: GH Action cross-browser
