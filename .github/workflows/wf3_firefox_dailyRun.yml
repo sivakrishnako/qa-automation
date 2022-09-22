@@ -4,7 +4,7 @@ on:
 #[fork]
    schedule:
      # UTC time is setup here i.e. 4:00 AM (daily) which is equal to 9:30 AM IST
-    - cron: '20 8 * * *'
+    - cron: '30 12 * * *'
 
 jobs:
   cypress-crossbrowser-testing:
