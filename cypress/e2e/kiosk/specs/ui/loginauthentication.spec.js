@@ -20,10 +20,10 @@ describe(
         RTApiData.appId,
         PatientData.pnName,
         WelcomePage.generateRandomText(6).slice(1),
-        "ZZPOC",
+        "ZZPOC", // Clinic Location
         "1", //Number of appointments required
-        "7", // Time difference ye comment bhi add kru in all spec file
-        "DAD",
+        "7", // Time difference as per location
+        "DAD", // Emergency Contact
         PatientData.pnName.concat(
           WelcomePage.generateRandomText(6) + "@Gmail.com"
         )
