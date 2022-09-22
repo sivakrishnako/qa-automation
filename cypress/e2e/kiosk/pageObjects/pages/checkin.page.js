@@ -100,6 +100,10 @@ class CheckInPage {
 
      
     }
+    static getPopupMsgOfNoGuardianSelected() {
+        return cy.get('[data-testid="modal-text"]');
+    }
+    
 }
 export default CheckInPage;
 
