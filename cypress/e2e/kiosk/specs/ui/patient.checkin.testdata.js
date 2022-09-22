@@ -57,6 +57,6 @@ class PatientData {
 
   static helpButtonPopupMsgInSpanish = 'Por favor vea la recepción o llame al. (916)555-1213.'
   static popupMsgForNoGuardianSelected = 'Please select one option to continue.'
- 
+  static getpopupMsgForNoGuardianSelected="Please select a Parent/Authorized Representative to continue."
 }
 export default PatientData

@@ -72,7 +72,7 @@ class WelcomePage {
 
   static clickResetBtn () {
     const button = cy.get('[data-testid="resetButton"]').should('be.enabled')
-    button.click()
+    button.click({ force: true })
 
     return this
   }

@@ -33,7 +33,6 @@ describe(
         "ZZPOC",
         "1",
         "7",
-
         "DAD",
         PatientData.pnName.concat(
           WelcomePage.generateRandomText(6) + "@Gmail.com"
@@ -206,9 +205,10 @@ describe(
         cy.get(AppointmentPage.getPatientName).contains(patient_ln);
       });
       cy.verifyText(AppointmentPage.getPatientDOB, AppointmentData.validDob);
+      AppointmentPage.clickOnExitKioskBtn();
     });
 
-    it("KIOS-2171|| Appointment Confirmation || Verify that appointment details header displayed On Appointment Detail Page has user detail dropdown with name displayed", () => {
+    it("KIOS-2171,KIOS-585|| Appointment Confirmation || Verify that appointment details header displayed On Appointment Detail Page has user detail dropdown with name displayed", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
       });
@@ -235,7 +235,7 @@ describe(
       cy.verifyText(AppointmentPage.getPatientDOB, AppointmentData.validDob);
     });
 
-    it("KIOS-2692||Appointment Confirmation || verify As a Kiosk User ,i should be able to view the details of the child when he has a Authorized Guardian or Representative", () => {
+    it("KIOS-2692,KIOS-578||Appointment Confirmation || verify As a Kiosk User ,i should be able to view the details of the child when he has a Authorized Guardian or Representative", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
       });
@@ -264,6 +264,11 @@ describe(
         cy.get(AppointmentPage.getPatientName).contains(patient_ln);
       });
       cy.verifyText(AppointmentPage.getPatientDOB, AppointmentData.validDob);
+      AppointmentPage.clickOnExitKioskBtn();
+      cy.verifyText(
+        WelcomePage.titleWelcomePage,
+        WelcomePage.expTitleWelcomePage
+      );
     });
 
     it("KIOS-4481|| Appointment confirmation ||Verify As a Raintree user I should see the status of the appointment updated after check in is complete so I know who has checked in", () => {
@@ -317,6 +322,80 @@ describe(
       );
       cy.getCheckInConfirmation();
     });
+
+
+    it('KIOS-538 ||Appointment confirmation||To check patient details on Appointment detail page in all devices for Spanish when user selected -Paciente or Padre/ Representante Autoizada', () => {
+      cy.getPatientDetails('application/json').then(patient_ln => {
+          WelcomePage.startCheckIn(patient_ln, PatientData.validDOB)
+        })
+        cy.verifyPage(
+          CheckInPage.checkInTitle,
+          PatientData.expectedTitleOfCheckIn,
+          PatientData.checkInPageUrl
+        )
+  
+        WelcomePage.convertToggleEnglishToSpanish()
+        CheckInPage.patient().should('have.text', 'Paciente')
+        CheckInPage.authorized().should(
+          'have.text',
+          'Padre / Representante Autorizado'
+        )
+        CheckInPage.noneOfTheAbove().should(
+          'have.text',
+          'Ninguna de las Anteriores'
+        )
+        cy.wait(Cypress.env('elementTimeout'))
+  
+        CheckInPage.clickPatientBtn()
+        cy.verifyPage(
+          AppointmentPage.appointmentTitle,
+          AppointmentData.expectedTitleOfAppointmentPageInSpanish,
+          AppointmentData.appointmentPageUrl
+        )
+        cy.verifyText(AppointmentPage.getTitlePatient, 'Paciente')
+        cy.verifyText(AppointmentPage.getProviderTitle, 'Proveedor')
+        cy.verifyText(AppointmentPage.getDateTitle, 'Fecha')
+        cy.verifyText(AppointmentPage.getTimeTitle, 'Hora')
+        cy.verifyText(AppointmentPage.getTypeOfAppointmentTitle, 'Tipo de Cita')
+  
+        cy.verifyText(AppointmentPage.getTitleOfCheckInButton, 'REGISTRARSE')
+  })
+    it("KIOS-559 ||Appointment confirmation||Verify if patient details of dependent on Appointment detail page in all devices for Spanish when user selected -Paciente or Padre/ Representante Autoizada", () => {
+      cy.getPatientDetails("application/json").then((patient_ln) => {
+        WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
+      });
+      cy.verifyPage(
+        CheckInPage.checkInTitle,
+        PatientData.expectedTitleOfCheckIn,
+        PatientData.checkInPageUrl
+      );
+
+      WelcomePage.convertToggleEnglishToSpanish();
+      CheckInPage.patient().should("have.text", "Paciente");
+      CheckInPage.authorized().should(
+        "have.text",
+        "Padre / Representante Autorizado"
+      );
+      CheckInPage.noneOfTheAbove().should(
+        "have.text",
+        "Ninguna de las Anteriores"
+      );
+      CheckInPage.clickGuardianBtn();
+      CheckInPage.clickOptFromParent();
+      CheckInPage.clickGuardianListContinueBtn();
+      cy.verifyPage(
+        AppointmentPage.appointmentTitle,
+        AppointmentData.expectedTitleOfAppointmentPageInSpanish,
+        AppointmentData.appointmentPageUrl
+      );
+      cy.verifyText(AppointmentPage.getTitlePatient, "Paciente");
+      cy.verifyText(AppointmentPage.getProviderTitle, "Proveedor");
+      cy.verifyText(AppointmentPage.getDateTitle, "Fecha");
+      cy.verifyText(AppointmentPage.getTimeTitle, "Hora");
+      cy.verifyText(AppointmentPage.getTypeOfAppointmentTitle, "Tipo de Cita");
+      cy.verifyText(AppointmentPage.getTitleOfCheckInButton, "REGISTRARSE");
+    });
+
     describe("Multi appointment flow", () => {
       before(() => {
         cy.myPatientAppointment(
@@ -335,7 +414,7 @@ describe(
           )
         );
         cy.wait(62000);
-        cy.addAppointment("ZZPOC", "1");
+        cy.addAppointment("ZZPOC", "1", "7");
       });
 
       beforeEach(() => {
@@ -359,19 +438,19 @@ describe(
         );
         CheckInPage.noneOfTheAbove().should("have.text", "None of the above");
         CheckInPage.clickPatientBtn();
-
+        cy.wait(62000);
         cy.verifyPage(
           AppointmentPage.appointmentTitle,
           AppointmentData.expectedTitleOfAppointmentPage,
           AppointmentData.appointmentPageUrl
         );
-
+        cy.wait(Cypress.env("myWait"));
         AppointmentPage.multiAppointment().then(($el) => {
           for (let index = 0; index < $el.length; index++) {
             AppointmentPage.verifyProviderDetails(index);
           }
         });
-        cy.wait(Cypress.env("myWait"));
+
         AppointmentPage.getCompareTime();
       });
     });
@@ -394,7 +473,9 @@ describe(
         );
 
         cy.wait(62000);
-        cy.addAppointment("ZZPOC", "2");
+        cy.addAppointment("ZZPOC", "1", "7");
+        cy.wait(62000);
+        cy.addAppointment("ZZPOC", "1", "7");
       });
 
       beforeEach(() => {
@@ -418,7 +499,7 @@ describe(
         );
         CheckInPage.noneOfTheAbove().should("have.text", "None of the above");
         CheckInPage.clickPatientBtn();
-
+        cy.wait(62000);
         cy.verifyPage(
           AppointmentPage.appointmentTitle,
           AppointmentData.expectedTitleOfAppointmentPage,

@@ -73,10 +73,10 @@ describe(
         "have.text",
         "Parent / Authorized Representative"
       );
-
+      CheckInPage.getClinicImage().should("be.visible");
       CheckInPage.noneOfTheAbove().should("have.text", "None of the above");
       CheckInPage.clickPatientBtn();
-      CheckInPage.getClinicImage().should("be.visible");
+     
       cy.verifyPage(
         AppointmentPage.appointmentTitle,
         AppointmentData.expectedTitleOfAppointmentPage,
@@ -208,6 +208,28 @@ describe(
       AppointmentPage.clickOnExitKioskBtn();
 
       WelcomePage.titleWelcomePage().should("have.text", "Self Check-In Kiosk");
+    });
+    it("KIOSK 2747 || CheckIn |To check the Pop-up window UI content.", () => {
+      cy.getPatientDetails("application/json").then((patient_ln) => {
+        WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
+      });
+      cy.verifyPage(
+        CheckInPage.checkInTitle,
+        PatientData.expectedTitleOfCheckIn,
+        PatientData.checkInPageUrl
+      );
+      CheckInPage.patient().should("have.text", "Patient");
+      CheckInPage.authorized().should(
+        "have.text",
+        "Parent / Authorized Representative"
+      );
+      CheckInPage.noneOfTheAbove().should("have.text", "None of the above");
+      CheckInPage.clickGuardianBtn();
+      CheckInPage.clickGuardianListContinueBtn();
+      CheckInPage.getPopupMsgOfNoGuardianSelected().should(
+        "have.text",
+        PatientData.getpopupMsgForNoGuardianSelected
+      );
     });
 
     after(() => {

@@ -16,11 +16,13 @@ import FormListPage from "../../pageObjects/pages/formlist.page";
 import FormListPageData from "./formlist.testdata";
 import SubmitPage from "../../pageObjects/pages/submit.page";
 import SubmitPageData from "./submitpage.testdata";
+import PaymentPage from "../../pageObjects/pages/payment.details.page";
+import PaymentDetailsPageData from "../../specs/ui/paymentdetails.testdata";
 
 describe(
   "Userstory suite",
   {
-    retries: 1,
+    retries: 0,
   },
   () => {
     before(() => {
@@ -39,7 +41,7 @@ describe(
           WelcomePage.generateRandomText(6) + "@Gmail.com"
         )
       );
-
+      cy.addInsurance("2000");
       cy.wait(Cypress.env("myWait"));
     });
     beforeEach(() => {
@@ -80,6 +82,13 @@ describe(
       );
       cy.wait(Cypress.env("elementTimeout"));
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      cy.verifyPage(
+        PaymentPage.titleOfPaymentDetails,
+        PaymentDetailsPageData.expectedTitleOfPaymentDetails,
+        PaymentDetailsPageData.PaymentPageUrl
+      );
+
+      PaymentPage.clickSkipPayment();
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
@@ -129,6 +138,13 @@ describe(
       );
       cy.wait(Cypress.env("elementTimeout"));
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      cy.verifyPage(
+        PaymentPage.titleOfPaymentDetails,
+        PaymentDetailsPageData.expectedTitleOfPaymentDetails,
+        PaymentDetailsPageData.PaymentPageUrl
+      );
+
+      PaymentPage.clickSkipPayment();
 
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
@@ -196,6 +212,19 @@ describe(
       cy.wait(Cypress.env("elementTimeout"));
 
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      cy.verifyPage(
+        PaymentPage.titleOfPaymentDetails,
+        PaymentDetailsPageData.expectedTitleOfPaymentDetails,
+        PaymentDetailsPageData.PaymentPageUrl
+      );
+
+      PaymentPage.clickSkipPayment();
+      cy.verifyPage(
+        DemographicPage.titleReviewDemographic,
+        ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
+        ReviewDemographicsPageData.demographicPageUrl
+      );
+
       DemographicPage.clickEditButton();
       CommunicationPreferencePage.communicationPreferencePageToggle().should(
         "have.text",
@@ -234,6 +263,67 @@ describe(
         ReviewDemographicsPageData.editDemographicUrl
       );
     });
+
+
+
+
+    it("KIOS-1610|| Verify if a returning patient without insurance cards added can upload insurance cards and successfully check in", () => {
+      cy.getPatientDetails("application/json").then((patient_ln) => {
+          cy.wait(Cypress.env("elementTimeout"));
+          WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
+        });
+      cy.verifyPage(
+        CheckInPage.checkInTitle,
+        PatientData.expectedTitleOfCheckIn,
+        PatientData.checkInPageUrl
+      );
+      CheckInPage.patient().should("have.text", "Patient");
+      CheckInPage.authorized().should(
+        "have.text",
+        "Parent / Authorized Representative"
+      );
+      CheckInPage.noneOfTheAbove().should("have.text", "None of the above");
+      CheckInPage.clickPatientBtn();
+      cy.verifyPage(
+        AppointmentPage.appointmentTitle,
+        AppointmentData.expectedTitleOfAppointmentPage,
+        AppointmentData.appointmentPageUrl
+      );
+      cy.wait(Cypress.env("elementTimeout"));
+      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      cy.verifyPage(
+        PaymentPage.titleOfPaymentDetails,
+        PaymentDetailsPageData.expectedTitleOfPaymentDetails,
+        PaymentDetailsPageData.PaymentPageUrl
+      );
+
+      PaymentPage.clickSkipPayment();
+
+      cy.verifyPage(
+        DemographicPage.titleReviewDemographic,
+        ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
+        ReviewDemographicsPageData.demographicPageUrl
+      );
+      DemographicPage.clickNoChangeNextBtn();
+      cy.verifyPage(
+        InsurancePage.titleOfInsurancePage,
+        InsurancePageData.expectedTitleOfInsurancePage,
+        InsurancePageData.insurancePageUrl
+      );
+      InsurancePage.clickEditInsuranceBtn();
+      InsurancePage.clickOnCancelBtnFrontCard();
+      InsurancePage.clickOnUploadFrontCard();
+      InsurancePage.clickSnapshot();
+      InsurancePage.clickOnUploadSnapshot();
+      InsurancePage.clickOnCancelBtnBackCard();
+      InsurancePage.clickOnUploadBackCard();
+      InsurancePage.clickSnapshot();
+      InsurancePage.clickOnUploadSnapshot();
+      InsurancePage.clickOnSaveButton();
+
+    });
+
+
     describe("Multi Appointment Flows", () => {
       before(() => {
         cy.myPatientAppointment(
@@ -253,7 +343,7 @@ describe(
         );
 
         cy.wait(62000);
-        cy.addAppointment("ZZPOC", "1");
+        cy.addAppointment("ZZPOC", "1", "7");
       });
       beforeEach(() => {
         WelcomePage.launchApp("ZZPOC");
@@ -277,6 +367,7 @@ describe(
         CheckInPage.noneOfTheAbove().should("have.text", "None of the above");
         cy.wait(Cypress.env("elementTimeout"));
         CheckInPage.clickPatientBtn();
+        cy.wait(62000);
         cy.verifyPage(
           AppointmentPage.appointmentTitle,
           AppointmentData.expectedTitleOfAppointmentPage,
@@ -291,8 +382,8 @@ describe(
       });
     });
 
-  //  after(() => {
-     // cy.deletePatient();
-    //});
+   after(() => {
+    cy.deletePatient();
+    });
   }
 );
