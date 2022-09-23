@@ -28,6 +28,27 @@ class DemographicPage {
     static demographicPagePatientGender=('[data-testid="patient-gender"]');
     static demographicsPageFirstName=(' [data-testid="patient-name"]')
     static clickOnFirstNameWithJS='document.querySelector("#patientInfo-firstname")'
+    static getNameInEnglish=('[data-testid="patient-name-label"]')
+ static getDobINEnglish=('[data-testid="patient-DOB-label"]')
+ static getAgeInEnglish=('[data-testid="patient-age-label"]')
+ static getPatientGenderInEnglish=('[data-testid="patient-gender-label"]')
+ static getPatientSocialSecurityInEnglish=('[data-testid="patient-social-security-label"]')
+ static getPatientEmailIdInEnglish=('[data-testid="patient-email-label"]')
+ static getMailingAddressTextInEnglish=('[data-testid="mailing-address-title"]')
+ static getMailingAddressAddressInEnglish=('[data-testid="mailing-address-label"]')
+ static getMailingAddressCityInEnglish=('[data-testid="mailing-city-label"]')
+ static getMailingAddressStateInEnglish=('[data-testid="mailing-state-label"]')
+ static getMailingAddressZipInEnglish=('[data-testid="mailing-zip-label"]')
+ static getPhysicalAddressTextInEnglish=('[data-testid="physical-address-title"]')
+ static getPhysicalAddressAddressInEnglish=('[data-testid="physical-address-label"]')
+ static getPhysicalAddressCityInEnglish=('[data-testid="physical-city-label"]')
+ static getPhysicalAddressStateInEnglish=('[data-testid="physical-state-label"]')
+ static getPhysicalAddressZipInEnglish=('[data-testid="physical-zip-label"]')
+ static getEmergencyContactTextInEnglish=('[data-testid="emergency-contact-title"]')
+ static getEmergencyContactTypeInEnglish=('[data-testid="emergency-contact-type-0-label"]')
+ static getEmergencyContactNameInEnglish=('[data-testid="emergency-name-0-label"]')
+ static getEmergencyContactPhoneTypeInEnglish=('[data-testid="emergency-phone-type-0-label"]')
+ static getEmergencyContactPhoneNumberInEnglish=('[data-testid="emergency-phone-number-0-label"]')
     
 
 

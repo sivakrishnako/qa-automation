@@ -32,7 +32,7 @@ describe(
         "7",
         "DAD",
         PatientData.pnName.concat(
-          WelcomePage.generateRandomText(6) + "@Gmail.com"
+          WelcomePage.generateRandomText(6) + "@gmail.com"
         )
       );
       cy.wait(Cypress.env("myWait"));
@@ -438,7 +438,7 @@ describe(
       );
     });
 
-    it("KIOS-2163|| Demographic Details || Verify a Kiosk User should be able to view his demographic information", () => {
+    it("KIOS-2163,KIOS-738,KIOS-744,KIOS-745|| Demographic Details || Verify a Kiosk User should be able to view his demographic information", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
       });
@@ -467,6 +467,34 @@ describe(
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
         ReviewDemographicsPageData.demographicPageUrl
       );
+
+      cy.verifyText(DemographicPage.getTitleOfPatientInformation, 'Patient Information')
+       cy.verifyText(DemographicPage.getNameInEnglish, 'Name ')
+      cy.verifyText(DemographicPage.getDobINEnglish, 'Date of Birth ')
+      cy.verifyText(DemographicPage.getAgeInEnglish, 'Age ')
+      cy.verifyText(DemographicPage.getPatientGenderInEnglish, 'Birth Sex ')
+      cy.verifyText(DemographicPage.getPatientSocialSecurityInEnglish, 'Social Security ')
+      cy.verifyText(DemographicPage.getPatientEmailIdInEnglish, 'Email Address ')
+
+      cy.verifyText(DemographicPage.getMailingAddressTextInEnglish, ' Mailing Address')
+      cy.verifyText(DemographicPage.getMailingAddressAddressInEnglish, 'Address ')
+      cy.verifyText(DemographicPage.getMailingAddressCityInEnglish, 'City ')
+      cy.verifyText(DemographicPage.getMailingAddressStateInEnglish, 'State ')
+      cy.verifyText(DemographicPage.getMailingAddressZipInEnglish, 'Zip ')
+
+      cy.verifyText(DemographicPage.getPhysicalAddressTextInEnglish, ' Physical Address')
+      cy.verifyText(DemographicPage.getPhysicalAddressAddressInEnglish, 'Address ')
+      cy.verifyText(DemographicPage.getPhysicalAddressCityInEnglish, 'City ')
+      cy.verifyText(DemographicPage.getPhysicalAddressStateInEnglish, 'State ')
+      cy.verifyText(DemographicPage.getPhysicalAddressZipInEnglish, 'Zip ')
+
+      cy.verifyText(DemographicPage.getEmergencyContactTextInEnglish, 'Emergency Contact')
+      cy.verifyText(DemographicPage.getEmergencyContactTypeInEnglish, 'Contact Type ')
+      cy.verifyText(DemographicPage.getEmergencyContactNameInEnglish, 'Name ')
+      cy.verifyText(DemographicPage.getEmergencyContactPhoneTypeInEnglish, 'Phone Type ')
+      cy.verifyText(DemographicPage.getEmergencyContactPhoneNumberInEnglish, 'Phone Number ')
+
+
       cy.verifyText(
         DemographicPage.getWorkPhoneNumber,
         ReviewDemographicsPageData.workPhoneNumber
@@ -640,12 +668,16 @@ describe(
         "3",
         "DAD",
         PatientData.pnName.concat(
-          WelcomePage.generateRandomText(6) + "@Gmail.com"
+          WelcomePage.generateRandomText(6) + "@gmail.com"
         )
       );
       cy.addInsurance("2000");
 
       cy.wait(Cypress.env("myWait"));
+    });
+    beforeEach(() => {
+      WelcomePage.launchApp("ZZPOC");
+      cy.clearCookies();
     });
 
     it("KIOS-2917||Demographic Details || As a Kiosk User I should be able to view the Hamburger Menu and can navigate to the payment page if payment is not made", () => {

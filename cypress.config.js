@@ -6,7 +6,7 @@ module.exports = defineConfig({
   video: false,
   env: {
     kioskURL: "https://org1-kiosk.raintreeinc.com/?location=",
-    myWait: 90000,
+    myWait: 180000,
 
     elementTimeout: 2000,
     apiURL: "http://rtkioskadminsapi-test.us-east-2.elasticbeanstalk.com/",

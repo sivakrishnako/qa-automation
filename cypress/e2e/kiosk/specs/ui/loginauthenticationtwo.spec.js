@@ -25,7 +25,7 @@ describe(
         "3", // Time difference ye comment bhi add kru in all spec file
         "DAD",
         PatientData.pnName.concat(
-          WelcomePage.generateRandomText(6) + "@Gmail.com"
+          WelcomePage.generateRandomText(6) + "@gmail.com"
         )
       );
 

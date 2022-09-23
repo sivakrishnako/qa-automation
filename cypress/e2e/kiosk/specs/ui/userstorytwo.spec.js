@@ -12,10 +12,6 @@ import ReviewDemographicsPageData from "../../specs/ui/review.demographicsPage.t
 import InsurancePageData from "./insurancepage.testdata";
 import InsurancePage from "../../pageObjects/pages/insurance.page";
 import RTApiData from "../api/rt.api.testdata";
-import FormListPage from "../../pageObjects/pages/formlist.page";
-import FormListPageData from "./formlist.testdata";
-import SubmitPage from "../../pageObjects/pages/submit.page";
-import SubmitPageData from "./submitpage.testdata";
 
 describe(
   "User story spec file",
@@ -36,7 +32,7 @@ describe(
         "3",
         "DAD",
         PatientData.pnName.concat(
-          WelcomePage.generateRandomText(6) + "@Gmail.com"
+          WelcomePage.generateRandomText(6) + "@gmail.com"
         )
       );
       cy.addInsurance("2000");

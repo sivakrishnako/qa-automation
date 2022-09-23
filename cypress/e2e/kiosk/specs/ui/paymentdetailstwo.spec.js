@@ -30,7 +30,7 @@ describe(
         "3",
         "DAD",
         PatientData.pnName.concat(
-          WelcomePage.generateRandomText(6) + "@Gmail.com"
+          WelcomePage.generateRandomText(6) + "@gmail.com"
         )
       );
       cy.addInsurance("2000");
@@ -165,7 +165,7 @@ describe(
 
     it("KIOS-2576|| Payment ||Verify As a Kiosk User should not be able to skip the payment if an amount is due and  If skip payment Option set as N in set up configuration and copay is not applicable", () => {
 
-        //unable to create patient with copay 0 .
+        //unable to create patient with copay 0 .Defect KIOS-3345
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.wait(Cypress.env("elementTimeout"));
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
