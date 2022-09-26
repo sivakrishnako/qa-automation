@@ -41,7 +41,7 @@ describe(
       cy.clearCookies();
     });
 
-    it.only("KIOS-2578||Payment Details||Verify As a Kiosk User  should be able to enter the amount user is going to pay so that user can pay something other the full amount due", () => {
+    it("KIOS-2578||Payment Details||Verify As a Kiosk User  should be able to enter the amount user is going to pay so that user can pay something other the full amount due", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.wait(Cypress.env("elementTimeout"));
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
