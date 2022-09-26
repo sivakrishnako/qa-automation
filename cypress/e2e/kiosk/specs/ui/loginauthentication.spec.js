@@ -25,7 +25,7 @@ describe(
         "7", // Time difference as per location
         "DAD", // Emergency Contact
         PatientData.pnName.concat(
-          WelcomePage.generateRandomText(6) + "@Gmail.com"
+          WelcomePage.generateRandomText(6) + "@gmail.com"
         )
       );
 
@@ -191,7 +191,7 @@ describe(
           "3",
           "DAD",
           PatientData.pnName.concat(
-            WelcomePage.generateRandomText(6) + "@Gmail.com"
+            WelcomePage.generateRandomText(6) + "@gmail.com"
           )
         );
         cy.wait(Cypress.env("myWait"));

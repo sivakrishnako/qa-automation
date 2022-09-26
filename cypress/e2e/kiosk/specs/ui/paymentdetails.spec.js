@@ -30,7 +30,7 @@ describe(
         "7",
         "DAD",
         PatientData.pnName.concat(
-          WelcomePage.generateRandomText(6) + "@Gmail.com"
+          WelcomePage.generateRandomText(6) + "@gmail.com"
         )
       );
       cy.addInsurance("2000");

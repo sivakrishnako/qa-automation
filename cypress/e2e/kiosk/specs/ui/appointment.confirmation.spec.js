@@ -35,7 +35,7 @@ describe(
         "7",
         "DAD",
         PatientData.pnName.concat(
-          WelcomePage.generateRandomText(6) + "@Gmail.com"
+          WelcomePage.generateRandomText(6) + "@gmail.com"
         )
       );
 
@@ -410,7 +410,7 @@ describe(
           "7",
           "DAD",
           PatientData.pnName.concat(
-            WelcomePage.generateRandomText(6) + "@Gmail.com"
+            WelcomePage.generateRandomText(6) + "@gmail.com"
           )
         );
         cy.wait(62000);
@@ -468,7 +468,7 @@ describe(
           "7",
           "DAD",
           PatientData.pnName.concat(
-            WelcomePage.generateRandomText(6) + "@Gmail.com"
+            WelcomePage.generateRandomText(6) + "@gmail.com"
           )
         );
 
