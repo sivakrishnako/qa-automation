@@ -52,7 +52,7 @@ describe(
         PatientData.popupMsg
       );
       WelcomePage.clickStartCheckInBtn();
-      WelcomePage.getPopupForBlankCredentials().should(
+      WelcomePage.getPopupMsg().should(
         "have.text",
         PatientData.popupMsg
       );
@@ -130,7 +130,7 @@ describe(
       );
       CheckInPage.noneOfTheAbove().should("have.text", "None of the above");
       CheckInPage.clickNoneOfTheAbove();
-      CheckInPage.getPopupMsgOfNoneOfTheAbove().should(
+      WelcomePage.getPopupMsg().should(
         "have.text",
         PatientData.popupMsgOfNoneOfTheAbove
       );

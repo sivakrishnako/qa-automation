@@ -5,8 +5,5 @@ class FormListPage {
         const button=cy.get('[data-testid="forms-next-button"]')
         button.click()
         return this
-
-    }
-
-
+     }
 }export default FormListPage

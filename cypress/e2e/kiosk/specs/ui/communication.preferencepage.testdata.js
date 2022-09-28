@@ -28,7 +28,6 @@ class CommunicationPreferencePageData {
   static expectedAppointmentInfoInSpanish =
     '¿Cómo le gustaría recibir información sobre las citas? '
   static expectedSendNotificationInSpanish = ' Enviar Notificaciones a'
-
   static expectedStaffCommunicationInSpanish =
     '¿Puede nuestro personal comunicarse con usted mediante mensajes de texto?'
   static expectedCheckInForFutureInSpanish =

@@ -2,16 +2,10 @@
 import WelcomePage from "../../pageObjects/pages/welcome.page";
 import AppointmentPage from "../../pageObjects/pages/appointment.page";
 import DemographicPage from "../../pageObjects/pages/demographic.page";
-import CommunicationPreferencePage from "../../pageObjects/pages/communication.preference.page";
 import PatientData from "./patient.checkin.testdata";
 import AppointmentData from "./appointment.detailspage.testdata";
-import ReviewDemographicsPageData from "./review.demographicspage.testdata";
-import CommunicationPreferencePageData from "./communication.preferencepage.testdata";
 import CheckInPage from "../../pageObjects/pages/checkin.page";
-import InsurancePage from "../../pageObjects/pages/insurance.page";
-import InsurancePageData from "./insurancepage.testdata";
 import RTApiData from "../../specs/api/rt.api.testdata";
-import PaymentPage from "../../pageObjects/pages/payment.details.page";
 
 describe(
   "Demographics epic test suite",

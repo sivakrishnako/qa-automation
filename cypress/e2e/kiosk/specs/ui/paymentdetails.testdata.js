@@ -1,5 +1,4 @@
 /// <reference types="cypress" />
-
 class PaymentDetailPageData {
   static expectedTitleOfPaymentDetails = 'Payment Details'
   static expectedTitleOfPaymentDetailsInSpanish = 'Detalles del Pago'
