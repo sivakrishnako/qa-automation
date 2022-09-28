@@ -66,7 +66,6 @@ describe(
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.get(AppointmentPage.getPatientName).contains(patient_ln);
       });
-
       cy.wait(Cypress.env("elementTimeout"));
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
       DemographicPage.clickEditButton();
@@ -82,7 +81,6 @@ describe(
         PatientData.expectedTitleOfCheckIn,
         PatientData.checkInPageUrl
       );
-
       WelcomePage.convertToggleEnglishToSpanish();
       CheckInPage.patient().should("have.text", "Paciente");
       CheckInPage.authorized().should(
@@ -94,7 +92,6 @@ describe(
         "Ninguna de las Anteriores"
       );
       cy.wait(Cypress.env("elementTimeout"));
-
       CheckInPage.clickPatientBtn();
       cy.verifyPage(
         AppointmentPage.appointmentTitle,
@@ -106,7 +103,6 @@ describe(
       cy.verifyText(AppointmentPage.getDateTitle, "Fecha");
       cy.verifyText(AppointmentPage.getTimeTitle, "Hora");
       cy.verifyText(AppointmentPage.getTypeOfAppointmentTitle, "Tipo de Cita");
-
       cy.verifyText(AppointmentPage.getTitleOfCheckInButton, "REGISTRARSE");
       cy.wait(Cypress.env("elementTimeout"));
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
@@ -165,13 +161,11 @@ describe(
       cy.getPatientDetails("application/json").then((patient_ln) => {
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
       });
-
       cy.verifyPage(
         CheckInPage.checkInTitle,
         PatientData.expectedTitleOfCheckIn,
         PatientData.checkInPageUrl
       );
-
       WelcomePage.convertToggleEnglishToSpanish();
       CheckInPage.clickPatientBtn();
       cy.verifyPage(
@@ -282,7 +276,6 @@ describe(
         PatientData.expectedTitleOfCheckIn,
         PatientData.checkInPageUrl
       );
-
       WelcomePage.convertToggleEnglishToSpanish();
       CheckInPage.clickPatientBtn();
       cy.verifyPage(
@@ -325,7 +318,6 @@ describe(
       cy.getPatientDetails("application/json").then((patient_ln) => {
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
       });
-
       cy.verifyPage(
         CheckInPage.checkInTitle,
         PatientData.expectedTitleOfCheckIn,
@@ -421,13 +413,10 @@ describe(
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
         ReviewDemographicsPageData.demographicPageUrl
       );
-
       DemographicPage.clickEditButton();
-
       for (let index = 0; index < 2; index++) {
         DemographicPage.editTypesOfPhoneNumber(index);
       }
-
       DemographicPage.fillMailingAddress();
       DemographicPage.clickEmergencyContactPhoneType();
       DemographicPage.clickOptionFromEmergencyPhoneType();
@@ -461,13 +450,11 @@ describe(
       );
       cy.wait(Cypress.env("elementTimeout"));
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
-
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
         ReviewDemographicsPageData.demographicPageUrl
       );
-
       cy.verifyText(
         DemographicPage.getTitleOfPatientInformation,
         "Patient Information"
@@ -484,7 +471,6 @@ describe(
         DemographicPage.getPatientEmailIdInEnglish,
         "Email Address "
       );
-
       cy.verifyText(
         DemographicPage.getMailingAddressTextInEnglish,
         " Mailing Address"
@@ -562,7 +548,6 @@ describe(
       CheckInPage.clickPatientBtn();
       cy.wait(Cypress.env("elementTimeout"));
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
-
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
@@ -601,7 +586,6 @@ describe(
         AppointmentData.expectedTitleOfAppointmentPage,
         AppointmentData.appointmentPageUrl
       );
-
       cy.wait(Cypress.env("elementTimeout"));
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
       DemographicPage.clickEditButton();
@@ -616,7 +600,6 @@ describe(
         CommunicationPreferencePageData.expectedTitleOfCommunicationPreference,
         CommunicationPreferencePageData.communicationPreferencePageUrl
       );
-
       cy.verifyButtonEnabled(
         CommunicationPreferencePage.emailForAppointmentInfo
       ).click({ force: true });
@@ -636,7 +619,6 @@ describe(
         CommunicationPreferencePage.checkInForFuture
       ).click({ force: true });
       CommunicationPreferencePage.clickOnReadAgreement();
-
       CommunicationPreferencePage.clickSaveCommunicationPreBtn();
       cy.verifyPage(
         DemographicPage.titleEditDemographic,
@@ -666,7 +648,6 @@ describe(
         AppointmentData.expectedTitleOfAppointmentPage,
         AppointmentData.appointmentPageUrl
       );
-
       cy.wait(Cypress.env("elementTimeout"));
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
       cy.verifyPage(
@@ -678,7 +659,6 @@ describe(
       DemographicPage.clickOnEmergencyContactType();
       DemographicPage.clickOptionFromEmergencyContactType();
     });
-  
   }
 );
 
@@ -705,7 +685,6 @@ describe(
         )
       );
       cy.addInsurance("2000");
-
       cy.wait(Cypress.env("myWait"));
     });
     beforeEach(() => {
@@ -728,7 +707,6 @@ describe(
         "Parent / Authorized Representative"
       );
       CheckInPage.noneOfTheAbove().should("have.text", "None of the above");
-
       CheckInPage.clickPatientBtn();
       cy.wait(Cypress.env("elementTimeout"));
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
@@ -738,16 +716,13 @@ describe(
         PaymentDetailsPageData.PaymentPageUrl
       );
       PaymentPage.clickSkipPayment();
-
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
         ReviewDemographicsPageData.demographicPageUrl
       );
-
       DemographicPage.getHamburgerMenuIcon().click();
       DemographicPage.getMakePaymentFromHambergerIcon().click();
-
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,

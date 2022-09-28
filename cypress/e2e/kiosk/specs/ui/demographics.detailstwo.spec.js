@@ -32,7 +32,6 @@ describe(
           WelcomePage.generateRandomText(6) + "@gmail.com"
         )
       );
-
       cy.wait(Cypress.env("myWait"));
     });
 
@@ -62,7 +61,6 @@ describe(
         AppointmentData.expectedTitleOfAppointmentPage,
         AppointmentData.appointmentPageUrl
       );
-
       cy.wait(Cypress.env("elementTimeout"));
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
       cy.verifyPage(
@@ -88,7 +86,6 @@ describe(
         PatientData.expectedTitleOfCheckIn,
         PatientData.checkInPageUrl
       );
-
       WelcomePage.convertToggleEnglishToSpanish();
       CheckInPage.clickPatientBtn();
       cy.verifyPage(
@@ -125,7 +122,6 @@ describe(
         PatientData.expectedTitleOfCheckIn,
         PatientData.checkInPageUrl
       );
-
       WelcomePage.convertToggleEnglishToSpanish();
       CheckInPage.clickPatientBtn();
       cy.verifyPage(
@@ -149,12 +145,12 @@ describe(
       DemographicPage.fillNotRealDOB();
       DemographicPage.clickSaveDemographicsBtn();
       cy.get("body").click(50, 50, { force: true });
-
       cy.verifyText(
         DemographicPage.getErrorMessageForWrongDob,
         ReviewDemographicsPageData.errorMessageForNotRealDOBInSpanish
       );
     });
+
     it("KIOS-2783||Demographics Details||To check error message for Date of birth does not represent a real date in Edit demographics screen in English language.", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
@@ -176,7 +172,6 @@ describe(
         AppointmentData.expectedTitleOfAppointmentPage,
         AppointmentData.appointmentPageUrl
       );
-
       cy.wait(Cypress.env("elementTimeout"));
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
       cy.verifyPage(
@@ -192,6 +187,7 @@ describe(
         ReviewDemographicsPageData.errorMessageForNotRealDOBInEnglish
       );
     });
+
     it("KIOS-2784||Demographics Details||To check the error message for Date of birth does not have enough digits in the Edit demographics screen in the English language.", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
@@ -213,7 +209,6 @@ describe(
         AppointmentData.expectedTitleOfAppointmentPage,
         AppointmentData.appointmentPageUrl
       );
-
       cy.wait(Cypress.env("elementTimeout"));
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
       cy.verifyPage(
@@ -239,7 +234,6 @@ describe(
         PatientData.expectedTitleOfCheckIn,
         PatientData.checkInPageUrl
       );
-
       WelcomePage.convertToggleEnglishToSpanish();
       CheckInPage.clickPatientBtn();
       cy.verifyPage(
@@ -262,7 +256,6 @@ describe(
       DemographicPage.clickEditButton();
       DemographicPage.fillInvalidFormatDob();
       cy.get("body").click(50, 50, { force: true });
-
       cy.verifyText(
         DemographicPage.getErrorMessageForWrongDob,
         ReviewDemographicsPageData.errorMessageForInvalidFormatDOBInSpanish
@@ -290,9 +283,7 @@ describe(
         AppointmentData.expectedTitleOfAppointmentPage,
         AppointmentData.appointmentPageUrl
       );
-
       cy.wait(Cypress.env("elementTimeout"));
-
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
       DemographicPage.clickEditButton();
       CommunicationPreferencePage.communicationPreferencePageToggle().should(
@@ -326,6 +317,7 @@ describe(
       ).click({ force: true });
       CommunicationPreferencePage.astericsSign().should("be.visible");
     });
+
     it("KIOS-3930||Demographics Details||To verify what error message appears when user try to save communication preference page by unchecking the checkbox", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
@@ -347,9 +339,7 @@ describe(
         AppointmentData.expectedTitleOfAppointmentPage,
         AppointmentData.appointmentPageUrl
       );
-
       cy.wait(Cypress.env("elementTimeout"));
-
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
       DemographicPage.clickEditButton();
       CommunicationPreferencePage.communicationPreferencePageToggle().should(
@@ -393,6 +383,7 @@ describe(
       );
       CommunicationPreferencePage.closeIconForPopUP().should("be.visible");
     });
+
     it("KIOS-3925||Demographics Details||To verify if user is able to save communication preference page if the agreement check box is unchecked", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
@@ -414,9 +405,7 @@ describe(
         AppointmentData.expectedTitleOfAppointmentPage,
         AppointmentData.appointmentPageUrl
       );
-
       cy.wait(Cypress.env("elementTimeout"));
-
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
       DemographicPage.clickEditButton();
       CommunicationPreferencePage.communicationPreferencePageToggle().should(
@@ -449,7 +438,6 @@ describe(
         CommunicationPreferencePage.checkInForFuture
       ).click({ force: true });
       CommunicationPreferencePage.clickOnReadAgreement();
-
       CommunicationPreferencePage.clickSaveCommunicationPreBtn();
       cy.verifyText(
         CommunicationPreferencePage.popUpForSaveCommunication,
@@ -478,9 +466,7 @@ describe(
         AppointmentData.expectedTitleOfAppointmentPage,
         AppointmentData.appointmentPageUrl
       );
-
       cy.wait(Cypress.env("elementTimeout"));
-
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
       DemographicPage.clickEditButton();
       CommunicationPreferencePage.communicationPreferencePageToggle().should(
@@ -520,9 +506,7 @@ describe(
         AppointmentData.expectedTitleOfAppointmentPage,
         AppointmentData.appointmentPageUrl
       );
-
       cy.wait(Cypress.env("elementTimeout"));
-
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
       DemographicPage.clickEditButton();
       CommunicationPreferencePage.communicationPreferencePageToggle().should(
@@ -560,9 +544,7 @@ describe(
         AppointmentData.expectedTitleOfAppointmentPage,
         AppointmentData.appointmentPageUrl
       );
-
       cy.wait(Cypress.env("elementTimeout"));
-
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
       DemographicPage.clickEditButton();
       CommunicationPreferencePage.communicationPreferencePageToggle().should(
@@ -598,7 +580,6 @@ describe(
             "7",
             "DAD"
           );
-
           cy.wait(Cypress.env("myWait"));
         });
 
@@ -611,7 +592,6 @@ describe(
             PatientData.expectedTitleOfCheckIn,
             PatientData.checkInPageUrl
           );
-
           WelcomePage.convertToggleEnglishToSpanish();
           CheckInPage.clickPatientBtn();
           cy.verifyPage(
@@ -626,7 +606,6 @@ describe(
             ReviewDemographicsPageData.expectedTitleOfReviewDemographicInSpanish,
             ReviewDemographicsPageData.demographicPageUrl
           );
-
           cy.verifyText(
             DemographicPage.getCommunicationPreferenceInSpanish,
             " Preferencia de Comunicación"
@@ -643,7 +622,6 @@ describe(
             ReviewDemographicsPageData.expectedTitlePatientInformationInSpanish
           );
           DemographicPage.fillEmailAddress();
-
           cy.wait(Cypress.env("elementTimeout"));
           DemographicPage.clickSaveDemographicsBtn();
           cy.wait(Cypress.env("elementTimeout"));

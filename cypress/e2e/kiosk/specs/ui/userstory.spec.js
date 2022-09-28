@@ -58,7 +58,6 @@ describe(
         PatientData.expectedTitleOfCheckIn,
         PatientData.checkInPageUrl
       );
-
       CheckInPage.patient().should("have.text", "Patient");
       CheckInPage.authorized().should(
         "have.text",
@@ -74,7 +73,6 @@ describe(
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.get(AppointmentPage.getPatientName).contains(patient_ln);
       });
-
       cy.verifyText(AppointmentPage.getPatientDOB, AppointmentData.validDob);
       cy.verifyText(
         AppointmentPage.getSpeciality,
@@ -87,14 +85,12 @@ describe(
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,
         PaymentDetailsPageData.PaymentPageUrl
       );
-
       PaymentPage.clickSkipPayment();
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
         ReviewDemographicsPageData.demographicPageUrl
       );
-
       DemographicPage.clickNoChangeNextBtn();
       cy.verifyPage(
         InsurancePage.titleOfInsurancePage,
@@ -143,21 +139,16 @@ describe(
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,
         PaymentDetailsPageData.PaymentPageUrl
       );
-
       PaymentPage.clickSkipPayment();
-
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
         ReviewDemographicsPageData.demographicPageUrl
       );
-
       DemographicPage.clickEditButton();
-
       for (let index = 0; index < 2; index++) {
         DemographicPage.editTypesOfPhoneNumber(index);
       }
-
       DemographicPage.fillMailingAddress();
       DemographicPage.clickEmergencyContactPhoneType();
       DemographicPage.clickOptionFromEmergencyPhoneType();
@@ -208,23 +199,19 @@ describe(
         AppointmentData.expectedTitleOfAppointmentPage,
         AppointmentData.appointmentPageUrl
       );
-
       cy.wait(Cypress.env("elementTimeout"));
-
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,
         PaymentDetailsPageData.PaymentPageUrl
       );
-
       PaymentPage.clickSkipPayment();
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
         ReviewDemographicsPageData.demographicPageUrl
       );
-
       DemographicPage.clickEditButton();
       CommunicationPreferencePage.communicationPreferencePageToggle().should(
         "have.text",
@@ -293,9 +280,7 @@ describe(
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,
         PaymentDetailsPageData.PaymentPageUrl
       );
-
       PaymentPage.clickSkipPayment();
-
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,

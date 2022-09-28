@@ -70,20 +70,18 @@ class DemographicPage {
     '[data-testid="emergency-phone-type-0-label"]';
   static getEmergencyContactPhoneNumberInEnglish =
     '[data-testid="emergency-phone-number-0-label"]';
-
   static clickPopupButtonOkMsgDemo() {
     const button = cy.get('[data-testid="linkSentOk"]');
     button.click();
     return this;
   }
-  static fillMiddleName(){
+  static fillMiddleName() {
     cy.get('[data-testid="patientInfo-middlename"]')
-    .clear()
-    .type("Automation", { timeout: Cypress.env("elementTimeout") })
-    .should("have.value", "Automation");
-  return this;
-
-}
+      .clear()
+      .type("Automation", { timeout: Cypress.env("elementTimeout") })
+      .should("have.value", "Automation");
+    return this;
+  }
   static helpButtonOfDemographicPage() {
     return cy.get('[data-testid="HelpOutlineIcon"]');
   }
@@ -91,7 +89,6 @@ class DemographicPage {
   static errorMessageEmail() {
     return cy.get('[data-testid="patientInfo-email-error"]');
   }
-
   static clickNoChangeNextBtn() {
     const button = cy.get('[data-testid="no-change"]');
     button.click();
@@ -112,7 +109,6 @@ class DemographicPage {
     button.click();
     return this;
   }
-
   static getFillHomePhoneNum(index) {
     const strFillHomePhoneNum =
       '[data-testid="contactDetails[' + index + ']-phoneNumber"]';
@@ -146,7 +142,6 @@ class DemographicPage {
     button.click({ force: true });
     return this;
   }
-
   static fillInvalidFirstName(value) {
     cy.get("#patientInfo-firstname")
       .clear()
@@ -159,7 +154,7 @@ class DemographicPage {
       .get('[data-testid="patientInfo-dateOfBirth"]')
       .click()
       .clear()
-      .type("01/01/2026"),
+      .type(PatientData.invalidDOBFutureDate),
       { timeout: Cypress.env("elementTimeout") };
     return this;
   }
@@ -168,7 +163,7 @@ class DemographicPage {
       .get('[data-testid="patientInfo-dateOfBirth"]')
       .click()
       .clear()
-      .type("35/01/00"),
+      .type(PatientData.invalidDOBRealDate),
       { timeout: Cypress.env("elementTimeout") };
     return this;
   }
@@ -177,21 +172,19 @@ class DemographicPage {
       .get('[data-testid="patientInfo-dateOfBirth"]')
       .click()
       .clear()
-      .type("01/32/19"),
+      .type(PatientData.invalidDOBMissingDigits),
       { timeout: Cypress.env("elementTimeout") };
     return this;
   }
-
   static fillInvalidFormatDob(value) {
     cy
       .get('[data-testid="patientInfo-dateOfBirth"]')
       .click()
       .clear()
-      .type("3/01/0"),
+      .type(PatientData.invalidFormatDOB),
       { timeout: Cypress.env("elementTimeout") };
     return this;
   }
-
   static fillEmailAddress(value) {
     cy.get('[data-testid="patientInfo-email"]')
       .type(ReviewDemographicsPageData.invalidEmailAddress, {
@@ -200,7 +193,6 @@ class DemographicPage {
       .should("have.value", ReviewDemographicsPageData.invalidEmailAddress);
     return this;
   }
-
   static fillMailingAddress(value) {
     cy.get('[data-testid="mailing-address"]')
       .clear()
@@ -208,10 +200,8 @@ class DemographicPage {
         timeout: Cypress.env("elementTimeout"),
       })
       .should("have.value", ReviewDemographicsPageData.addMailAddress);
-
     return this;
   }
-
   static clickSaveDemographicsBtn() {
     if (
       cy
@@ -234,7 +224,6 @@ class DemographicPage {
     button.click();
     return this;
   }
-
   static errorIconField() {
     return cy.get('[data-testid="ErrorIcon"]');
   }
@@ -247,7 +236,6 @@ class DemographicPage {
     '[data-testid="emergency-name-0"]';
   static fillLastNameOfEmergencyContactDetails(value) {
     cy.get('[name="data.emergencyContacts[0].lastname"]').clear();
-
     return this;
   }
   static clickOptionFromEmergencyContactType() {
@@ -261,7 +249,6 @@ class DemographicPage {
     const button = cy.get('[data-testid="emergencyContacts[0]-phoneType"]', {
       timeout: Cypress.env("elementTimeout"),
     });
-
     button.click();
     return this;
   }

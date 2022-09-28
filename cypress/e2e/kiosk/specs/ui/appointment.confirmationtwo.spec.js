@@ -72,7 +72,6 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
       PaymentPage.clickSkipPayment();
       cy.verifyPage(

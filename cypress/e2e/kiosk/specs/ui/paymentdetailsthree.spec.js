@@ -5,8 +5,6 @@ import AppointmentPage from "../../pageObjects/pages/appointment.page";
 import PatientData from "./patient.checkin.testdata";
 import AppointmentData from "./appointment.detailspage.testdata";
 import CheckInPage from "../../pageObjects/pages/checkin.page";
-import PaymentPage from "../../pageObjects/pages/payment.details.page";
-import PaymentDetailsPageData from "../../specs/ui/paymentdetails.testdata";
 import DemographicPage from "../../pageObjects/pages/demographic.page";
 import ReviewDemographicsPageData from "../../specs/ui/review.demographicsPage.testdata";
 import RTApiData from "../../specs/api/rt.api.testdata";

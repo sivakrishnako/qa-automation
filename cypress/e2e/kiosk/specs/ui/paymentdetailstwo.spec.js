@@ -72,7 +72,8 @@ describe(
       );
 
       PaymentPage.clickSkipPayment();
-      WelcomePage.getPopupMsg().should('have.text',
+      WelcomePage.getPopupMsg().should(
+        "have.text",
         PaymentDetailsPageData.popUpForIfUserClickOnSkipPayment
       );
     });
@@ -111,20 +112,19 @@ describe(
       cy.verifyText(AppointmentPage.getTypeOfAppointmentTitle, "Tipo de Cita");
       cy.verifyText(AppointmentPage.getTitleOfCheckInButton, "REGISTRARSE");
       cy.wait(Cypress.env("elementTimeout"));
-
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
-
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetailsInSpanish,
         PaymentDetailsPageData.PaymentPageUrl
       );
       PaymentPage.clickSkipPayment();
-
-      WelcomePage.getPopupMsg().should('have.text',
+      WelcomePage.getPopupMsg().should(
+        "have.text",
         PaymentDetailsPageData.popUpForIfUserClickOnSkipPaymentInSpanish
       );
     });
+
     it("KIOS-3300||Payment||Verify As a Kiosk User I should not be able to skip the payment if an amount is due and If skip payment Option set as Y in set up configuration but Copay is applicable", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.wait(Cypress.env("elementTimeout"));
@@ -155,14 +155,14 @@ describe(
         PaymentDetailsPageData.PaymentPageUrl
       );
       PaymentPage.clickSkipPayment();
-      WelcomePage.getPopupMsg().should('have.text',
+      WelcomePage.getPopupMsg().should(
+        "have.text",
         PaymentDetailsPageData.popUpForIfUserClickOnSkipPayment
       );
     });
 
     it("KIOS-2576|| Payment ||Verify As a Kiosk User should not be able to skip the payment if an amount is due and  If skip payment Option set as N in set up configuration and copay is not applicable", () => {
-
-        //unable to create patient with copay 0 .Defect KIOS-3345
+      //unable to create patient with copay 0 .Defect KIOS-3345
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.wait(Cypress.env("elementTimeout"));
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
@@ -192,7 +192,8 @@ describe(
         PaymentDetailsPageData.PaymentPageUrl
       );
       PaymentPage.clickSkipPayment();
-      WelcomePage.getPopupMsg().should('have.text',
+      WelcomePage.getPopupMsg().should(
+        "have.text",
         PaymentDetailsPageData.popUpForIfUserClickOnSkipPayment
       );
     });

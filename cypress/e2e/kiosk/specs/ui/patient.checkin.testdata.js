@@ -27,6 +27,7 @@ class PatientData {
   static invalidLastName = '@112c'
   static validLastName = 'Mariez'
   static invalidDOB = '10/01/1990'
+  static invalidFormatDOB='4232'
 
   static popupMsgForBeforeNMinutesPatient =
     'Please come back no more than 5 minutes before your appointment to check'

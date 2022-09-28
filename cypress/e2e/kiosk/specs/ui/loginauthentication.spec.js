@@ -40,7 +40,6 @@ describe(
       cy.getPatientDetails("application/json").then((patient_ln) => {
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
       });
-
       cy.verifyPage(
         CheckInPage.checkInTitle,
         PatientData.expectedTitleOfCheckIn,
@@ -61,7 +60,6 @@ describe(
       cy.getPatientDetails("application/json").then((patient_ln) => {
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
       });
-
       cy.verifyPage(
         CheckInPage.checkInTitle,
         PatientData.expectedTitleOfCheckIn,
@@ -70,7 +68,6 @@ describe(
       CheckInPage.clickPatientBtn();
       cy.wait(Cypress.env("elementTimeout"));
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
-
       CheckInPage.clickOnExitKioskBtn();
     });
 

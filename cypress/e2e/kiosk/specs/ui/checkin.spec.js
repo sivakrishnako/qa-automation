@@ -52,7 +52,7 @@ describe(
         PatientData.popupMsg
       );
       WelcomePage.clickStartCheckInBtn();
-      WelcomePage.getPopupForBlankCredentials().should(
+      WelcomePage.getPopupMsg().should(
         "have.text",
         PatientData.popupMsg
       );

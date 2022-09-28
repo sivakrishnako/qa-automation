@@ -20,13 +20,13 @@ describe(
     before(() => {
       cy.myPatientAppointment(
         RTApiData.clientIdPaymentDetails,
-       RTApiData.clientSecretKeyPaymentDetails,
-      RTApiData.grantType,
+        RTApiData.clientSecretKeyPaymentDetails,
+        RTApiData.grantType,
         RTApiData.appId,
         PatientData.pnName,
         WelcomePage.generateRandomText(6).slice(1),
         "ZZPOC",
-        "1", 
+        "1",
         "7",
         "DAD",
         PatientData.pnName.concat(
@@ -106,7 +106,6 @@ describe(
         PaymentDetailsPageData.PaymentPageUrl
       );
       PaymentPage.totalDueAmount();
-      
     });
 
     it("KIOS-1602||Payment Details||Verify spanish version of payment details page", () => {
@@ -215,14 +214,11 @@ describe(
       cy.wait(Cypress.env("elementTimeout"));
       PaymentPage.clickPayAtFrontDesk();
 
-     WelcomePage.getPopupMsg().should('have.text',
+      WelcomePage.getPopupMsg().should(
+        "have.text",
         PaymentDetailsPageData.popUpForPayAtFrontDesk
       );
-
-      
     });
-
-   
 
     it("KIOS-1603||Payment Details||Verify spanish version of Pay at the Desk pop up window", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
@@ -246,7 +242,8 @@ describe(
       cy.verifyText(PaymentPage.getPaymentTitleInSpanish, "Pago Guardado");
       PaymentPage.clickPayAtFrontDesk();
 
-      WelcomePage.getPopupMsg().should('have.text',
+      WelcomePage.getPopupMsg().should(
+        "have.text",
         PaymentDetailsPageData.popUpForPayAtfrontDeskInSpanish
       );
     });
@@ -278,7 +275,6 @@ describe(
       PaymentPage.paymentPageYesToggleForFutureUse().should("be.exist");
       PaymentPage.paymentPageNoToggleForFutureUse().should("have.text", "No");
       PaymentPage.paymentPageNoToggleForFutureUse().should("be.exist");
-     
     });
 
     it("KIOS-4159||Payment Details||To verify what message should user able to see when there is no saved cards present on payment screen.", () => {
@@ -338,13 +334,12 @@ describe(
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,
         PaymentDetailsPageData.PaymentPageUrl
       );
-PaymentPage.clickSkipPayment()
+      PaymentPage.clickSkipPayment();
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
         ReviewDemographicsPageData.demographicPageUrl
       );
-     
     });
     describe("Payment Details||Patient with no dues", () => {
       before(() => {
@@ -390,21 +385,17 @@ PaymentPage.clickSkipPayment()
         );
         cy.wait(Cypress.env("elementTimeout"));
         cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
-  
+
         cy.verifyPage(
           DemographicPage.titleReviewDemographic,
           ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
           ReviewDemographicsPageData.demographicPageUrl
         );
-        
       });
-  
-      
     });
 
-
-    after(() => {
-     cy.deletePatient()
-     })
+    //  after(() => {
+    //  cy.deletePatient();
+    //});
   }
 );

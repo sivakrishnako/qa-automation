@@ -7,10 +7,6 @@ import AppointmentData from "./appointment.detailspage.testdata";
 import CheckInPage from "../../pageObjects/pages/checkin.page";
 import PaymentPage from "../../pageObjects/pages/payment.details.page";
 import PaymentDetailsPageData from "../../specs/ui/paymentdetails.testdata";
-import DemographicPage from "../../pageObjects/pages/demographic.page";
-import ReviewDemographicsPageData from "../../specs/ui/review.demographicsPage.testdata";
-import InsurancePageData from "./insurancepage.testdata";
-import InsurancePage from "../../pageObjects/pages/insurance.page";
 import RTApiData from "../api/rt.api.testdata";
 
 describe(

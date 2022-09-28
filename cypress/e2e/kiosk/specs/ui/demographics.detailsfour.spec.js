@@ -3,21 +3,13 @@
 import WelcomePage from "../../pageObjects/pages/welcome.page";
 import AppointmentPage from "../../pageObjects/pages/appointment.page";
 import DemographicPage from "../../pageObjects/pages/demographic.page";
-import CommunicationPreferencePage from "../../pageObjects/pages/communication.preference.page";
 import PatientData from "./patient.checkin.testdata";
 import AppointmentData from "./appointment.detailspage.testdata";
 import ReviewDemographicsPageData from "./review.demographicspage.testdata";
-import CommunicationPreferencePageData from "./communication.preferencePage.testdata";
 import CheckInPage from "../../pageObjects/pages/checkin.page";
 import InsurancePageData from "./insurancepage.testdata";
 import InsurancePage from "../../pageObjects/pages/insurance.page";
 import RTApiData from "../api/rt.api.testdata";
-import FormListPage from "../../pageObjects/pages/formlist.page";
-import FormListPageData from "./formlist.testdata";
-import SubmitPage from "../../pageObjects/pages/submit.page";
-import SubmitPageData from "./submitpage.testdata";
-import PaymentPage from "../../pageObjects/pages/payment.details.page";
-import PaymentDetailsPageData from "../../specs/ui/paymentdetails.testdata";
 
 describe(
   "Userstory suite",
@@ -78,13 +70,10 @@ describe(
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
         ReviewDemographicsPageData.demographicPageUrl
       );
-
       DemographicPage.clickEditButton();
-
       for (let index = 0; index < 2; index++) {
         DemographicPage.editTypesOfPhoneNumber(index);
       }
-
       DemographicPage.fillMailingAddress();
       DemographicPage.clickEmergencyContactPhoneType();
       DemographicPage.clickOptionFromEmergencyPhoneType();
