@@ -94,7 +94,7 @@ class WelcomePage {
     button.click()
     return this
   }
-  static popupMsgForInvalidCredentials () {
+  static getPopupMsg() {
     return cy.get('[data-testid="modal-text"]', {
       timeout: Cypress.env('elementTimeout')
     })
@@ -108,9 +108,7 @@ class WelcomePage {
   static welcomeInSpanish () {
     return cy.get('[data-testid="welcome-heading"]')
   }
-  static getPopupForBlankCredentials () {
-    return cy.get('[data-testid="modal-text"]')
-  }
+ 
 
   static clickPopupButtonOkErrorMsg () {
     const button = cy.get('[data-testid="loginErrorOk"]', {
@@ -136,7 +134,7 @@ class WelcomePage {
         this.clickStartCheckInBtn()
         cy.get('[data-testid="modal-text"]').should('be.visible')
         cy.log('In X minutes')
-        this.popupMsgForInvalidCredentials().contains(errMessageXMinutes)
+        this.getPopupMsg().contains(errMessageXMinutes)
         cy.get('[data-testid="loginErrorOk"]', {
           timeout: Cypress.env('elementTimeout')
         }).click()
@@ -145,7 +143,7 @@ class WelcomePage {
       case 'Front Desk Message':
         cy.get('[data-testid="modal-text"]').should('be.visible')
         cy.log('In Front Desk Message')
-        this.popupMsgForInvalidCredentials().contains(errMessageFrontDesk)
+        this.getPopupMsg().contains(errMessageFrontDesk)
         cy.get('[data-testid="loginErrorOk"]', {
           timeout: Cypress.env('elementTimeout')
         }).click()
@@ -168,7 +166,7 @@ class WelcomePage {
     this.fillLastName(LastName)
     this.fillPatientDoB(dateOfBirth)
     this.clickStartCheckInBtn()
-    this.popupMsgForInvalidCredentials().contains(errorMessage)
+    this.getPopupMsg().contains(errorMessage)
     this.clickPopupButtonOkErrorMsg()
   }
 
@@ -231,7 +229,7 @@ class WelcomePage {
         this.clickStartCheckInBtn()
         cy.get('[data-testid="modal-text"]').should('be.visible')
         cy.log('In X minutes')
-        this.popupMsgForInvalidCredentials().contains(errMessageXMinutes)
+        this.getPopupMsg().contains(errMessageXMinutes)
         cy.get('[data-testid="loginErrorOk"]', {
           timeout: Cypress.env('elementTimeout')
         }).click()
@@ -240,7 +238,7 @@ class WelcomePage {
       case 'Front Desk Message':
         cy.get('[data-testid="modal-text"]').should('be.visible')
         cy.log('In Front Desk Message')
-        this.popupMsgForInvalidCredentials().contains(errMessageFrontDesk)
+        this.getPopupMsg().contains(errMessageFrontDesk)
         cy.get('[data-testid="loginErrorOk"]', {
           timeout: Cypress.env('elementTimeout')
         }).click()

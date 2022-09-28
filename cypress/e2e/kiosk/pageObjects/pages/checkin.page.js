@@ -57,9 +57,7 @@ class CheckInPage {
         button.click();
         return this;
     }
-    static getPopupMsgOfNoneOfTheAbove() {
-        return cy.get('[data-testid="modal-text"]');
-    }
+    
     static clickOptFromParent() {
 
         const btn = cy.contains(AppointmentData.optionFromAuthorizedParent)

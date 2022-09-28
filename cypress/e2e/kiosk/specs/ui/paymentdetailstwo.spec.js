@@ -72,8 +72,7 @@ describe(
       );
 
       PaymentPage.clickSkipPayment();
-      cy.verifyText(
-        PaymentPage.getPopUpForSkipPaymentInSpanish,
+      WelcomePage.getPopupMsg().should('have.text',
         PaymentDetailsPageData.popUpForIfUserClickOnSkipPayment
       );
     });
@@ -122,8 +121,7 @@ describe(
       );
       PaymentPage.clickSkipPayment();
 
-      cy.verifyText(
-        PaymentPage.getPopUpForSkipPaymentInSpanish,
+      WelcomePage.getPopupMsg().should('have.text',
         PaymentDetailsPageData.popUpForIfUserClickOnSkipPaymentInSpanish
       );
     });
@@ -157,8 +155,7 @@ describe(
         PaymentDetailsPageData.PaymentPageUrl
       );
       PaymentPage.clickSkipPayment();
-      cy.verifyText(
-        PaymentPage.getPopUpForSkipPaymentInSpanish,
+      WelcomePage.getPopupMsg().should('have.text',
         PaymentDetailsPageData.popUpForIfUserClickOnSkipPayment
       );
     });
@@ -195,8 +192,7 @@ describe(
         PaymentDetailsPageData.PaymentPageUrl
       );
       PaymentPage.clickSkipPayment();
-      cy.verifyText(
-        PaymentPage.getPopUpForSkipPaymentInSpanish,
+      WelcomePage.getPopupMsg().should('have.text',
         PaymentDetailsPageData.popUpForIfUserClickOnSkipPayment
       );
     });

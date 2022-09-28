@@ -264,14 +264,11 @@ describe(
       );
     });
 
-
-
-
     it("KIOS-1610|| Verify if a returning patient without insurance cards added can upload insurance cards and successfully check in", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
-          cy.wait(Cypress.env("elementTimeout"));
-          WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
-        });
+        cy.wait(Cypress.env("elementTimeout"));
+        WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
+      });
       cy.verifyPage(
         CheckInPage.checkInTitle,
         PatientData.expectedTitleOfCheckIn,
@@ -320,9 +317,7 @@ describe(
       InsurancePage.clickSnapshot();
       InsurancePage.clickOnUploadSnapshot();
       InsurancePage.clickOnSaveButton();
-
     });
-
 
     describe("Multi Appointment Flows", () => {
       before(() => {
@@ -382,8 +377,8 @@ describe(
       });
     });
 
-   after(() => {
-    cy.deletePatient();
+    after(() => {
+      cy.deletePatient();
     });
   }
 );

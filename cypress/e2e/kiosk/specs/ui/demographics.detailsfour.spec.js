@@ -1,52 +1,57 @@
-/// <reference types="cypress" />
+///<reference types="cypress" />
 
 import WelcomePage from "../../pageObjects/pages/welcome.page";
 import AppointmentPage from "../../pageObjects/pages/appointment.page";
+import DemographicPage from "../../pageObjects/pages/demographic.page";
+import CommunicationPreferencePage from "../../pageObjects/pages/communication.preference.page";
 import PatientData from "./patient.checkin.testdata";
 import AppointmentData from "./appointment.detailspage.testdata";
+import ReviewDemographicsPageData from "./review.demographicspage.testdata";
+import CommunicationPreferencePageData from "./communication.preferencePage.testdata";
 import CheckInPage from "../../pageObjects/pages/checkin.page";
-import PaymentPage from "../../pageObjects/pages/payment.details.page";
-import PaymentDetailsPageData from "../../specs/ui/paymentdetails.testdata";
-import DemographicPage from "../../pageObjects/pages/demographic.page";
-import ReviewDemographicsPageData from "../../specs/ui/review.demographicsPage.testdata";
 import InsurancePageData from "./insurancepage.testdata";
 import InsurancePage from "../../pageObjects/pages/insurance.page";
 import RTApiData from "../api/rt.api.testdata";
+import FormListPage from "../../pageObjects/pages/formlist.page";
+import FormListPageData from "./formlist.testdata";
+import SubmitPage from "../../pageObjects/pages/submit.page";
+import SubmitPageData from "./submitpage.testdata";
+import PaymentPage from "../../pageObjects/pages/payment.details.page";
+import PaymentDetailsPageData from "../../specs/ui/paymentdetails.testdata";
 
 describe(
-  "User story spec file",
+  "Userstory suite",
   {
-    retries: 1,
+    retries: 0,
   },
   () => {
     before(() => {
       cy.myPatientAppointment(
-        RTApiData.clientIDForPaymentDetailsThree,
-        RTApiData.clientSecretkeyPaymentDetailsThree,
+        RTApiData.clientIDForUserStory,
+        RTApiData.clientSecretKeyForUserStory,
         RTApiData.grantType,
         RTApiData.appId,
         PatientData.pnName,
         WelcomePage.generateRandomText(6).slice(1),
-        "BRI",
+        "ZZPOC",
         "1",
-        "3",
+        "7",
         "DAD",
         PatientData.pnName.concat(
           WelcomePage.generateRandomText(6) + "@gmail.com"
         )
       );
       cy.addInsurance("2000");
-      //cy.addInsuranceCard();
+      cy.addInsuranceCard();
       cy.wait(Cypress.env("myWait"));
     });
     beforeEach(() => {
-      WelcomePage.launchApp("BRI");
+      WelcomePage.launchApp("ZZPOC");
       cy.clearCookies();
     });
 
-    it("KIOS-1606||Payment ||Verify if a returning patient with copay can skip payment and successfully check in", () => {
+    it("KIOS-1521||Demographics Details||To verify save functionality with all valid details and check if its navigated to the next screen or not.", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
-        cy.wait(Cypress.env("elementTimeout"));
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
       });
       cy.verifyPage(
@@ -68,20 +73,29 @@ describe(
       );
       cy.wait(Cypress.env("elementTimeout"));
       cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
-
       cy.verifyPage(
-        PaymentPage.titleOfPaymentDetails,
-        PaymentDetailsPageData.expectedTitleOfPaymentDetails,
-        PaymentDetailsPageData.PaymentPageUrl
+        DemographicPage.titleReviewDemographic,
+        ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
+        ReviewDemographicsPageData.demographicPageUrl
       );
-      PaymentPage.clickSkipPayment();
 
-      WelcomePage.getPopupMsg().should(
-        "have.text",
-        PaymentDetailsPageData.popUpForIfUserClickOnSkipPayment
+      DemographicPage.clickEditButton();
+
+      for (let index = 0; index < 2; index++) {
+        DemographicPage.editTypesOfPhoneNumber(index);
+      }
+
+      DemographicPage.fillMailingAddress();
+      DemographicPage.clickEmergencyContactPhoneType();
+      DemographicPage.clickOptionFromEmergencyPhoneType();
+      DemographicPage.fillMiddleName();
+      DemographicPage.clickSaveDemographicsBtn();
+      cy.verifyPage(
+        InsurancePage.titleOfInsurancePage,
+        InsurancePageData.expectedTitleOfInsurancePage,
+        InsurancePageData.insurancePageUrl
       );
     });
-
     after(() => {
       cy.deletePatient();
     });

@@ -215,8 +215,7 @@ describe(
       cy.wait(Cypress.env("elementTimeout"));
       PaymentPage.clickPayAtFrontDesk();
 
-      cy.verifyText(
-        PaymentPage.getPopUpForPayAtFrontDesk,
+     WelcomePage.getPopupMsg().should('have.text',
         PaymentDetailsPageData.popUpForPayAtFrontDesk
       );
 
@@ -247,8 +246,7 @@ describe(
       cy.verifyText(PaymentPage.getPaymentTitleInSpanish, "Pago Guardado");
       PaymentPage.clickPayAtFrontDesk();
 
-      cy.verifyText(
-        PaymentPage.getPopUpForPayAtFrontDesk,
+      WelcomePage.getPopupMsg().should('have.text',
         PaymentDetailsPageData.popUpForPayAtfrontDeskInSpanish
       );
     });

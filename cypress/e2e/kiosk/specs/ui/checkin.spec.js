@@ -130,7 +130,7 @@ describe(
       );
       CheckInPage.noneOfTheAbove().should("have.text", "None of the above");
       CheckInPage.clickNoneOfTheAbove();
-      CheckInPage.getPopupMsgOfNoneOfTheAbove().should(
+      WelcomePage.getPopupMsg().should(
         "have.text",
         PatientData.popupMsgOfNoneOfTheAbove
       );

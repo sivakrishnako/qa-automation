@@ -77,31 +77,31 @@ class InsurancePage{
         
 
         }
-        static clickOnSaveButton() { // code by shital
+        static clickOnSaveButton() { 
             const button=cy.get('[data-testid="edit-insurance-save"]' ,{ timeout: Cypress.env('elementTimeout') })
             button.click()
             return this    
         }
-        static clickOnUploadBackCard() { // code by shital
+        static clickOnUploadBackCard() { 
             const button = cy.get('[data-testid="edit-backCamera-icon"]'); 
             button.click();
             return this;
         }
 
-        static clickOnUploadSnapshot() { //code by shital
+        static clickOnUploadSnapshot() { 
             const button=cy.get('.camera-button-box > .MuiButton-contained',{ timeout: Cypress.env('elementTimeout') })
             button.click()
             return this    
         }
 
-        static clickOnUploadSnapshot() { //code by shital
+        static clickOnUploadSnapshot() { 
             const button=cy.get('.camera-button-box > .MuiButton-contained',{ timeout: Cypress.env('elementTimeout') })
             button.click()
             return this    
         }
 
 
-        static clickOnSaveButton() { // code by shital
+        static clickOnSaveButton() { 
             const button=cy.get('[data-testid="edit-insurance-save"]' ,{ timeout: Cypress.env('elementTimeout') })
             button.click()
             return this    
