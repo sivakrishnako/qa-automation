@@ -1,9 +1,10 @@
 name: Cypress Edge-Browser Testing - DailyRun
 
 on:
-  schedule:
+  [fork]
+  # schedule:
      # UTC time is setup here i.e. 2:30 AM (daily) which is equal to 8:00 AM IST
-    - cron: '30 2 * * *'
+   # - cron: '30 2 * * *'
 
 jobs:
   cypress-crossbrowser-testing:
@@ -17,7 +18,7 @@ jobs:
       # and run all Cypress tests
       - name: Cypress run tests
         uses: cypress-io/github-action@v4
-        timeout-minutes: 30
+        timeout-minutes: 40
         with:
           # Run on Edge browser
           browser: edge
