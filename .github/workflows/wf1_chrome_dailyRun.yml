@@ -1,9 +1,10 @@
 name: Cypress Chrome-Browser Testing - DailyRun
 
-on:
-  schedule:
+on: 
+  [fork]
+ # schedule:
      # UTC time is setup here i.e. 4:00 AM (daily) which is equal to 9:30 AM IST
-    - cron: '00 4 * * *'
+  #  - cron: '30 3 * * *'
 
 jobs:
   cypress-crossbrowser-testing:
@@ -17,7 +18,7 @@ jobs:
       # and run all Cypress tests
       - name: Cypress run tests
         uses: cypress-io/github-action@v4
-        timeout-minutes: 30
+        timeout-minutes: 40
         with:
           # Run on all Chrome browser
           browser: chrome
