@@ -34,7 +34,7 @@ describe(
         )
       );
       cy.addInsurance("2000");
-      cy.addInsuranceCard();
+     cy.addInsuranceCard();
       cy.wait(Cypress.env("myWait"));
     });
     beforeEach(() => {
