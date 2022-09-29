@@ -5,7 +5,7 @@ module.exports = defineConfig({
   video: false,
   env: {
     kioskURL: "https://org1-kiosk.raintreeinc.com/?location=",
-    myWait: 25000,
+    myWait: 35000,
     elementTimeout: 2000,
     piURL: "https://rt-api-kiosk.dev.raintreeinc.com/api/",
     rtApiURL: "https://kiosk.raintreeinc.com/dat/api/",
@@ -17,5 +17,9 @@ module.exports = defineConfig({
     },
     specPattern: "cypress/e2e/**/*.spec.js",
     experimentalSessionAndOrigin: true,
+    specPattern: "cypress/e2e/**/*.spec.js",
+  baseUrl: "https://org1-kiosk.raintreeinc.com/?location=",
   },
-});
+},
+);
+
