@@ -62,7 +62,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getChekInButton().click()
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
@@ -94,7 +94,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getChekInButton().click()
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographicInSpanish,
@@ -130,7 +130,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getChekInButton().click()
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographicInSpanish,
@@ -173,7 +173,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getChekInButton().click()
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
@@ -210,7 +210,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getChekInButton().click()
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
@@ -242,7 +242,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getChekInButton().click()
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographicInSpanish,
@@ -284,7 +284,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getChekInButton().click()
       DemographicPage.clickEditButton();
       CommunicationPreferencePage.communicationPreferencePageToggle().should(
         "have.text",
@@ -340,7 +340,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getChekInButton().click()
       DemographicPage.clickEditButton();
       CommunicationPreferencePage.communicationPreferencePageToggle().should(
         "have.text",
@@ -406,7 +406,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getChekInButton().click()
       DemographicPage.clickEditButton();
       CommunicationPreferencePage.communicationPreferencePageToggle().should(
         "have.text",
@@ -467,7 +467,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getChekInButton().click()
       DemographicPage.clickEditButton();
       CommunicationPreferencePage.communicationPreferencePageToggle().should(
         "have.text",
@@ -507,7 +507,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getChekInButton().click()
       DemographicPage.clickEditButton();
       CommunicationPreferencePage.communicationPreferencePageToggle().should(
         "have.text",
@@ -545,7 +545,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getChekInButton().click()
       DemographicPage.clickEditButton();
       CommunicationPreferencePage.communicationPreferencePageToggle().should(
         "have.text",
@@ -600,7 +600,7 @@ describe(
             AppointmentData.appointmentPageUrl
           );
           cy.wait(Cypress.env("elementTimeout"));
-          cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+          AppointmentPage.getChekInButton().click()
           cy.verifyPage(
             DemographicPage.titleReviewDemographic,
             ReviewDemographicsPageData.expectedTitleOfReviewDemographicInSpanish,

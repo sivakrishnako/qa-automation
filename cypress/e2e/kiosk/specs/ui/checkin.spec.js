@@ -164,8 +164,7 @@ describe(
       );
 
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonForAuthRepJS);
-
+      AppointmentPage.getChekInButton().click()
       AppointmentPage.clickOnExitKioskBtn();
     });
 

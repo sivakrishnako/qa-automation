@@ -64,7 +64,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getChekInButton().click()
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,
@@ -112,7 +112,7 @@ describe(
       cy.verifyText(AppointmentPage.getTypeOfAppointmentTitle, "Tipo de Cita");
       cy.verifyText(AppointmentPage.getTitleOfCheckInButton, "REGISTRARSE");
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getChekInButton().click()
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetailsInSpanish,
@@ -148,7 +148,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getChekInButton().click()
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,
@@ -185,7 +185,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getChekInButton().click()
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,

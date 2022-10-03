@@ -72,7 +72,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getChekInButton().click()
       PaymentPage.clickSkipPayment();
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,

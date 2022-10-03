@@ -14,7 +14,7 @@ import RTApiData from "../api/rt.api.testdata";
 describe(
   "Userstory suite",
   {
-    retries: 0,
+    retries: 1,
   },
   () => {
     before(() => {
@@ -64,7 +64,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getChekInButton().click()
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
