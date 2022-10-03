@@ -175,7 +175,7 @@ class AppointmentPage {
 
     return this;
   }
-  static getChekInButton(){
+   static getCheckInButton(){
 
     return cy.get('[data-testid="singleAppointmentCheckIn"]')
 

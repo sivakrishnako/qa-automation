@@ -10,7 +10,7 @@ import PaymentDetailsPageData from "../../specs/ui/paymentdetails.testdata";
 import RTApiData from "../api/rt.api.testdata";
 
 describe(
-  "User story spec file",
+  "Test Suite For User Story part 2",
   {
     retries: 1,
   },
@@ -63,7 +63,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      AppointmentPage.getChekInButton().click();
+      AppointmentPage.getCheckInButton().click();
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,

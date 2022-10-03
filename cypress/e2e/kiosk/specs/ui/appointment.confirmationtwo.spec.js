@@ -3,11 +3,9 @@
 import WelcomePage from "../../pageObjects/pages/welcome.page";
 import AppointmentPage from "../../pageObjects/pages/appointment.page";
 import DemographicPage from "../../pageObjects/pages/demographic.page";
-import CommunicationPreferencePage from "../../pageObjects/pages/communication.preference.page";
 import PatientData from "./patient.checkin.testdata";
 import AppointmentData from "./appointment.detailspage.testdata";
 import ReviewDemographicsPageData from "./review.demographicspage.testdata";
-import CommunicationPreferencePageData from "./communication.preferencePage.testdata";
 import CheckInPage from "../../pageObjects/pages/checkin.page";
 import InsurancePageData from "./insurancepage.testdata";
 import InsurancePage from "../../pageObjects/pages/insurance.page";
@@ -17,10 +15,10 @@ import FormListPageData from "./formlist.testdata";
 import SubmitPage from "../../pageObjects/pages/submit.page";
 import SubmitPageData from "./submitpage.testdata";
 import PaymentPage from "../../pageObjects/pages/payment.details.page";
-import PaymentDetailsPageData from "../../specs/ui/paymentdetails.testdata";
+
 
 describe(
-  "Userstory suite",
+  "Test Suite For Appointment confirmation part 2",
   {
     retries: 0,
   },
@@ -72,7 +70,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      AppointmentPage.getChekInButton().click()
+      AppointmentPage.getCheckInButton().click()
       PaymentPage.clickSkipPayment();
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,

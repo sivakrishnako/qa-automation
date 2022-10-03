@@ -7,12 +7,10 @@ import AppointmentData from "./appointment.detailspage.testdata";
 import CheckInPage from "../../pageObjects/pages/checkin.page";
 import PaymentPage from "../../pageObjects/pages/payment.details.page";
 import PaymentDetailsPageData from "../../specs/ui/paymentdetails.testdata";
-import DemographicPage from "../../pageObjects/pages/demographic.page";
-import ReviewDemographicsPageData from "../../specs/ui/review.demographicsPage.testdata";
 import RTApiData from "../../specs/api/rt.api.testdata";
 
 describe(
-  "Payment Details spec for hide the page",
+  "Test Suite For Payment Details Epic part 2",
   {
     retries: 0,
   },
@@ -64,7 +62,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      AppointmentPage.getChekInButton().click()
+      AppointmentPage.getCheckInButton().click()
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,
@@ -112,7 +110,7 @@ describe(
       cy.verifyText(AppointmentPage.getTypeOfAppointmentTitle, "Tipo de Cita");
       cy.verifyText(AppointmentPage.getTitleOfCheckInButton, "REGISTRARSE");
       cy.wait(Cypress.env("elementTimeout"));
-      AppointmentPage.getChekInButton().click()
+      AppointmentPage.getCheckInButton().click()
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetailsInSpanish,
@@ -148,7 +146,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      AppointmentPage.getChekInButton().click()
+      AppointmentPage.getCheckInButton().click()
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,
@@ -185,7 +183,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      AppointmentPage.getChekInButton().click()
+      AppointmentPage.getCheckInButton().click()
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,

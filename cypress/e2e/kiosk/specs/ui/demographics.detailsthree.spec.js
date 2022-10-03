@@ -8,7 +8,7 @@ import CheckInPage from "../../pageObjects/pages/checkin.page";
 import RTApiData from "../../specs/api/rt.api.testdata";
 
 describe(
-  "Demographics epic test suite",
+  "Test Suite For Demographic Epic part 3",
   {
     retries: 1,
   },
@@ -60,7 +60,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      AppointmentPage.getChekInButton().click()
+      AppointmentPage.getCheckInButton().click()
       DemographicPage.clickNoChangeNextBtn();
       cy.go("back");
       cy.verifyPage(

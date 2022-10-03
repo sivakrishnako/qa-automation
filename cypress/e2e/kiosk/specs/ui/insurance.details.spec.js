@@ -14,7 +14,7 @@ import FormsPage from '../../pageObjects/pages/formlist.page'
 import FormsPageData from '../../specs/ui/formlist.testdata'
 
 describe.skip(
-  'Insurance test suite',
+  "Test Suite For Insurance Epic",
   {
     retries: {
       runMode: 2,

@@ -12,7 +12,7 @@ import InsurancePage from "../../pageObjects/pages/insurance.page";
 import RTApiData from "../api/rt.api.testdata";
 
 describe(
-  "Userstory suite",
+  "Test Suite For Demographic Epic part 4",
   {
     retries: 1,
   },
@@ -64,7 +64,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      AppointmentPage.getChekInButton().click()
+      AppointmentPage.getCheckInButton().click()
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
