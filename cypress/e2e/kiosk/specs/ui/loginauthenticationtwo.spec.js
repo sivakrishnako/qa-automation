@@ -5,7 +5,7 @@ import PatientData from "./patient.checkin.testdata";
 import RTApiData from "../../specs/api/rt.api.testdata";
 
 describe(
-  "LogIn /Authentication Epic test suite",
+  "Test Suite For LogIn /Authentication Epic part 2",
   {
     retries: 1,
   },

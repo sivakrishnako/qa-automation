@@ -7,7 +7,7 @@ import AppointmentData from "../ui/appointment.detailspage.testdata";
 import RTApiData from "../../specs/api/rt.api.testdata";
 
 describe(
-  "CheckIn Epic test suite",
+  "Test Suite For Check In ",
   {
     retries: 1,
   },
@@ -164,8 +164,7 @@ describe(
       );
 
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonForAuthRepJS);
-
+      AppointmentPage.getCheckInButton().click()
       AppointmentPage.clickOnExitKioskBtn();
     });
 

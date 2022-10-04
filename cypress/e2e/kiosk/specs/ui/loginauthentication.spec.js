@@ -7,7 +7,7 @@ import CheckInPage from "../../pageObjects/pages/checkin.page";
 import RTApiData from "../../specs/api/rt.api.testdata";
 
 describe(
-  "LogIn /Authentication Epic test suite",
+  "Test Suite For LogIn /Authentication Epic",
   {
     retries: 1,
   },

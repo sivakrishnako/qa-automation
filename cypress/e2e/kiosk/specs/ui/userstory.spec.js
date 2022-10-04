@@ -20,7 +20,7 @@ import PaymentPage from "../../pageObjects/pages/payment.details.page";
 import PaymentDetailsPageData from "../../specs/ui/paymentdetails.testdata";
 
 describe(
-  "Userstory suite",
+  "Test Suite For User Story ",
   {
     retries: 0,
   },
@@ -79,7 +79,7 @@ describe(
         AppointmentData.specialityOfProvider
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getCheckInButton().click()
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,
@@ -133,7 +133,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getCheckInButton().click()
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,
@@ -200,7 +200,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getCheckInButton().click()
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,
@@ -274,7 +274,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getCheckInButton().click()
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,

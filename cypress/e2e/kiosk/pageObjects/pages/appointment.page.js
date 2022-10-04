@@ -175,6 +175,11 @@ class AppointmentPage {
 
     return this;
   }
+   static getCheckInButton(){
+
+    return cy.get('[data-testid="singleAppointmentCheckIn"]')
+
+  }
 }
 
 export default AppointmentPage;

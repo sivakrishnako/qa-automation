@@ -12,7 +12,7 @@ import ReviewDemographicsPageData from "../../specs/ui/review.demographicsPage.t
 import RTApiData from "../../specs/api/rt.api.testdata";
 
 describe(
-  "Payment Details epic spec file",
+  "Test Suite For Payment Details Epic",
   {
     retries: 1,
   },
@@ -41,7 +41,7 @@ describe(
       cy.clearCookies();
     });
 
-    it.only("KIOS-2578||Payment Details||Verify As a Kiosk User  should be able to enter the amount user is going to pay so that user can pay something other the full amount due", () => {
+    it("KIOS-2578||Payment Details||Verify As a Kiosk User  should be able to enter the amount user is going to pay so that user can pay something other the full amount due", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         cy.wait(Cypress.env("elementTimeout"));
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
@@ -64,7 +64,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getCheckInButton().click()
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,
@@ -98,7 +98,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getCheckInButton().click()
 
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
@@ -142,7 +142,7 @@ describe(
       cy.verifyText(AppointmentPage.getTypeOfAppointmentTitle, "Tipo de Cita");
       cy.verifyText(AppointmentPage.getTitleOfCheckInButton, "REGISTRARSE");
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getCheckInButton().click()
 
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
@@ -205,7 +205,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getCheckInButton().click()
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,
@@ -233,7 +233,7 @@ describe(
       WelcomePage.convertToggleEnglishToSpanish();
       CheckInPage.clickPatientBtn();
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getCheckInButton().click()
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetailsInSpanish,
@@ -265,7 +265,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getCheckInButton().click()
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,
@@ -294,7 +294,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getCheckInButton().click()
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,
@@ -328,7 +328,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getCheckInButton().click()
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,
@@ -384,7 +384,7 @@ describe(
           AppointmentData.appointmentPageUrl
         );
         cy.wait(Cypress.env("elementTimeout"));
-        cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+        AppointmentPage.getCheckInButton().click()
 
         cy.verifyPage(
           DemographicPage.titleReviewDemographic,
@@ -394,8 +394,8 @@ describe(
       });
     });
 
-    //  after(() => {
-    //  cy.deletePatient();
-    //});
+    after(() => {
+      cy.deletePatient();
+    });
   }
 );

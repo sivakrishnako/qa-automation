@@ -8,7 +8,7 @@ class WelcomePage {
   }
 
   static expTitleWelcomePage = 'Self Check-In Kiosk'
-  static logInPageUrl = 'https://org1-kiosk.raintreeinc.com/'
+  static logInPageUrl = 'https://org1-kiosk.sqa.raintreeinc.com/?location='
 
   static titleWelcomePage () {
     return cy.get('[data-testid="self-check-in-kiosk"]', {

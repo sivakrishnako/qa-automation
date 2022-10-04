@@ -10,7 +10,7 @@ import ReviewDemographicsPageData from "../../specs/ui/review.demographicsPage.t
 import RTApiData from "../../specs/api/rt.api.testdata";
 
 describe(
-  "Payment Details epic spec file",
+  "Test Suite For Payment Details Epic part 3",
   {
     retries: 1,
   },
@@ -62,7 +62,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      cy.ClickElementWithJS(AppointmentPage.checkInButtonJS);
+      AppointmentPage.getCheckInButton().click()
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
