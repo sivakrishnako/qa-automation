@@ -278,6 +278,9 @@ class DemographicPage {
     button.click();
     return this;
   }
+  static getBirthSexValue(){
+    return cy.get('[data-value="F"]')
+  }
   static verifyDropdownOption() {
     cy.get("li")
       .invoke("text")

@@ -172,41 +172,7 @@ describe(
         PatientData.errorMessageForInvalidDobDigitsInSpanish
       );
     });
-
-    //Nested Describe to override Location
-    describe("Verifying Login with X minutes constraint", () => {
-      before(() => {
-        cy.myPatientAppointment(
-          RTApiData.clientIdLogIn,
-          RTApiData.clientSecretKeyLogIn,
-          RTApiData.grantType,
-          RTApiData.appId,
-          PatientData.pnName,
-          WelcomePage.generateRandomText(6).slice(1),
-          "CHE",
-          "1",
-          "3",
-          "DAD",
-          PatientData.pnName.concat(
-            WelcomePage.generateRandomText(6) + "@gmail.com"
-          )
-        );
-        cy.wait(Cypress.env("myWait"));
-      });
-
-      it("KIOSK-2586 || logIn ||As kiosk User should be able to check in before X minutes of his first appointment according to the set up configuration ", () => {
-        WelcomePage.launchApp("CHE");
-        cy.getPatientDetails("application/json").then((patient_ln) => {
-          WelcomePage.startCheckIn(
-            patient_ln,
-            PatientData.validDOB,
-            "X minutes"
-          );
-        });
-      });
-    });
-
-    after(() => {
+after(() => {
       //This deletes the patient created from Core RT App
       // cy.deletePatient()
     });

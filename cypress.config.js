@@ -8,8 +8,8 @@ module.exports = defineConfig({
     kioskURL: "https://org1-kiosk.sqa.raintreeinc.com/?location=",
     myWait: 35000,
     elementTimeout: 2000,
-    apiURL: "https://rt-api-kiosk.dev.raintreeinc.com/api/",
-    rtApiURL: "https://kiosk-dev.raintreeinc.com/dat/api/"
+    apiURL: "https://rt-api-kiosk.sqa.raintreeinc.com/api/",
+    rtApiURL: "https://kiosk-sqa.raintreeinc.com/dat/api/"
   },
   defaultCommandTimeout: 30000,
   e2e: {
@@ -19,7 +19,7 @@ module.exports = defineConfig({
 
     specPattern: "cypress/e2e/**/*.spec.js",
     experimentalSessionAndOrigin: true,
-    baseUrl: "https://org1-kiosk.dev.raintreeinc.com/?location=",
+    baseUrl: "https://org1-kiosk.sqa.raintreeinc.com/?location=",
   },
 
 });

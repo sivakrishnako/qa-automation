@@ -21,6 +21,9 @@ class AppointmentPage {
   static getTitleOfCheckInButton = '[data-testid="singleAppointmentCheckIn"]';
   static checkInButtonJS = "#mui-6";
   static checkInButtonForAuthRepJS = "#mui-7";
+  static getPatientNameOnHeader(){
+    return cy.get('[data-testid="profile-button"] > .MuiTypography-root')
+  }
   static getCompareTime() {
     cy.get(
       "div:nth-of-type(1) > .providerWrapper > h6:nth-of-type(2) > .providerInfo"

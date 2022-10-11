@@ -15,18 +15,23 @@ class RTApiData {
     "b18da0624eccef6ce7f4763339c7f922";
   static clientIdPaymentDetails = "c525a58e4f733e48c7291ae0";
   static clientSecretKeyPaymentDetails = "380aafea24ef87dba546db39fa699948";
-  static clientIdForPaymentDetailsTwo="94b590405e79a1d7734e604e";
-static clientSecretkeyPaymentDetailsTwo= "6eb584ede7848cb148cf0cd3d91ec122";
-static clientIDForPaymentDetailsThree="4548f4e949eb1f32c08a0253";
-static clientSecretkeyPaymentDetailsThree="565412d0797ae0e2af86778b0337179b";
-static clientIDForDemographicsThree="50890e747158b03a6e605d35";
-static clientSecretkeyForDemographicsThree= "f6d2d12cb9ab64089c68b42a61d5ab78";
-static clientIDForLogInTwo="633f3fa459d4145475b4568a";
-static clientSecretkeyLogInTwo="78486cb545e8a77367f98a75968c2806";
-static grantType = "client_credentials";
+  static clientIdForPaymentDetailsTwo = "94b590405e79a1d7734e604e";
+  static clientSecretkeyPaymentDetailsTwo = "6eb584ede7848cb148cf0cd3d91ec122";
+  static clientIDForPaymentDetailsThree = "4548f4e949eb1f32c08a0253";
+  static clientSecretkeyPaymentDetailsThree =
+    "565412d0797ae0e2af86778b0337179b";
+  static clientIDForDemographicsThree = "50890e747158b03a6e605d35";
+  static clientSecretkeyForDemographicsThree =
+    "f6d2d12cb9ab64089c68b42a61d5ab78";
+  static clientIDForLogInTwo = "633f3fa459d4145475b4568a";
+  static clientSecretkeyLogInTwo = "78486cb545e8a77367f98a75968c2806";
+  static grantType = "client_credentials";
   static appId = "EaXLDE-vp3tbrxW-6Kdn4-G3okFg";
-//For future use
-  //Client ID :376022029b7a7ac289adf00a
-//Client Secret key ;4eee6fde128b1f0788ad679e53cb471c
+  static clientIDForAppointmentTwo = "376022029b7a7ac289adf00a";
+  static clientSecretKeyAppointmentTwo = "4eee6fde128b1f0788ad679e53cb471c";
+  static clientIDForUserStoryThree="a1b1f01b85cbbccae86da727";
+static clientSecretKeyForUserStoryThree="2ebc60866e3f8dc9222ec4178dd11e7a";
+static clientIDForDemographicsFour="65be74be2090c7b411e2e2ab";
+static clientSecretKeyForDemographicsFour="331c6acd8145c8ef07e4d6ebb29b8faf";
 }
 export default RTApiData;

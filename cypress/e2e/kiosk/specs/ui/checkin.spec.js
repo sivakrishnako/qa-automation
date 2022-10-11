@@ -135,7 +135,7 @@ describe(
         PatientData.popupMsgOfNoneOfTheAbove
       );
       CheckInPage.clickOkBtnPopupOfNoneOfTheAbove();
-      CheckInPage.clickOnExitBtn();
+     
     });
 
     it("KIOSK 2123 || CheckIn ||Verify that user can check in with authorized guardian from the list of available option", () => {

@@ -67,7 +67,7 @@ describe(
         cy.get(AppointmentPage.getPatientName).contains(patient_ln);
       });
       cy.wait(Cypress.env("elementTimeout"));
-    AppointmentPage.getCheckInButton().click()
+      AppointmentPage.getCheckInButton().click();
       DemographicPage.clickEditButton();
       DemographicPage.clickOnZipField();
     });
@@ -105,7 +105,7 @@ describe(
       cy.verifyText(AppointmentPage.getTypeOfAppointmentTitle, "Tipo de Cita");
       cy.verifyText(AppointmentPage.getTitleOfCheckInButton, "REGISTRARSE");
       cy.wait(Cypress.env("elementTimeout"));
-    AppointmentPage.getCheckInButton().click()
+      AppointmentPage.getCheckInButton().click();
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographicInSpanish,
@@ -174,7 +174,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-    AppointmentPage.getCheckInButton().click()
+      AppointmentPage.getCheckInButton().click();
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographicInSpanish,
@@ -284,7 +284,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-    AppointmentPage.getCheckInButton().click()
+      AppointmentPage.getCheckInButton().click();
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographicInSpanish,
@@ -336,7 +336,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-   AppointmentPage.getCheckInButton().click()
+      AppointmentPage.getCheckInButton().click();
       DemographicPage.clickEditButton();
       DemographicPage.clickOnBirthSexDropDown();
       DemographicPage.verifyDropdownOption();
@@ -364,7 +364,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-   AppointmentPage.getCheckInButton().click()
+      AppointmentPage.getCheckInButton().click();
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
@@ -407,7 +407,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-    AppointmentPage.getCheckInButton().click()
+      AppointmentPage.getCheckInButton().click();
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
@@ -449,7 +449,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      AppointmentPage.getCheckInButton().click()
+      AppointmentPage.getCheckInButton().click();
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
@@ -587,7 +587,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      AppointmentPage.getCheckInButton().click()
+      AppointmentPage.getCheckInButton().click();
       DemographicPage.clickEditButton();
       CommunicationPreferencePage.communicationPreferencePageToggle().should(
         "have.text",
@@ -649,7 +649,7 @@ describe(
         AppointmentData.appointmentPageUrl
       );
       cy.wait(Cypress.env("elementTimeout"));
-      AppointmentPage.getCheckInButton().click()
+      AppointmentPage.getCheckInButton().click();
       cy.verifyPage(
         DemographicPage.titleReviewDemographic,
         ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
@@ -659,9 +659,44 @@ describe(
       DemographicPage.clickOnEmergencyContactType();
       DemographicPage.clickOptionFromEmergencyContactType();
     });
+    it("KIOS-5151||Demographics Details||Verify As a Kiosk User  should be able to edit  demographic information so that he can update missing or incorrect information", () => {
+      cy.getPatientDetails("application/json").then((patient_ln) => {
+        WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
+      });
+      cy.verifyPage(
+        CheckInPage.checkInTitle,
+        PatientData.expectedTitleOfCheckIn,
+        PatientData.checkInPageUrl
+      );
+      CheckInPage.patient().should("have.text", "Patient");
+      CheckInPage.authorized().should(
+        "have.text",
+        "Parent / Authorized Representative"
+      );
+      CheckInPage.noneOfTheAbove().should("have.text", "None of the above");
+      CheckInPage.clickPatientBtn();
+      cy.verifyPage(
+        AppointmentPage.appointmentTitle,
+        AppointmentData.expectedTitleOfAppointmentPage,
+        AppointmentData.appointmentPageUrl
+      );
+      cy.wait(Cypress.env("elementTimeout"));
+      AppointmentPage.getCheckInButton().click();
+      cy.verifyPage(
+        DemographicPage.titleReviewDemographic,
+        ReviewDemographicsPageData.expectedTitleOfReviewDemographic,
+        ReviewDemographicsPageData.demographicPageUrl
+      );
+      DemographicPage.clickEditButton();
+      DemographicPage.clickOnBirthSexDropDown();
+      DemographicPage.getBirthSexValue().click();
+      DemographicPage.fillMailingAddress();
+      DemographicPage.clickEmergencyContactPhoneType();
+      DemographicPage.clickOptionFromEmergencyPhoneType();
+      DemographicPage.clickSaveDemographicsBtn();
+    });
   }
 );
-
 describe(
   "Demographics epic test suite",
   {
@@ -678,7 +713,7 @@ describe(
         WelcomePage.generateRandomText(6).slice(1),
         "ZZPOC",
         "1",
-        "3",
+        "7",
         "DAD",
         PatientData.pnName.concat(
           WelcomePage.generateRandomText(6) + "@gmail.com"
@@ -709,7 +744,7 @@ describe(
       CheckInPage.noneOfTheAbove().should("have.text", "None of the above");
       CheckInPage.clickPatientBtn();
       cy.wait(Cypress.env("elementTimeout"));
-      AppointmentPage.getCheckInButton().click()
+      AppointmentPage.getCheckInButton().click();
       cy.verifyPage(
         PaymentPage.titleOfPaymentDetails,
         PaymentDetailsPageData.expectedTitleOfPaymentDetails,
@@ -732,6 +767,6 @@ describe(
 
     after(() => {
       cy.deletePatient();
-   });
+    });
   }
 );

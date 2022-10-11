@@ -200,7 +200,7 @@ describe(
       AppointmentPage.clickOnExitKioskBtn();
     });
 
-    it("KIOS-2171,KIOS-585|| Appointment Confirmation || Verify that appointment details header displayed On Appointment Detail Page has user detail dropdown with name displayed", () => {
+    it("KIOS-2171,KIOS-574|| Appointment Confirmation || Verify that appointment details header displayed On Appointment Detail Page has user detail dropdown with name displayed", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
       });
@@ -225,9 +225,13 @@ describe(
         cy.get(AppointmentPage.getPatientName).contains(patient_ln);
       });
       cy.verifyText(AppointmentPage.getPatientDOB, AppointmentData.validDob);
+      cy.getPatientDetails("application/json").then((patient_ln) => {
+        AppointmentPage.getPatientNameOnHeader().contains(patient_ln);
+      });
+      cy.verifyText(AppointmentPage.getPatientDOB, AppointmentData.validDob);
     });
 
-    it("KIOS-2692,KIOS-578||Appointment Confirmation || verify As a Kiosk User ,i should be able to view the details of the child when he has a Authorized Guardian or Representative", () => {
+    it("KIOS-2692,KIOS-578,KIOS-575||Appointment Confirmation || verify As a Kiosk User ,i should be able to view the details of the child when he has a Authorized Guardian or Representative", () => {
       cy.getPatientDetails("application/json").then((patient_ln) => {
         WelcomePage.startCheckIn(patient_ln, PatientData.validDOB);
       });
@@ -254,7 +258,10 @@ describe(
         cy.get(AppointmentPage.getPatientName).contains(patient_ln);
       });
       cy.verifyText(AppointmentPage.getPatientDOB, AppointmentData.validDob);
-      AppointmentPage.clickOnExitKioskBtn();
+      cy.getPatientDetails("application/json").then((patient_ln) => {
+        AppointmentPage.getPatientNameOnHeader().contains(patient_ln);
+       });
+     AppointmentPage.clickOnExitKioskBtn();
       cy.verifyText(
         WelcomePage.titleWelcomePage,
         WelcomePage.expTitleWelcomePage
