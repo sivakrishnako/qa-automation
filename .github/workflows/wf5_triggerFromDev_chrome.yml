@@ -24,3 +24,9 @@ jobs:
         env:
           # pass the Dashboard record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_DASHBOARDKEY }}
+      - name: 'trigger cypress'
+        run: |
+         curl -X POST https://api.github.com/repos/raintreeinc/kiosk_frontend/dispatches \
+          -H 'Accept: application/vnd.github.everest-preview+json' \
+          -u ${{ secrets.ACCESS_TOKEN }} \
+          --data '{"event_type": "Trigger", "client_payload": { "ACCESSKEY": "${{ secrets.AWS_ACCESS_KEY_ID }}", "SECRETKEY": "${{ secrets.AWS_SECRET_ACCESS_KEY }}"  }}'
