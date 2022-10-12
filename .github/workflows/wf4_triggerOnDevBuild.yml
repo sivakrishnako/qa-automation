@@ -1,6 +1,7 @@
 name: Trigger Cypress tests on Development build deployment
 
-on: workflow_call
+# on: workflow_call
+on: [repository_dispatch]
 
 jobs:
   parallel-run:
